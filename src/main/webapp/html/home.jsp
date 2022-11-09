@@ -4,6 +4,7 @@
     Author     : Jan
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
@@ -23,6 +24,10 @@
         <div>
             <input type="button" value="Cerrar sesión" name="volverAlLogin" onclick="location.href='../html/login.jsp'"></button>
         </div>
+        
+        <c:forEach items="usuarios" var="usuario">
+            
+        </c:forEach>
     </div>
 </body>
 </html>
