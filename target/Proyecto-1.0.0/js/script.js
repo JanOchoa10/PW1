@@ -45,7 +45,7 @@ function logout() {
     }).then((result) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
-            location.href='../html/login.jsp';
+            window.location.href='./';
         } 
     })
 }

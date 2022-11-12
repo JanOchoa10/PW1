@@ -5,7 +5,7 @@
 package Modelos;
 
 import java.sql.Blob;
-import java.util.Date;
+import java.sql.Date;
 
 /**
  *
@@ -13,153 +13,155 @@ import java.util.Date;
  */
 public class Usuario {
 
-    private int idUsuario;
-    private String nombre;
-    private String apePaterno;
-    private String apeMaterno;
-    private Date fecNacimiento;
-    private String email;
-    private String username;
-    private String contrasena;
-    private Blob userImage;
-    private int activo;
-    private Date fechaDeCreacion;
-    private Date fechaDeCambio;
+    private int ID_Usuario;
+    private String Nombre;
+    private String ApePaterno;
+    private String ApeMaterno;
+    private Date FecNacimiento;
+    private String Email;
+    private String UserName;
+    private String Contrasena;
+    private Blob UserImagen;
+    private int Activo;
+    private Date FechaDeCreacion;
+    private Date FechaDeCambio;
 
-    public Usuario(int idUsuario, String nombre, String apePaterno, String apeMaterno, Date fecNacimiento, String email, String username, String contrasena, Blob userImage, int activo, Date fechaDeCreacion, Date fechaDeCambio) {
-        this.idUsuario = idUsuario;
-        this.nombre = nombre;
-        this.apePaterno = apePaterno;
-        this.apeMaterno = apeMaterno;
-        this.fecNacimiento = fecNacimiento;
-        this.email = email;
-        this.username = username;
-        this.contrasena = contrasena;
-        this.userImage = userImage;
-        this.activo = activo;
-        this.fechaDeCreacion = fechaDeCreacion;
-        this.fechaDeCambio = fechaDeCambio;
+    public Usuario(int ID_Usuario, String Nombre, String ApePaterno, String ApeMaterno, Date FecNacimiento, String Email, String UserName, String Contrasena, Blob UserImagen, int Activo, Date FechaDeCreacion, Date FechaDeCambio) {
+        this.ID_Usuario = ID_Usuario;
+        this.Nombre = Nombre;
+        this.ApePaterno = ApePaterno;
+        this.ApeMaterno = ApeMaterno;
+        this.FecNacimiento = FecNacimiento;
+        this.Email = Email;
+        this.UserName = UserName;
+        this.Contrasena = Contrasena;
+        this.UserImagen = UserImagen;
+        this.Activo = Activo;
+        this.FechaDeCreacion = FechaDeCreacion;
+        this.FechaDeCambio = FechaDeCambio;
     }
 
-    public Usuario(String nombre, String apePaterno, String apeMaterno, Date fecNacimiento, String email, String username, String contrasena, Blob userImage, int activo, Date fechaDeCreacion, Date fechaDeCambio) {
-        this.nombre = nombre;
-        this.apePaterno = apePaterno;
-        this.apeMaterno = apeMaterno;
-        this.fecNacimiento = fecNacimiento;
-        this.email = email;
-        this.username = username;
-        this.contrasena = contrasena;
-        this.userImage = userImage;
-        this.activo = activo;
-        this.fechaDeCreacion = fechaDeCreacion;
-        this.fechaDeCambio = fechaDeCambio;
+    public Usuario(String Nombre, String ApePaterno, String ApeMaterno, Date FecNacimiento, String Email, String UserName, String Contrasena, Blob UserImagen, int Activo, Date FechaDeCreacion, Date FechaDeCambio) {
+        this.Nombre = Nombre;
+        this.ApePaterno = ApePaterno;
+        this.ApeMaterno = ApeMaterno;
+        this.FecNacimiento = FecNacimiento;
+        this.Email = Email;
+        this.UserName = UserName;
+        this.Contrasena = Contrasena;
+        this.UserImagen = UserImagen;
+        this.Activo = Activo;
+        this.FechaDeCreacion = FechaDeCreacion;
+        this.FechaDeCambio = FechaDeCambio;
     }
 
-    public Usuario(String nombre, String apePaterno, String apeMaterno, Date fecNacimiento, String email, String username, String contrasena, Date fechaDeCreacion) {
-        this.nombre = nombre;
-        this.apePaterno = apePaterno;
-        this.apeMaterno = apeMaterno;
-        this.fecNacimiento = fecNacimiento;
-        this.email = email;
-        this.username = username;
-        this.contrasena = contrasena;
-        this.fechaDeCreacion = fechaDeCreacion;
+    public Usuario(int ID_Usuario, String Nombre, String Contrasena) {
+        this.ID_Usuario = ID_Usuario;
+        this.Nombre = Nombre;
+        this.Contrasena = Contrasena;
     }
 
-    public int getIdUsuario() {
-        return idUsuario;
+    public Usuario(String Nombre, String Contrasena) {
+        this.Nombre = Nombre;
+        this.Contrasena = Contrasena;
     }
 
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
+    public int getID_Usuario() {
+        return ID_Usuario;
+    }
+
+    public void setID_Usuario(int ID_Usuario) {
+        this.ID_Usuario = ID_Usuario;
     }
 
     public String getNombre() {
-        return nombre;
+        return Nombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombre(String Nombre) {
+        this.Nombre = Nombre;
     }
 
     public String getApePaterno() {
-        return apePaterno;
+        return ApePaterno;
     }
 
-    public void setApePaterno(String apePaterno) {
-        this.apePaterno = apePaterno;
+    public void setApePaterno(String ApePaterno) {
+        this.ApePaterno = ApePaterno;
     }
 
     public String getApeMaterno() {
-        return apeMaterno;
+        return ApeMaterno;
     }
 
-    public void setApeMaterno(String apeMaterno) {
-        this.apeMaterno = apeMaterno;
+    public void setApeMaterno(String ApeMaterno) {
+        this.ApeMaterno = ApeMaterno;
     }
 
     public Date getFecNacimiento() {
-        return fecNacimiento;
+        return FecNacimiento;
     }
 
-    public void setFecNacimiento(Date fecNacimiento) {
-        this.fecNacimiento = fecNacimiento;
+    public void setFecNacimiento(Date FecNacimiento) {
+        this.FecNacimiento = FecNacimiento;
     }
 
     public String getEmail() {
-        return email;
+        return Email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmail(String Email) {
+        this.Email = Email;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return UserName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String UserName) {
+        this.UserName = UserName;
     }
 
     public String getContrasena() {
-        return contrasena;
+        return Contrasena;
     }
 
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
+    public void setContrasena(String Contrasena) {
+        this.Contrasena = Contrasena;
     }
 
-    public Blob getUserImage() {
-        return userImage;
+    public Blob getUserImagen() {
+        return UserImagen;
     }
 
-    public void setUserImage(Blob userImage) {
-        this.userImage = userImage;
+    public void setUserImagen(Blob UserImagen) {
+        this.UserImagen = UserImagen;
     }
 
     public int getActivo() {
-        return activo;
+        return Activo;
     }
 
-    public void setActivo(int activo) {
-        this.activo = activo;
+    public void setActivo(int Activo) {
+        this.Activo = Activo;
     }
 
     public Date getFechaDeCreacion() {
-        return fechaDeCreacion;
+        return FechaDeCreacion;
     }
 
-    public void setFechaDeCreacion(Date fechaDeCreacion) {
-        this.fechaDeCreacion = fechaDeCreacion;
+    public void setFechaDeCreacion(Date FechaDeCreacion) {
+        this.FechaDeCreacion = FechaDeCreacion;
     }
 
     public Date getFechaDeCambio() {
-        return fechaDeCambio;
+        return FechaDeCambio;
     }
 
-    public void setFechaDeCambio(Date fechaDeCambio) {
-        this.fechaDeCambio = fechaDeCambio;
+    public void setFechaDeCambio(Date FechaDeCambio) {
+        this.FechaDeCambio = FechaDeCambio;
     }
-
+    
+    
+    
 }
