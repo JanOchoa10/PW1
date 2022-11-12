@@ -125,8 +125,8 @@ document.getElementById("formL").addEventListener("submit", function (event) {
 
         console.log(document.getElementById("password1").value);
         document.getElementById("password1").value = "";
-    } else {
-
+    } 
+//    else {
 //        Swal.fire({
 //            icon: 'success',
 //            title: '¡Inicio de sesión exitoso!',
@@ -144,7 +144,7 @@ document.getElementById("formL").addEventListener("submit", function (event) {
 //                //window.location.href = "hmtl/home.jsp";
 //            }
 //        })
-    }
+//    }
 
 });
 

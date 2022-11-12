@@ -3,6 +3,7 @@
     Created on : 15 oct. 2022, 09:58:27
     Author     : Jan
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 
@@ -71,7 +72,7 @@
                     <div class="user-profile">
                         <img src="img/profile-pic.png">
                         <div>
-                            <p>Jan Ochoa</p>
+                            <p>${usuarios[0].nombre}</p>
                             <a href="#">Editar tu perfil</a>
                         </div>
                     </div>
@@ -127,17 +128,19 @@
             </div>
 
             <!-- ------------main-content------------ -->
-            
-            
-            
-            
+
+
+
+
             <div class="main-content">
-                
-                <h1>Mis usuarios: ${usuarios}</h1>
-        
-        <c:forEach items="${usuarios}" var="usuario">
-            <h1><c:out value="${usuario.nombre}"></c:out></h1>
-        </c:forEach>
+
+                <!--<h1>Mis usuarios: ${usuarios[0].nombre}</h1>-->
+
+                <%--<c:forEach items="${usuarios}" var="usuario">--%>
+                    <!--<h1><c:out value="${usuario.ID_Usuario}"></c:out></h1>-->
+                    <!--<h1><c:out value="${usuario.nombre}"></c:out></h1>-->
+                    <!--<h1><c:out value="${usuario.contrasena}"></c:out></h1>-->
+                <%--</c:forEach>--%>
 
                 <div class="story-gallery">
                     <div class="story story1">
@@ -167,13 +170,13 @@
                     <div class="user-profile">
                         <img src="img/profile-pic.png">
                         <div>
-                            <p>Jan Ochoa</p>
+                            <p>${usuarios[0].nombre}</p>
                             <small>Público <i class="fas fa-caret-down"></i></small>
                         </div>
                     </div>
 
                     <div class="post-input-container">
-                        <textarea nrows="3" placeholder="¿Qué estás pensando, Jan?"></textarea>
+                        <textarea nrows="3" placeholder="¿Qué estás pensando, ${usuarios[0].nombre}?"></textarea>
                         <div class="add-post-links">
                             <a href="#"><img src="img/live-video.png"> En vivo</a>
                             <a href="#"><img src="img/photo.png"> Foto/Video</a>
@@ -187,7 +190,7 @@
                         <div class="user-profile">
                             <img src="img/profile-pic.png">
                             <div>
-                                <p>Jan Ochoa</p>
+                                <p>${usuarios[0].nombre}</p>
                                 <span>Junio 24 2022, 13:40 pm</span>
                             </div>
                         </div>
@@ -219,7 +222,7 @@
                         <div class="user-profile">
                             <img src="img/profile-pic.png">
                             <div>
-                                <p>Jan Ochoa</p>
+                                <p>${usuarios[0].nombre}</p>
                                 <span>Junio 24 2022, 13:40 pm</span>
                             </div>
                         </div>
@@ -250,7 +253,7 @@
                         <div class="user-profile">
                             <img src="img/profile-pic.png">
                             <div>
-                                <p>Jan Ochoa</p>
+                                <p>${usuarios[0].nombre}</p>
                                 <span>Junio 24 2022, 13:40 pm</span>
                             </div>
                         </div>
@@ -281,7 +284,7 @@
                         <div class="user-profile">
                             <img src="img/profile-pic.png">
                             <div>
-                                <p>Jan Ochoa</p>
+                                <p>${usuarios[0].nombre}</p>
                                 <span>Junio 24 2022, 13:40 pm</span>
                             </div>
                         </div>
@@ -312,7 +315,7 @@
                         <div class="user-profile">
                             <img src="img/profile-pic.png">
                             <div>
-                                <p>Jan Ochoa</p>
+                                <p>${usuarios[0].nombre}</p>
                                 <span>Junio 24 2022, 13:40 pm</span>
                             </div>
                         </div>

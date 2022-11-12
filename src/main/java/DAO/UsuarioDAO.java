@@ -37,11 +37,11 @@ public class UsuarioDAO {
         rs = s.executeQuery(sql);
         
         while(rs.next()){
-            int idUsuario = rs.getInt("ID_Usuario");
+            int id_usuario = rs.getInt("ID_Usuario");
             String nombre = rs.getString("Nombre");
-            String contra = rs.getString("Contrasena");
+            String contrasena = rs.getString("Contrasena");
             
-            usuarios.add(new Usuario(idUsuario, nombre, contra));
+            usuarios.add(new Usuario(id_usuario, nombre, contrasena));
         }
         
         return usuarios;
