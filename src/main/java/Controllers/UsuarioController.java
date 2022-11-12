@@ -42,7 +42,7 @@ public class UsuarioController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet UsuarioController</title>");            
+            out.println("<title>Servlet UsuarioController</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet UsuarioController at " + request.getContextPath() + "</h1>");
@@ -61,28 +61,26 @@ public class UsuarioController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-     protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int i=0;
-        
+//        int i=0;
+
         //Modelos.Usuario user = new Modelos.Usuario(i, nombre, contra);
-        
         String nombre = request.getParameter("username");
         String contra = request.getParameter("password1");
-        
+
         Usuario usuario = new Usuario(nombre, contra);
-        
+
         UsuarioDAO uDAO = new UsuarioDAO();
-        
+
         try {
             boolean result = uDAO.agregar(usuario);
-            
-            if(result){
-               processRequest(request, response); 
+
+            if (result) {
+                processRequest(request, response);
             }
-            
+
             // Revisar que le usuario exista
-            
             //response.sendRedirect("Vistas/principal.jsp");
             //request.setAttribute("id", 1);
             //request.getRequestDispatcher("principal.jsp").forward(request, response);
@@ -100,24 +98,52 @@ public class UsuarioController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+//    @Override
+//    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+//            throws ServletException, IOException {
+//        
+//        UsuarioDAO uDAO = new UsuarioDAO();
+//
+//        try {
+//            ArrayList<Usuario> usuarios = uDAO.getUsuarios();
+//            
+//            request.setAttribute("usuarios", usuarios);
+//            
+//            request.getRequestDispatcher("html/home.jsp").forward(request, response);
+//        } catch (SQLException ex) {
+//            Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        
+//        
+//        
+//        //processRequest(request, response);
+//    }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
+        String nombre = request.getParameter("username");
+        String contra = request.getParameter("password1");
+
+        Usuario usuario = new Usuario(nombre, contra);
+
         UsuarioDAO uDAO = new UsuarioDAO();
 
         try {
-            ArrayList<Usuario> usuarios = uDAO.getUsuarios();
-            
-            request.setAttribute("usuarios", usuarios);
-            
-            request.getRequestDispatcher("html/home.jsp").forward(request, response);
+            ArrayList<Usuario> usuarios = uDAO.getUnUsuario(usuario);
+
+            if (usuarios.isEmpty()) { 
+                request.getRequestDispatcher("html/index.html").forward(request, response);         
+            } else {
+                request.setAttribute("usuarios", usuarios);
+
+                request.getRequestDispatcher("html/home.jsp").forward(request, response);
+            }
+
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-        
+
         //processRequest(request, response);
     }
 

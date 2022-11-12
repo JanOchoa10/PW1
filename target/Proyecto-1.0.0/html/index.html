@@ -17,27 +17,29 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
 
     </head>
     <body>
-        
-        
-        <form action="UsuarioController" method="GET">
-            <label>Nombre: </label>
-            <input type="text" id="idNombre" name="nombre" />
-            <br>
-            <label>Contraseña: </label>
-            <input type="password" id="idContra" name="contra" />
-            <br> 
-            <button type="submit">Ingresar</button>
-        </form>
-        <br><!-- comment -->
-        <form action="UsuarioController" method="POST">
-            <button type="submit">Mostrar Usuarios</button>
-        </form>
-        
-        
-        
+
+
+        <!--        <form action="UsuarioController" method="GET">
+                    <label>Nombre: </label>
+                    <input type="text" id="idNombre" name="nombre" />
+                    <br>
+                    <label>Contraseña: </label>
+                    <input type="password" id="idContra" name="contra" />
+                    <br> 
+                    <button type="submit">Ingresar</button>
+                </form>
+                <br> comment 
+                <form action="UsuarioController" method="POST">
+                    <button type="submit">Mostrar Usuarios</button>
+                </form>-->
+
+
+
         <div class="login-box" id="login-box">
             <img class="avatar" src="img/logo-cato.png" alt="Logo de la página">
             <h1>¡Bienvenido de vuelta!</h1>
+            <!--<h4>Usuario o contraseña incorrecta, intente de nuevo.</h4>-->
+
             <form id="formL">
                 <label for="username" id="usernameLabel">Nombre de usuario</label>
                 <input type="text" name="username" id="username" maxlength="30" required placeholder="Ingresa tu nombre de usuario">
@@ -62,11 +64,31 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="js/loginScript.js"></script>
         <script>
-//            function cambiarTitulo() {
-//
-//                window.location.href = "login.jsp";
-//            }
-//            cambiarTitulo();
+            function cambiarTitulo() {
+
+                window.location.href = "./";
+            }
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Ingresaste usuario o contraseña incorrecto',
+                confirmButtonText: 'Reintentar'
+//                footer: '<a href="">Why do I have this issue?</a>'
+            }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    cambiarTitulo();
+//                    Swal.fire('Saved!', '', 'success')
+                }
+//                else if (result.isDenied) {
+//                    Swal.fire('Changes are not saved', '', 'info')
+//                }
+            })
+
+            //setTimeout(cambiarTitulo, 3000);
+        </script>
+        <script>
+
         </script>
     </body>
 
