@@ -24,10 +24,11 @@ function validarContrasena(passwordAValidar) {
     //console.log("La contraseña a validar es: "+passwordAValidar);
 
     if (regExpPassword) {
-        console.log("Password correcto");
+//        console.log("Password correcto");
         return true;
     } else {
-        console.log("Password incorrecto");
+//        console.log("Password incorrecto");
+        //alert("Contrasena debve tener caracteres");
         return false;
     }
 }
@@ -87,19 +88,19 @@ function validarTamano() {
 
     if (i1 && i2) {
         document.getElementById('login-box').style.height = uno;
-        console.log("Aplicamos " + uno);
+//        console.log("Aplicamos " + uno);
     } else {
         if (!i1 && !i2) {
             document.getElementById('login-box').style.height = dos;
-            console.log("Aplicamos " + dos);
+//            console.log("Aplicamos " + dos);
         } else {
             if (i1 && !i2) {
                 document.getElementById('login-box').style.height = tres;
-                console.log("Aplicamos " + tres);
+//                console.log("Aplicamos " + tres);
             } else {
                 if (!i1 && i2) {
                     document.getElementById('login-box').style.height = cuatro;
-                    console.log("Aplicamos " + cuatro);
+//                    console.log("Aplicamos " + cuatro);
                 }
             }
         }
@@ -108,17 +109,12 @@ function validarTamano() {
 
 //Mantenlo a la espera
 document.getElementById("formL").addEventListener("submit", function (event) {
-    event.preventDefault()
+    //event.action = "home";
+    //event.preventDefault();
 
 
     if (!validarContrasena(document.getElementById("password1").value)) {
-        // swal({
-        //     icon: 'error',
-        //     title: '¡Registro no exitoso!',
-        //     text: 'La contraseña debe contener al menos 1 mayúscula, 1 minúscula, 1 número y 1 caracter especial.', 
-        //     button: 'Reintentar',
-        // })
-
+        event.preventDefault();
         Swal.fire({
             icon: 'error',
             title: '¡Inicio de sesión no exitoso!',
@@ -130,70 +126,50 @@ document.getElementById("formL").addEventListener("submit", function (event) {
         console.log(document.getElementById("password1").value);
         document.getElementById("password1").value = "";
     } else {
-        // swal({
-        //     icon: 'success',
-        //     title: '¡Inicio de sesión exitoso!',
-        //     text: 'Se inicio sesión exitosamente.', 
-        //     button: 'Continuar',
-        //     }).then((value) => {
-        //     window.location.href = "../html/home.html";
-        // })
 
-
-
-        Swal.fire({
-            icon: 'success',
-            title: '¡Inicio de sesión exitoso!',
-            //showDenyButton: true,
-            //showCancelButton: true,
-            confirmButtonText: 'Continuar',
-            denyButtonText: `Don't save`,
-        }).then((result) => {
-            window.location.href = "../html/home.jsp";
-            // /* Read more about isConfirmed, isDenied below */
-            // if (result.isConfirmed) {
-            //   Swal.fire('Saved!', '', 'success')
-            // } else if (result.isDenied) {
-            //   Swal.fire('Changes are not saved', '', 'info')
-            // }
-        })
+//        Swal.fire({
+//            icon: 'success',
+//            title: '¡Inicio de sesión exitoso!',
+//            //showDenyButton: true,
+//            //showCancelButton: true,
+//            confirmButtonText: 'Continuar',
+////            denyButtonText: `Don't save`,
+//        }).then((result) => {
+//
+//            if (result.isConfirmed) {
+//                event.method = "POST";
+//                event.action = "home";
+//
+//                // event.preventDefault(false);
+//                //window.location.href = "hmtl/home.jsp";
+//            }
+//        })
     }
 
-
-
-    //if(validateEmail(document.getElementById("email").value)){
-
-    /*} else {
-     swal({
-     icon: 'error',
-     title: '¡Inicio de sesión no exitoso!',
-     text: 'Ingrese un correo válido.', 
-     button: 'Reintentar',
-     })
-     //document.getElementById("email").value = "";
-     }*/
-
-    //Validamos que no esté vacío
-    /*function validar() {
-     if ($('#username').val().length == 0) {
-     alert('Ingrese rut');
-     return false;
-     }
-     }*/
-
-    //Dialogo con 2 opciones
-    /*swal({
-     title: "Estas seguro de eliminar el producto del carrito?",
-     text: "Una vez eliminado, no podras recuperarla!",
-     icon: "warning",
-     buttons: true,
-     dangerMode: true,
-     })
-     .then((willDelete) => {
-     if (willDelete) {
-     swal("El producto is death :c!");
-     } else {
-     swal("El producto sigue con vida :)!");
-     }
-     })*/
 });
+
+
+//
+//$(document).ready(function () {
+//    $('#form').submit(function (event) {
+//        event.preventDefault();
+//        $.ajax({
+//            data: $(this).serialize(),
+//            type: "POST",
+//            dataType: "json",
+//            url: "Login"
+//        }).done(function (data) {
+//            console.log(data);
+//            if (data.resultado == true) {
+//                window.location.href = "home.jsp";
+//            } else {
+//                
+//                window.location.href = "error_login.jsp";
+//            }
+//        }).fail(function (jqXHR, textEstado) {
+//            console.log("La solicitud regreso con un error: " + textEstado);
+//        });
+//    });
+//
+//
+//});

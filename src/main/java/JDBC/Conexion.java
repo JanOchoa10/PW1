@@ -15,13 +15,13 @@ public class Conexion {
     private Connection con;
     private String serverName = "localhost";
     private String portNumber = "3306";
-    private String databaseName = "bd_postcat";
+    private String databaseName = "BD_PostCat";
     private String url = "jdbc:mysql://" + serverName+ ":" + portNumber + "/" + databaseName;
     private String userName = "root";
     private String password = "jan8a";
-    
-    public Conexion(){
-        try{
+
+    public Conexion() {
+       try{
            Class.forName("com.mysql.jdbc.Driver");
            con = DriverManager.getConnection(url, userName, password);
        }catch (Exception ex){
