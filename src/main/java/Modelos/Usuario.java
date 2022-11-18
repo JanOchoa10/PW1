@@ -5,7 +5,8 @@
 package Modelos;
 
 import java.sql.Blob;
-import java.sql.Date;
+import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  *
@@ -17,16 +18,16 @@ public class Usuario {
     private String Nombre;
     private String ApePaterno;
     private String ApeMaterno;
-    private Date FecNacimiento;
+    private String FecNacimiento;
     private String Email;
     private String UserName;
     private String Contrasena;
-    private Blob UserImagen;
+    private String UserImagen;
     private int Activo;
-    private Date FechaDeCreacion;
-    private Date FechaDeCambio;
+    private String FechaDeCreacion;
+    private String FechaDeCambio;
 
-    public Usuario(int ID_Usuario, String Nombre, String ApePaterno, String ApeMaterno, Date FecNacimiento, String Email, String UserName, String Contrasena, Blob UserImagen, int Activo, Date FechaDeCreacion, Date FechaDeCambio) {
+    public Usuario(int ID_Usuario, String Nombre, String ApePaterno, String ApeMaterno, String FecNacimiento, String Email, String UserName, String Contrasena, String UserImagen, int Activo, String FechaDeCreacion, String FechaDeCambio) {
         this.ID_Usuario = ID_Usuario;
         this.Nombre = Nombre;
         this.ApePaterno = ApePaterno;
@@ -41,7 +42,7 @@ public class Usuario {
         this.FechaDeCambio = FechaDeCambio;
     }
 
-    public Usuario(String Nombre, String ApePaterno, String ApeMaterno, Date FecNacimiento, String Email, String UserName, String Contrasena, Blob UserImagen, int Activo, Date FechaDeCreacion, Date FechaDeCambio) {
+    public Usuario(String Nombre, String ApePaterno, String ApeMaterno, String FecNacimiento, String Email, String UserName, String Contrasena, String UserImagen, int Activo, String FechaDeCreacion, String FechaDeCambio) {
         this.Nombre = Nombre;
         this.ApePaterno = ApePaterno;
         this.ApeMaterno = ApeMaterno;
@@ -55,14 +56,15 @@ public class Usuario {
         this.FechaDeCambio = FechaDeCambio;
     }
 
-    public Usuario(int ID_Usuario, String Nombre, String Contrasena) {
+    public Usuario(int ID_Usuario, String Nombre, String userName, String Contrasena) {
         this.ID_Usuario = ID_Usuario;
         this.Nombre = Nombre;
+        this.UserName = userName;
         this.Contrasena = Contrasena;
     }
 
-    public Usuario(String Nombre, String Contrasena) {
-        this.Nombre = Nombre;
+    public Usuario(String userName, String Contrasena) {
+        this.UserName = userName;
         this.Contrasena = Contrasena;
     }
 
@@ -98,11 +100,11 @@ public class Usuario {
         this.ApeMaterno = ApeMaterno;
     }
 
-    public Date getFecNacimiento() {
+    public String getFecNacimiento() {
         return FecNacimiento;
     }
 
-    public void setFecNacimiento(Date FecNacimiento) {
+    public void setFecNacimiento(String FecNacimiento) {
         this.FecNacimiento = FecNacimiento;
     }
 
@@ -130,11 +132,11 @@ public class Usuario {
         this.Contrasena = Contrasena;
     }
 
-    public Blob getUserImagen() {
+    public String getUserImagen() {
         return UserImagen;
     }
 
-    public void setUserImagen(Blob UserImagen) {
+    public void setUserImagen(String UserImagen) {
         this.UserImagen = UserImagen;
     }
 
@@ -146,19 +148,19 @@ public class Usuario {
         this.Activo = Activo;
     }
 
-    public Date getFechaDeCreacion() {
+    public String getFechaDeCreacion() {
         return FechaDeCreacion;
     }
 
-    public void setFechaDeCreacion(Date FechaDeCreacion) {
+    public void setFechaDeCreacion(String FechaDeCreacion) {
         this.FechaDeCreacion = FechaDeCreacion;
     }
 
-    public Date getFechaDeCambio() {
+    public String getFechaDeCambio() {
         return FechaDeCambio;
     }
 
-    public void setFechaDeCambio(Date FechaDeCambio) {
+    public void setFechaDeCambio(String FechaDeCambio) {
         this.FechaDeCambio = FechaDeCambio;
     }
     

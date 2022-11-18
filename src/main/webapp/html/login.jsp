@@ -118,7 +118,7 @@
 
                 <!--a href="../html/passwordLost.jsp">¿Olvidaste tu contraseña?</a><br-->
                 <div class="centrado">
-                    <a href="html/register.jsp">¿No tienes cuenta? Regístrate</a>
+                    <a href="register.jsp">¿No tienes cuenta? Regístrate</a>
                 </div>
 
             </form>

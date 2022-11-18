@@ -1,4 +1,5 @@
-Controllers\UsuarioController.class
+Controllers\Registro.class
+Controllers\Login.class
 Modelos\Usuario.class
 DAO\UsuarioDAO.class
 JDBC\Conexion.class
