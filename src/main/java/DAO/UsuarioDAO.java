@@ -40,33 +40,35 @@ public class UsuarioDAO {
         while (rs.next()) {
             int id_usuario = rs.getInt("ID_Usuario");
             String nombre = rs.getString("Nombre");
+            String userName = rs.getString("UserName");
             String contrasena = rs.getString("Contrasena");
 
-            usuarios.add(new Usuario(id_usuario, nombre, contrasena));
+            usuarios.add(new Usuario(id_usuario, nombre, userName, contrasena));
         }
 
         return usuarios;
     }
 
     public ArrayList<Usuario> getUnUsuario(Usuario user) throws SQLException {
-        String sql = "SELECT * FROM usuario WHERE Nombre = ? AND Contrasena = ?;";
+        String sql = "SELECT * FROM usuario WHERE UserName = ? AND Contrasena = ?;";
 
         ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
 
         con = c.getConnection();
 
         ps = con.prepareStatement(sql);
-        ps.setString(1, user.getNombre());
+        ps.setString(1, user.getUserName());
         ps.setString(2, user.getContrasena());
         rs = ps.executeQuery();
 
         while (rs.next()) {
-            if (rs.getString("Nombre") != null) {
+            if (rs.getString("UserName") != null) {
                 int id_usuario = rs.getInt("ID_Usuario");
                 String nombre = rs.getString("Nombre");
+                String userName = rs.getString("UserName");
                 String contrasena = rs.getString("Contrasena");
 
-                usuarios.add(new Usuario(id_usuario, nombre, contrasena));
+                usuarios.add(new Usuario(id_usuario, nombre, userName, contrasena));
             }
         }
 
@@ -74,13 +76,23 @@ public class UsuarioDAO {
     }
 
     public boolean agregar(Usuario user) throws SQLException {
-        String sql = "INSERT INTO usuario (Nombre, Contrasena) VALUES (?,?)";
+        String sql = "INSERT INTO usuario (Nombre, ApePaterno, ApeMaterno, FecNacimiento, Email, UserName, Contrasena, UserImagen, Activo, FechaDeCreacion, FechaDeCambio)"
+                + " VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 
         con = c.getConnection();
 
         ps = con.prepareStatement(sql);
         ps.setString(1, user.getNombre());
-        ps.setString(2, user.getContrasena());
+        ps.setString(2, user.getApePaterno());
+        ps.setString(3, user.getApeMaterno());
+        ps.setString(4, user.getFecNacimiento());
+        ps.setString(5, user.getEmail());
+        ps.setString(6, user.getUserName());
+        ps.setString(7, user.getContrasena());
+        ps.setString(8, user.getUserImagen());
+        ps.setInt(9, user.getActivo());
+        ps.setString(10, user.getFechaDeCreacion());
+        ps.setString(11, user.getFechaDeCambio());
         int result = ps.executeUpdate();
 
         if (result > 0) {

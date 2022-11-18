@@ -137,10 +137,11 @@ function comprobarClave() {
 
 //Mantenlo a la espera
 document.getElementById("formR").addEventListener("submit", function (event) {
-    event.preventDefault()
+    //event.preventDefault();
 
     if (!validateEmail(document.getElementById("email").value)) {
         console.log("No se muestra el email");
+        event.preventDefault();
         Swal.fire({
             icon: 'error',
             title: '¡Registro no exitoso!',
@@ -155,6 +156,7 @@ document.getElementById("formR").addEventListener("submit", function (event) {
                 || !validarNombre(document.getElementById("lastNameP").value)
                 || !validarNombre(document.getElementById("lastNameM").value)) {
             console.log("No se muestra el nombres");
+            event.preventDefault();
             Swal.fire({
                 icon: 'error',
                 title: '¡Registro no exitoso!',
@@ -166,6 +168,7 @@ document.getElementById("formR").addEventListener("submit", function (event) {
 
             if (!validarContrasena(document.getElementById("password1").value)) {
                 console.log("No se muestra el contraseña correcta");
+                event.preventDefault();
                 Swal.fire({
                     icon: 'error',
                     title: '¡Registro no exitoso!',
@@ -181,6 +184,7 @@ document.getElementById("formR").addEventListener("submit", function (event) {
 
                 if (!validarEdad()) {
                     console.log("No se muestra el edad");
+                    event.preventDefault();
                     Swal.fire({
                         icon: 'error',
                         title: '¡Registro exitoso!',
@@ -192,6 +196,7 @@ document.getElementById("formR").addEventListener("submit", function (event) {
 
                     if (!comprobarClave()) {
                         console.log("No se muestra el contraseña confirmada");
+                        event.preventDefault();
                         Swal.fire({
                             icon: 'error',
                             title: '¡Registro no exitoso!',
@@ -203,44 +208,45 @@ document.getElementById("formR").addEventListener("submit", function (event) {
                     } else {
 
                         if (validateImage()) {
+                            event.preventDefault();
                             Swal.fire({
                                 icon: 'question',
                                 title: '¡Imagen no cargada!',
-                                text: '¿Deseas continuar?',
-                                confirmButtonText: 'Sí',
-                                showDenyButton: true,
-                                denyButtonText: `Agregar imagen`,
-                                denyButtonColor: '#6f7880',
-                            }).then((result) => {
-                                /* Read more about isConfirmed, isDenied below */
-                                if (result.isConfirmed) {
-                                    Swal.fire({
-                                        icon: 'success',
-                                        title: '¡Registro exitoso!',
-                                        text: 'Se registró la cuenta exitosamente.',
-                                        confirmButtonText: 'Volver al inicio de sesión',
-                                    }).then((value) => {
-                                        window.location.href = '../html/login.jsp';
-                                    })
-                                } else if (result.isDenied) {
-                                    //console.log('Valor del input: ' + valorN);
-                                }
+                                text: 'Suba una imagen para continuar',
+                                confirmButtonText: 'Reintentar',
+//                                showDenyButton: true,
+//                                denyButtonText: `Agregar imagen`,
+//                                denyButtonColor: '#6f7880'
                             })
+//                                    .then((result) => {
+//                                        /* Read more about isConfirmed, isDenied below */
+//                                        if (result.isConfirmed) {
+//                                            Swal.fire({
+//                                                icon: 'success',
+//                                                title: '¡Registro exitoso!',
+//                                                text: 'Se registró la cuenta exitosamente.',
+//                                                confirmButtonText: 'Volver al inicio de sesión'
+//                                            }).then((value) => {
+//                                                window.location.href = '../html/login.jsp';
+//                                            })
+//                                        } else if (result.isDenied) {
+//                                            //console.log('Valor del input: ' + valorN);
+//                                        }
+//                                    })
 
 
 
-                        } else {
-
-
-                            console.log("No se muestra el exitoso");
+                        }else {
+//                            console.log("No se muestra el exitoso");
                             Swal.fire({
                                 icon: 'success',
                                 title: '¡Registro exitoso!',
                                 text: 'Se registró la cuenta exitosamente.',
                                 confirmButtonText: 'Volver al inicio de sesión',
-                            }).then((value) => {
-                                window.location.href = "../html/login.jsp";
                             })
+//                            .then((value) => {
+//                                window.location.href = "../html/login.jsp";
+//                            })
                         }
 
                     }
