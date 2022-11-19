@@ -237,6 +237,7 @@ document.getElementById("formR").addEventListener("submit", function (event) {
 
 
                         }else {
+                            event.preventDefault();
 //                            console.log("No se muestra el exitoso");
                             Swal.fire({
                                 icon: 'success',
@@ -244,9 +245,9 @@ document.getElementById("formR").addEventListener("submit", function (event) {
                                 text: 'Se registró la cuenta exitosamente.',
                                 confirmButtonText: 'Volver al inicio de sesión',
                             })
-//                            .then((value) => {
-//                                window.location.href = "../html/login.jsp";
-//                            })
+                            .then((value) => {
+                                window.location.href = "Registro2";
+                            })
                         }
 
                     }

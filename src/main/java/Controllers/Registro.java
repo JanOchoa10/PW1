@@ -6,6 +6,7 @@ package Controllers;
 
 import DAO.UsuarioDAO;
 import Modelos.Usuario;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -17,12 +18,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.http.Part;
 
 /**
  *
  * @author Jan
  */
 @WebServlet(name = "Registro2", urlPatterns = {"/Registro2"})
+//@MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB
+//        maxFileSize = 1024 * 1024 * 10,  // 10MB
+//        maxRequestSize = 1024 * 1024 * 50)  // 50MB
 public class Registro extends HttpServlet {
 
     /**
@@ -63,7 +69,8 @@ public class Registro extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
+        request.getRequestDispatcher("html/login.jsp").forward(request, response);
     }
 
     /**
@@ -97,6 +104,12 @@ public class Registro extends HttpServlet {
 //        } catch (ParseException ex) {
 //            Logger.getLogger(Registro.class.getName()).log(Level.SEVERE, null, ex);
 //        }
+//        PrintWriter out = response.getWriter();
+//        Part part = request.getPart("imagenSubida");
+//        String fileName = extractFileName(part);
+//        String savePath = "C:\\Users\\Jan\\Documents\\GitHub\\pw1\\src\\main\\webapp\\img\\" + File.separator + fileName;
+//        File fileSaveDir = new File(savePath);
+//        part.write(savePath + File.separator);
 
         String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new java.util.Date());
 
@@ -108,10 +121,10 @@ public class Registro extends HttpServlet {
             boolean result = uDAO.agregar(usuario);
 
             if (result) {
-                //processRequest(request, response);
-                request.getRequestDispatcher("html/home.jsp").forward(request, response);
+                // processRequest(request, response);
+                request.getRequestDispatcher("html/login.jsp").forward(request, response);
             }
-            
+
             // Revisar que le usuario exista
             //response.sendRedirect("Vistas/principal.jsp");
             //request.setAttribute("id", 1);
@@ -132,5 +145,16 @@ public class Registro extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+//    private String extractFileName(Part part) {
+//        String contentDisp = part.getHeader("content-disposition");
+//        String[] items = contentDisp.split(";");
+//        for (String s : items) {
+//            if (s.trim().startsWith("filename")) {
+//                return s.substring(s.indexOf("=") + 2, s.length() - 1);
+//            }
+//        }
+//        return "";
+//    }
 
 }

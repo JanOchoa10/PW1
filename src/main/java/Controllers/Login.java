@@ -17,12 +17,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Jan
  */
-@WebServlet(name = "Página_Principal", urlPatterns = {"/Página_Principal"})
+@WebServlet(name = "home", urlPatterns = {"/home"})
 public class Login extends HttpServlet {
 
     /**
@@ -63,6 +64,8 @@ public class Login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        request.getRequestDispatcher("html/home.jsp").forward(request, response);
 //        int i=0;
 
         //Modelos.Usuario user = new Modelos.Usuario(i, nombre, contra);
@@ -121,8 +124,8 @@ public class Login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         request.setCharacterEncoding("UTF-8");
+
         String user = request.getParameter("username");
         String contra = request.getParameter("password1");
 
@@ -133,10 +136,14 @@ public class Login extends HttpServlet {
         try {
             ArrayList<Usuario> usuarios = uDAO.getUnUsuario(usuario);
 
-            if (usuarios.isEmpty()) { 
-                request.getRequestDispatcher("html/index.html").forward(request, response);         
+            if (usuarios.isEmpty()) {
+                request.getRequestDispatcher("html/index.html").forward(request, response);
             } else {
-                request.setAttribute("usuarios", usuarios);
+                HttpSession miSesion = request.getSession();
+                miSesion.setAttribute("userName", user);
+                miSesion.setAttribute("contrasena", contra);
+
+                miSesion.setAttribute("usuarios", usuarios);
 
                 request.getRequestDispatcher("html/home.jsp").forward(request, response);
             }
@@ -146,7 +153,6 @@ public class Login extends HttpServlet {
         }
 
         //processRequest(request, response);
-
         //processRequest(request, response);
     }
 
