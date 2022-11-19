@@ -100,7 +100,7 @@
         <div class="login-box-register" id="login-box-register">
             <img class="avatar" src="img/logo-cato.png" alt="Logo de la página">
             <h1>Crea una cuenta</h1>
-            <form action="Registro2" method="POST" id="formR" enctype="multipart/form-data">
+            <form action="Registro2" method="POST" id="formR" >
 
                 <div class="columnaPrincipal">
                     <div class="columna1">

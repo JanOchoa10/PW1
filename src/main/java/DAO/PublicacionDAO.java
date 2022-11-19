@@ -14,7 +14,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 /**
  *
@@ -47,8 +51,78 @@ public class PublicacionDAO {
             int id_usuario = rs.getInt("ID_Usuario");
             int activo = rs.getInt("Activo");
             String fechaDeCreacion = rs.getString("FechaDeCreacion");
-            String fechaDeCambio = rs.getString("FechaDeCambio");
+
+            int anio = Integer.parseInt(fechaDeCreacion.substring(0, 4));
+            int mes = Integer.parseInt(fechaDeCreacion.substring(5, 7));
+            int dia = Integer.parseInt(fechaDeCreacion.substring(8, 10));
+            int hora = Integer.parseInt(fechaDeCreacion.substring(11, 13));
+            String horaS = fechaDeCreacion.substring(11, 16);
+            String horaT = "";
+
+            String mesS = "";
+            switch (mes) {
+                case 1: {
+                    mesS = "Enero";
+                }
+                break;
+                case 2: {
+                    mesS = "Febrero";
+                }
+                break;
+                case 3: {
+                    mesS = "Marzo";
+                }
+                break;
+                case 4: {
+                    mesS = "Abril";
+                }
+                break;
+                case 5: {
+                    mesS = "Mayo";
+                }
+                break;
+                case 6: {
+                    mesS = "Junio";
+                }
+                break;
+                case 7: {
+                    mesS = "Julio";
+                }
+                break;
+                case 8: {
+                    mesS = "Agosto";
+                }
+                break;
+                case 9: {
+                    mesS = "Septiembre";
+                }
+                break;
+                case 10: {
+                    mesS = "Octubre";
+                }
+                break;
+                case 11: {
+                    mesS = "Noviembre";
+                }
+                break;
+                case 12: {
+                    mesS = "Diciembre";
+                }
+                break;
+
+                default:
+                    break;
+            }
             
+            if(hora >= 12){
+                horaT = "pm";
+            } else {
+                horaT = "am";
+            }
+
+            fechaDeCreacion = dia + " de " + mesS + " de " + anio + ", " + horaS + " " + horaT + ".";
+
+            String fechaDeCambio = rs.getString("FechaDeCambio");
 
             publicaciones.add(new Publicacion(id_publicacion, texto, imagen, spoiler, id_usuario, activo, fechaDeCreacion, fechaDeCambio));
 

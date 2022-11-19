@@ -25,7 +25,31 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(name = "home", urlPatterns = {"/home"})
 public class Login extends HttpServlet {
-    
+
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        try ( PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet prueba</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet prueba at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        //processRequest(request, response);
+        request.getRequestDispatcher("html/home.jsp").forward(request, response);
+    }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -40,6 +64,7 @@ public class Login extends HttpServlet {
 
         try {
             ArrayList<Usuario> usuarios = uDAO.getUnUsuario(usuario);
+            ArrayList<Usuario> usuariosall = uDAO.getUsuarios();
 
             if (usuarios.isEmpty()) {
                 request.getRequestDispatcher("html/index.html").forward(request, response);
@@ -49,8 +74,9 @@ public class Login extends HttpServlet {
                 miSesion.setAttribute("contrasena", contra);
 
                 miSesion.setAttribute("usuarios", usuarios);
+                miSesion.setAttribute("usuariosall", usuariosall);
 
-                response.addHeader("cache-control","no-cache");
+                response.addHeader("cache-control", "no-cache");
                 request.getRequestDispatcher("html/home.jsp").forward(request, response);
             }
 

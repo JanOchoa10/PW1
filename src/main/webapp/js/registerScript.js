@@ -237,7 +237,7 @@ document.getElementById("formR").addEventListener("submit", function (event) {
 
 
                         }else {
-                            event.preventDefault();
+//                            event.preventDefault();
 //                            console.log("No se muestra el exitoso");
                             Swal.fire({
                                 icon: 'success',

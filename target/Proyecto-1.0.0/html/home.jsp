@@ -3,6 +3,11 @@
     Created on : 15 oct. 2022, 09:58:27
     Author     : Jan
 --%>
+<%@page import="Modelos.Usuario"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.sql.Timestamp"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -146,19 +151,33 @@
                 <!--<h1>Mis usuarios: ${usuarios[0].nombre}</h1>-->
 
                 <%--<c:forEach items="${usuarios}" var="usuario">--%>
-<!--                    <h1><c:out value="${usuario.ID_Usuario}"></c:out></h1>
-                    <h1><c:out value="${usuario.nombre}"></c:out></h1>
-                    <h1><c:out value="${usuario.apePaterno}"></c:out></h1>
-                    <h1><c:out value="${usuario.apeMaterno}"></c:out></h1>
-                    <h1><c:out value="${usuario.fecNacimiento}"></c:out></h1>
-                    <h1><c:out value="${usuario.email}"></c:out></h1>
-                    <h1><c:out value="${usuario.userName}"></c:out></h1>
-                    <h1><c:out value="${usuario.contrasena}"></c:out></h1>
-                    
+                <h1><c:out value="${usuario.ID_Usuario}"></c:out></h1>
+                <h1><c:out value="${usuario.nombre}"></c:out></h1>
+                <h1><c:out value="${usuario.apePaterno}"></c:out></h1>
+                <h1><c:out value="${usuario.apeMaterno}"></c:out></h1>
+                <h1><c:out value="${usuario.fecNacimiento}"></c:out></h1>
+                <h1><c:out value="${usuario.email}"></c:out></h1>
+                <h1><c:out value="${usuario.userName}"></c:out></h1>
+                <h1><c:out value="${usuario.contrasena}"></c:out></h1>
+
                     <h1><c:out value="${usuario.userImagen}"></c:out></h1>
-                    <h1><c:out value="${usuario.activo}"></c:out></h1>
-                    <h1><c:out value="${usuario.fechaDeCreacion}"></c:out></h1>
-                    <h1><c:out value="${usuario.fechaDeCambio}"></c:out></h1>-->
+                <h1><c:out value="${usuario.activo}"></c:out></h1>
+                <h1><c:out value="${usuario.fechaDeCreacion}"></c:out></h1>
+                <h1><c:out value="${usuario.fechaDeCambio}"></c:out></h1>
+                <%--</c:forEach>--%>
+
+
+
+                <%--<c:forEach items="${publicaciones}" var="publicacion">--%>
+                <h1><c:out value="${publicacion.ID_Publicacion}"></c:out></h1>
+                <h1><c:out value="${publicacion.texto}"></c:out></h1>
+                <h1><c:out value="${publicacion.imagen}"></c:out></h1>
+                <h1><c:out value="${publicacion.spoiler}"></c:out></h1>
+                <h1><c:out value="${publicacion.ID_Usuario}"></c:out></h1>
+                <h1><c:out value="${publicacion.activo}"></c:out></h1>
+
+                    <h1><c:out value="${publicacion.fechaDeCreacion}"></c:out></h1>
+                <h1><c:out value="${publicacion.fechaDeCambio}"></c:out></h1>
                 <%--</c:forEach>--%>
 
                 <!--                <div class="story-gallery">
@@ -201,7 +220,7 @@
                             <textarea name="miContenido2" style="display: none;">${usuarios[0].ID_Usuario}</textarea>
                             <div class="add-post-links">
                                 <!--<a href="#"><img src="img/live-video.png"> En vivo</a>-->
-                                
+
 
                                 <input style="display: none;" type="file" id="miImg"  name="miImg" accept="image/*"/>
 
@@ -209,10 +228,10 @@
                                     <div class="myLabel">
                                         <a><img src="img/image-regular.png"> Imagen</a>
                                         <!--<img class="myImg" id="imagenSubida" src="img/logo-cato.png"/>-->
-<!--                                        <div>
-                                            <span id="tituloArchivo">Agregar imagen</span><br />
-                                            <span id="nombreArchivo"></span>
-                                        </div>-->
+                                        <!--                                        <div>
+                                                                                    <span id="tituloArchivo">Agregar imagen</span><br />
+                                                                                    <span id="nombreArchivo"></span>
+                                                                                </div>-->
                                     </div>
                                 </label>
 
@@ -226,39 +245,52 @@
                             </div>
                         </form>
                     </div>
-                </div>
+                </div>                           
 
-                <div class="post-container">
-                    <div class="post-row">
-                        <div class="user-profile">
-                            <img src="img/${usuarios[0].userImagen}">
-                            <div>
-                                <p>${usuarios[0].nombre}</p>
-                                <span>Junio 24 2022, 13:40 pm</span>
+
+                <c:forEach items="${publicaciones}" var="publicacion">
+                    <div class="post-container">
+                        <div class="post-row">
+                            <div class="user-profile">
+                                <c:forEach items="${usuariosall}" var="usuario">
+                                    <!--<h1><c:out value="${usuario.email}"></c:out></h1>-->
+
+                                    <c:if test="${usuario.ID_Usuario == publicacion.ID_Usuario}">
+                                        <!--<h1><c:out value="${usuario.email}"></c:out></h1>-->
+                                        <c:set var = "UserPostNombre" scope = "session" value = "${usuario.nombre}"></c:set>
+                                        <c:set var = "UserPostFoto" scope = "session" value = "${usuario.userImagen}"></c:set>
+                                    </c:if>
+                                </c:forEach>
+                                <img src="img/${UserPostFoto}">
+                                <div>
+                                    <p>${UserPostNombre}</p>
+                                    <span>${publicacion.fechaDeCreacion}</span>
+                                </div>
+                            </div>
+                            <a href="#"><i class="fas fa-ellipsis-v"></i></a>
+                        </div>
+                        <p class="post-text">
+                            ${publicacion.texto}
+                            <!--                            Trabajo en equipo <span>@Jobbin</span> donde todo trabajo se empieza y termina con la máxima calidad.
+                                                        <a href="#">#JOBBIN</a>
+                                                        <a href="#">#ROBBIN</a>-->
+                        </p>
+                        <img src="img/${publicacion.imagen}" class="post-img">
+
+
+                        <div class="post-row">
+                            <div class="activity-icons">
+                                <div><img src="img/like-blue.png"> 120</div>
+                                <div><img src="img/comments.png"> 45</div>
+                                <!--<div><img src="img/share.png"> 20</div>-->
+                            </div>
+                            <div class="post-profile-icon">
+                                <img src="img/${usuarios[0].userImagen}">
+                                <!--                            <i class="fas fa-caret-down"></i>-->
                             </div>
                         </div>
-                        <a href="#"><i class="fas fa-ellipsis-v"></i></a>
                     </div>
-                    <p class="post-text">
-                        Trabajo en equipo <span>@Jobbin</span> donde todo trabajo se empieza y termina con la máxima calidad.
-                        <a href="#">#JOBBIN</a>
-                        <a href="#">#ROBBIN</a>
-                    </p>
-                    <img src="img/feed-image-1.png" class="post-img">
-
-
-                    <div class="post-row">
-                        <div class="activity-icons">
-                            <div><img src="img/like-blue.png"> 120</div>
-                            <div><img src="img/comments.png"> 45</div>
-                            <!--<div><img src="img/share.png"> 20</div>-->
-                        </div>
-                        <div class="post-profile-icon">
-                            <img src="img/${usuarios[0].userImagen}">
-                            <!--                            <i class="fas fa-caret-down"></i>-->
-                        </div>
-                    </div>
-                </div>
+                </c:forEach>
 
                 <div class="post-container">
                     <div class="post-row">
