@@ -195,12 +195,36 @@
                     </div>
 
                     <div class="post-input-container">
-                        <textarea nrows="3" placeholder="¿Qué estás pensando, ${usuarios[0].nombre}?"></textarea>
-                        <div class="add-post-links">
-                            <!--<a href="#"><img src="img/live-video.png"> En vivo</a>-->
-                            <a href="#"><img src="img/photo.png"> Imagen</a>
-                            <!--<a href="#"><img src="img/feeling.png"> Sentimiento/Actividad</a>-->
-                        </div>
+
+                        <form action="CrearNota" method="POST">
+                            <textarea name="miContenido" nrows="3" placeholder="¿Qué estás pensando, ${usuarios[0].nombre}?"></textarea>
+                            <textarea name="miContenido2" style="display: none;">${usuarios[0].ID_Usuario}</textarea>
+                            <div class="add-post-links">
+                                <!--<a href="#"><img src="img/live-video.png"> En vivo</a>-->
+                                
+
+                                <input style="display: none;" type="file" id="miImg"  name="miImg" accept="image/*"/>
+
+                                <label for="miImg"> 
+                                    <div class="myLabel">
+                                        <a><img src="img/image-regular.png"> Imagen</a>
+                                        <!--<img class="myImg" id="imagenSubida" src="img/logo-cato.png"/>-->
+<!--                                        <div>
+                                            <span id="tituloArchivo">Agregar imagen</span><br />
+                                            <span id="nombreArchivo"></span>
+                                        </div>-->
+                                    </div>
+                                </label>
+
+
+                                <button type='submit'>
+                                    <a><img src="img/floppy-disk-regular.png"> Guardar</a>                                
+                                </button>
+                                <!--<input type="submit" value="<a><img className='colorNav' src='img/floppy-disk-regular.png'> Guardar</a>">-->
+                                <!--<a href="#"><img className="colorNav" src="img/floppy-disk-regular.png"> Guardar</a>-->
+                                <!--<a href="#"><img src="img/feeling.png"> Sentimiento/Actividad</a>-->
+                            </div>
+                        </form>
                     </div>
                 </div>
 
@@ -231,7 +255,7 @@
                         </div>
                         <div class="post-profile-icon">
                             <img src="img/${usuarios[0].userImagen}">
-<!--                            <i class="fas fa-caret-down"></i>-->
+                            <!--                            <i class="fas fa-caret-down"></i>-->
                         </div>
                     </div>
                 </div>

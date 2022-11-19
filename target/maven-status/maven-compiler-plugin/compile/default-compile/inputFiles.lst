@@ -1,6 +1,9 @@
 C:\Users\Jan\Documents\GitHub\pw1\src\main\java\Controllers\RevisarSesion.java
 C:\Users\Jan\Documents\GitHub\pw1\src\main\java\Controllers\Login.java
+C:\Users\Jan\Documents\GitHub\pw1\src\main\java\Modelos\Publicacion.java
 C:\Users\Jan\Documents\GitHub\pw1\src\main\java\Controllers\Logout.java
+C:\Users\Jan\Documents\GitHub\pw1\src\main\java\DAO\PublicacionDAO.java
+C:\Users\Jan\Documents\GitHub\pw1\src\main\java\Controllers\CrearNota.java
 C:\Users\Jan\Documents\GitHub\pw1\src\main\java\Modelos\Usuario.java
 C:\Users\Jan\Documents\GitHub\pw1\src\main\java\DAO\UsuarioDAO.java
 C:\Users\Jan\Documents\GitHub\pw1\src\main\java\JDBC\Conexion.java

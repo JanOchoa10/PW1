@@ -4,4 +4,7 @@ DAO\UsuarioDAO.class
 Controllers\RevisarSesion.class
 Controllers\Logout.class
 Controllers\Login.class
+Controllers\CrearNota.class
+DAO\PublicacionDAO.class
+Modelos\Publicacion.class
 JDBC\Conexion.class
