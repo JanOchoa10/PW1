@@ -111,20 +111,22 @@
             <!-- ------------left-sidebar------------ -->
             <div class="left-sidebar">
                 <div class="imp-links">
-                    <a href="#"><img src="img/news.png"> Últimas noticias</a>
-                    <a href="#"><img src="img/friends.png"> Amigos</a>
-                    <a href="#"><img src="img/group.png"> Grupos</a>
-                    <a href="#"><img src="img/marketplace.png"> Mercado</a>
+                    <!--<a href="#">Accesos Directos</a>-->
+                    <p>Accesos Directos</p>
+                    <a href="#"><i class="fa-solid fa-newspaper"></i> Recientes</a>
+                    <a href="#"><i class="fa-solid fa-comments"></i> Comentadas</a>
+                    <a href="#"><i class="fa-regular fa-thumbs-up"></i> Votadas</a>
+<!--                    <a href="#"><img src="img/marketplace.png"> Mercado</a>
                     <a href="#"><img src="img/watch.png"> Ver</a>
-                    <a href="#">Ver más</a>
+                    <a href="#">Ver más</a>-->
                 </div>
-                <div class="shortcut-links">
+<!--                <div class="shortcut-links">
                     <p>Accesos Directos</p>
                     <a href="#"><img src="img/shortcut-1.png"> Desarolladores Web</a>
                     <a href="#"><img src="img/shortcut-2.png"> Curso de Diseño Web</a>
                     <a href="#"><img src="img/shortcut-3.png"> Desarrollo Completo</a>
                     <a href="#"><img src="img/shortcut-4.png"> Sitios Expertos</a>
-                </div>
+                </div>-->
             </div>
 
             <!-- ------------main-content------------ -->
@@ -142,7 +144,7 @@
                     <!--<h1><c:out value="${usuario.contrasena}"></c:out></h1>-->
                 <%--</c:forEach>--%>
 
-                <div class="story-gallery">
+<!--                <div class="story-gallery">
                     <div class="story story1">
                         <img src="img/upload.png">
                         <p>Post Story</p>
@@ -163,7 +165,7 @@
                         <img src="img/member-4.png">
                         <p>John Doe</p>
                     </div>
-                </div>
+                </div>-->
 
 
                 <div class="write-post-container">
@@ -349,8 +351,8 @@
             <div class="right-sidebar">
 
                 <div class="sidebar-title">
-                    <h4>Eventos</h4>
-                    <a href="#">Ver todos</a>
+                    <h4>Etiquetas</h4>
+                    <a href="#">Ver todas</a>
                 </div>
 
                 <div class="event">
@@ -359,10 +361,10 @@
                         <span>Marzo</span>
                     </div>
                     <div class="right-event">
-                        <h4>Red Social</h4>
+                        <h4>#RedSocial</h4>
                         <!-- <p><i class="fa-solid fa-location-dot"></i> Willson Tech Park</p> -->
-                        <p><i class="fas fa-map-marker-alt"></i> Willson Tech Park</p>
-                        <a href="#">Saber más</a>
+                        <p><i class="fa-solid fa-user"></i> Josué Moncada</p>
+                        <a href="#">Filtrar por esta etiqueta</a>
                     </div>
                 </div>
 
@@ -372,13 +374,13 @@
                         <span>Junio</span>
                     </div>
                     <div class="right-event">
-                        <h4>Marketing de Móviles</h4>
-                        <p><i class="fas fa-map-marker-alt"></i> Willson Tech Park</p>
-                        <a href="#">Saber más</a>
+                        <h4>#MarketingDeMóviles</h4>
+                        <p><i class="fa-solid fa-user"></i> Gerardo Arias</p>
+                        <a href="#">Filtrar por esta etiqueta</a>
                     </div>
                 </div>
 
-                <div class="sidebar-title">
+<!--                <div class="sidebar-title">
                     <h4>Anuncios</h4>
                     <a href="#">Cerrar</a>
                 </div>
@@ -407,7 +409,7 @@
                         <img src="img/member-3.png">
                     </div>
                     <p>Jay Retta</p>
-                </div>
+                </div>-->
             </div>
         </div>
 

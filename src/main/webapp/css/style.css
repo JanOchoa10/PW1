@@ -157,19 +157,23 @@ nav {
     flex-basis: 47%;
 }
 
+.imp-links p,
 .imp-links a,
 .shortcut-links a {
     text-decoration: none;
     display: flex;
     align-items: center;
-    margin-bottom: 30px;
+    margin-top: 15px;
+    margin-bottom: 15px;
     color: var(--color-imp);
     width: fit-content;
+    color: var(--color-nav);
 }
 
-.imp-links a img {
+.imp-links a img,
+.imp-links a i{
     width: 25px;
-    margin-right: 15px;
+    margin-right: 10px;
 }
 
 .imp-links a:last-child {
@@ -231,6 +235,8 @@ nav {
 
 .event p {
     font-size: 12px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .event a {
