@@ -171,7 +171,7 @@
 
                     <label for="avatar"> 
                         <div class="myLabel">
-                            <img class="myImg" src="img/logo-cato.png"/>
+                            <img class="myImg" id="imagenSubida" src="img/logo-cato.png"/>
                             <div>
                                 <span id="tituloArchivo">Agregar imagen</span><br />
                                 <span id="nombreArchivo"></span>
@@ -212,6 +212,7 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="js/registerScript.js"></script>
         <script src="js/script.js"></script>
+        <script src="js/sesionActivaJS.js"></script>
     </body>
 
 </html>

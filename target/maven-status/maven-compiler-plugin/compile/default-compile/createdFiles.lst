@@ -1,5 +1,7 @@
 Controllers\Registro.class
-Controllers\Login.class
 Modelos\Usuario.class
 DAO\UsuarioDAO.class
+Controllers\RevisarSesion.class
+Controllers\Logout.class
+Controllers\Login.class
 JDBC\Conexion.class

@@ -63,7 +63,8 @@ public class Registro extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
+        request.getRequestDispatcher("html/login.jsp").forward(request, response);
     }
 
     /**
@@ -108,10 +109,10 @@ public class Registro extends HttpServlet {
             boolean result = uDAO.agregar(usuario);
 
             if (result) {
-                //processRequest(request, response);
-                request.getRequestDispatcher("html/home.jsp").forward(request, response);
+                // processRequest(request, response);
+                request.getRequestDispatcher("html/login.jsp").forward(request, response);
             }
-            
+
             // Revisar que le usuario exista
             //response.sendRedirect("Vistas/principal.jsp");
             //request.setAttribute("id", 1);

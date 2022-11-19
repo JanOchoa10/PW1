@@ -103,7 +103,7 @@
         <div class="login-box" id="login-box">
             <img class="avatar" src="img/logo-cato.png" alt="Logo de la página">
             <h1>¡Bienvenido de vuelta!</h1>
-            <form action="Página_Principal" method="POST" id="formL">
+            <form action="home" method="POST" id="formL">
                 <label for="username" id="usernameLabel">Nombre de usuario</label>
                 <input type="text" name="username" id="username" maxlength="30" required placeholder="Ingresa tu nombre de usuario">
                 <div id="myUsername">
@@ -139,6 +139,7 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="js/loginScript.js"></script>
         <script src="js/script.js"></script>
+        <script src="js/sesionActivaJS.js"></script>
         <!--<script src="js/login.js"></script>-->
     </body>
 
