@@ -61,6 +61,7 @@ nav {
     margin-right: 45px;
     padding-top: 5px;
     margin-bottom: -5px;
+    cursor: pointer;
 }
 
 .nav-left,
@@ -69,14 +70,23 @@ nav {
     align-items: center;
 }
 
+.nav-left ul {
+    height: 100%;
+    align-items: center;
+}
+
 .nav-left ul li {
     list-style: none;
     display: inline-block;
+    cursor: pointer;
 }
 
 .nav-left ul li img {
-    width: 28px;
+    /*width: 28px;*/
+    height: 28px;
     margin: 0 15px;
+    /*    filter: invert(32%) sepia(8%) saturate(4771%) hue-rotate(157deg) brightness(101%) contrast(81%);*/
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(105deg) brightness(103%) contrast(101%);
 }
 
 .nav-user-icon img {
@@ -157,7 +167,18 @@ nav {
     flex-basis: 47%;
 }
 
-.imp-links p,
+.imp-links p{
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    color: var(--color-imp);
+    width: fit-content;
+    color: var(--color-nav);
+    font-weight: bold;
+}
+
 .imp-links a,
 .shortcut-links a {
     text-decoration: none;
@@ -173,7 +194,9 @@ nav {
 .imp-links a img,
 .imp-links a i{
     width: 25px;
+    /*height: 25px;*/
     margin-right: 10px;
+    filter: invert(32%) sepia(8%) saturate(4771%) hue-rotate(157deg) brightness(101%) contrast(81%);
 }
 
 .imp-links a:last-child {
@@ -251,7 +274,7 @@ nav {
     left: 0;
     width: 100%;
     background: var(--color-nav);
-    color: var(--color-white);
+    color: #fff;
     font-size: 10px;
     padding: 4px 0;
 }
@@ -495,9 +518,9 @@ nav {
     padding: 10px 0 20px;
     font-size: 13px;
     background: var(--color-footer);
-/*    position: absolute;*/
-/*    bottom: 0;
-    width: 100%;*/
+    /*    position: absolute;*/
+    /*    bottom: 0;
+        width: 100%;*/
 }
 
 .settings-menu {
@@ -540,15 +563,32 @@ nav {
     display: flex;
     align-items: center;
     margin: 15px 0;
+    cursor: pointer;
 }
 
 .settings-links .settings-icon {
-    width: 38px;
+    width: 28px;
     margin-right: 10px;
-    border-radius: 50px;
+    /*border-radius: 50px;*/
+    filter: invert(32%) sepia(8%) saturate(4771%) hue-rotate(157deg) brightness(101%) contrast(81%);
 }
 
-.settings-links a {
+.settings-links2 {
+    display: flex;
+    align-items: center;
+    margin: 15px 0;
+    /*cursor: pointer;*/
+}
+
+.settings-links2 .settings-icon {
+    width: 20px;
+    margin-right: 18px;
+    /*border-radius: 50px;*/
+    filter: invert(32%) sepia(8%) saturate(4771%) hue-rotate(157deg) brightness(101%) contrast(81%);
+}
+
+.settings-links a,
+.settings-links2 a {
     display: flex;
     flex: 1;
     align-items: center;
@@ -558,7 +598,7 @@ nav {
 }
 
 #dark-btn {
-    position: absolute;
+    /*position: absolute;*/
     top: 20px;
     right: 20px;
     background: var(--color-border-bottom);

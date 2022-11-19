@@ -34,66 +34,73 @@
                     <button type="submit">Mostrar Usuarios</button>
                 </form>-->
 
-        <nav>
+         <nav>
             <div class="nav-left">
-                <img src="img/logo.png" class="logo">
+                <img src="img/logo.png" class="logo" onclick="location.reload(false);">
                 <!--<h4>PostCat</h4>-->
-                <ul>
-                    <li><img src="img/notification.png"></li>
-                    <li><img src="img/inbox.png"></li>
-                    <li><img src="img/video.png"></li>
-                </ul>
+<!--                <ul>
+                    <li><img src="img/newspaper-regular.png" title="Recientes"></li>
+                    <li><img src="img/comments-regular.png" title="Más comentadas"> </li>
+                    <li><img src="img/thumbs-up-regular.png" title="Más votadas"></li>
+                </ul>-->
             </div>
             <div class="nav-right">
-                <div class="search-box">
+<!--                <div class="search-box">
                     <img src="img/search.png">
                     <input type="text" placeholder="Buscar">
-                </div>
-                <div class="nav-user-icon online" onclick="settingsMenuToggle()">
-                    <img src="img/profile-pic.png">
+                </div>-->
+                <div class="nav-user-icon" onclick="settingsMenuToggle()">
+                    <img src="img/logo-cato.png">
                 </div>
             </div>
             <!-- ------------settings-menu------------ -->
             <div class="settings-menu">
 
-                <div id="dark-btn">
-                    <span></span>
-                </div>
+                <!--                <div id="dark-btn">
+                                    <span></span>
+                                </div>-->
 
 
                 <div class="settings-menu-inner">
-                    <div class="user-profile">
-                        <img src="img/profile-pic.png">
+<!--                    <div class="user-profile">
+                        <img src="img/${usuarios[0].userImagen}">
                         <div>
                             <p>${usuarios[0].nombre}</p>
                             <a href="#">Editar tu perfil</a>
                         </div>
-                    </div>
-                    <hr>
-                    <div class="user-profile">
-                        <img src="img/feedback.png">
-                        <div>
-                            <p>Dar opinión</p>
-                            <a href="#">Ayúdanos a mejorar el nuevo diseño</a>
+                    </div>-->
+                    <!--<hr>-->
+                    <!--                    <div class="user-profile">
+                                            <img src="img/feedback.png">
+                                            <div>
+                                                <p>Dar opinión</p>
+                                                <a href="#">Ayúdanos a mejorar el nuevo diseño</a>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="settings-links">
+                                            <img src="img/setting.png" class="settings-icon">
+                                            <a href="#">Configuración y privacidad <img src="img/arrow.png" width="10px"></a>
+                                        </div>
+                                        <div class="settings-links">
+                                            <img src="img/help.png" class="settings-icon">
+                                            <a href="#">Ayuda y Soporte <img src="img/arrow.png" width="10px"></a>
+                                        </div>
+                                        <div class="settings-links">
+                                            <img src="img/display.png" class="settings-icon">
+                                            <a href="#">Pantalla y Accesibilidad <img src="img/arrow.png" width="10px"></a>
+                                        </div>-->
+                    <div class="settings-links2">
+                        <img src="img/moon-solid.png" class="settings-icon">
+                        <a>Modo oscuro</a>
+                        <div id="dark-btn">
+                            <span></span>
                         </div>
                     </div>
-                    <hr>
-                    <div class="settings-links">
-                        <img src="img/setting.png" class="settings-icon">
-                        <a href="#">Configuración y privacidad <img src="img/arrow.png" width="10px"></a>
-                    </div>
-                    <div class="settings-links">
-                        <img src="img/help.png" class="settings-icon">
-                        <a href="#">Ayuda y Soporte <img src="img/arrow.png" width="10px"></a>
-                    </div>
-                    <div class="settings-links">
-                        <img src="img/display.png" class="settings-icon">
-                        <a href="#">Pantalla y Accesibilidad <img src="img/arrow.png" width="10px"></a>
-                    </div>
-                    <div class="settings-links">
-                        <img src="img/logout.png" class="settings-icon">
-                        <a onclick="logout()">Cerrar Sesión <img src="img/arrow.png" width="10px"></a>
-                    </div>
+<!--                    <div class="settings-links">
+                        <img src="img/arrow-right-from-bracket-solid.png" class="settings-icon">
+                        <a onclick="logout()">Cerrar Sesión</a>
+                    </div>-->
                 </div>
 
             </div>
