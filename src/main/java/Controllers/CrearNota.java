@@ -33,39 +33,50 @@ import javax.servlet.http.HttpSession;
 public class CrearNota extends HttpServlet {
 
     @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+    }
+
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         request.setCharacterEncoding("UTF-8");
         HttpSession sesion = request.getSession();
-        
+
         String miContenido = request.getParameter("miContenido");
         String miImagen = request.getParameter("miImg");
         String miContenido2 = request.getParameter("miContenido2");
         int spoiler = 0;
         String username = (String) sesion.getAttribute("userName");
-        
-        ArrayList miLista = (ArrayList) sesion.getAttribute("usuarios");             
+
+        ArrayList miLista = (ArrayList) sesion.getAttribute("usuarios");
         Usuario datosDeMiUsuario = (Usuario) miLista.get(0);
         int myUsuarioId = datosDeMiUsuario.getID_Usuario();
         String apePaterno = datosDeMiUsuario.getApePaterno();
-        
+
         String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new java.util.Date());
-        
+
         Publicacion publicacion = new Publicacion(miContenido, miImagen, spoiler, myUsuarioId, 1, timeStamp, timeStamp);
 
         PublicacionDAO pDAO = new PublicacionDAO();
-        
-         try {
+
+        try {
             boolean result = pDAO.agregar(publicacion);
 
             if (result) {
+                
+
+                ArrayList<Publicacion> publicaciones = pDAO.get5PublicacionesPorDefecto();
+
+                request.setAttribute("publicaciones", publicaciones);
+                
                 request.getRequestDispatcher("html/home.jsp").forward(request, response);
             }
         } catch (SQLException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
+
     }
 }

@@ -4,7 +4,9 @@
  */
 package Controllers;
 
+import DAO.PublicacionDAO;
 import DAO.UsuarioDAO;
+import Modelos.Publicacion;
 import Modelos.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -72,11 +74,20 @@ public class Login extends HttpServlet {
                 HttpSession miSesion = request.getSession();
                 miSesion.setAttribute("userName", user);
                 miSesion.setAttribute("contrasena", contra);
+                miSesion.setAttribute("cantidad", "10");
 
                 miSesion.setAttribute("usuarios", usuarios);
                 miSesion.setAttribute("usuariosall", usuariosall);
 
                 response.addHeader("cache-control", "no-cache");
+
+                PublicacionDAO pDAO = new PublicacionDAO();
+
+                ArrayList<Publicacion> publicaciones = pDAO.get5PublicacionesPorDefecto();
+
+                request.setAttribute("publicaciones", publicaciones);
+
+//                request.getRequestDispatcher("html/home.jsp").forward(request, response);
                 request.getRequestDispatcher("html/home.jsp").forward(request, response);
             }
 

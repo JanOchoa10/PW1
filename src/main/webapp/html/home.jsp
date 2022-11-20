@@ -261,13 +261,35 @@
                                         <c:set var = "UserPostFoto" scope = "session" value = "${usuario.userImagen}"></c:set>
                                     </c:if>
                                 </c:forEach>
+
                                 <img src="img/${UserPostFoto}">
+
+
                                 <div>
                                     <p>${UserPostNombre}</p>
                                     <span>${publicacion.fechaDeCreacion}</span>
                                 </div>
                             </div>
-                            <a href="#"><i class="fas fa-ellipsis-v"></i></a>
+                            <div>
+                                <c:if test="${usuarios[0].ID_Usuario == publicacion.ID_Usuario}">
+                                    <form action="EditarNota" method="POST">
+                                        <button type='submit' style="background: transparent;
+                                                border: none;
+                                                cursor: pointer;">
+                                            <a><i class="fa-solid fa-pen-to-square"></i></a>                              
+                                        </button>
+                                    </form>
+                                    <form action="BorrarNota" method="POST">
+                                        <input type="text" name="idNota" value="${publicacion.ID_Publicacion}" style="display: none;"></input>
+                                        <button type='submit' style="background: transparent;
+                                                border: none;
+                                                cursor: pointer;">
+
+                                            <a><i class="fa-solid fa-trash"></i></a>                            
+                                        </button>
+                                    </form>
+                                </c:if>
+                            </div>
                         </div>
                         <p class="post-text">
                             ${publicacion.texto}
@@ -275,8 +297,9 @@
                                                         <a href="#">#JOBBIN</a>
                                                         <a href="#">#ROBBIN</a>-->
                         </p>
-                        <img src="img/${publicacion.imagen}" class="post-img">
-
+                        <c:if test="${publicacion.imagen != ''}">
+                            <img src="img/${publicacion.imagen}" class="post-img">
+                        </c:if>
 
                         <div class="post-row">
                             <div class="activity-icons">
@@ -292,133 +315,7 @@
                     </div>
                 </c:forEach>
 
-                <div class="post-container">
-                    <div class="post-row">
-                        <div class="user-profile">
-                            <img src="img/josue.jpg">
-                            <div>
-                                <p>Josué Moncada</p>
-                                <span>Junio 24 2022, 13:40 pm</span>
-                            </div>
-                        </div>
-                        <a href="#"><i class="fas fa-ellipsis-v"></i></a>
-                    </div>
-                    <p class="post-text">
-                        Lo mejor de los amigos son las reuniones.
-                        <a href="#">#Fogata</a>
-                        <a href="#">#PlayaYBombones</a>
-                    </p>
-                    <img src="img/feed-image-2.png" class="post-img">
-
-
-                    <div class="post-row">
-                        <div class="activity-icons">
-                            <div><img src="img/like-blue.png"> 120</div>
-                            <div><img src="img/comments.png"> 45</div>
-                            <!--<div><img src="img/share.png"> 20</div>-->
-                        </div>
-                        <div class="post-profile-icon">
-                            <img src="img/${usuarios[0].userImagen}">
-                            <!--<i class="fas fa-caret-down"></i>-->
-                        </div>
-                    </div>
-                </div>
-                <!--
-<div class="post-container">
-<div class="post-row">
-<div class="user-profile">
-<img src="img/profile-pic.png">
-<div>
-<p>${usuarios[0].nombre}</p>
-<span>Junio 24 2022, 13:40 pm</span>
-</div>
-</div>
-<a href="#"><i class="fas fa-ellipsis-v"></i></a>
-</div>
-<p class="post-text">
-Lo mejor de los amigos son las reuniones.
-<a href="#">#Fogata</a>
-<a href="#">#PlayaYBombones</a>
-</p>
-<img src="img/feed-image-3.png" class="post-img">
-
-
-<div class="post-row">
-<div class="activity-icons">
-<div><img src="img/like-blue.png"> 120</div>
-<div><img src="img/comments.png"> 45</div>
-<div><img src="img/share.png"> 20</div>
-</div>
-<div class="post-profile-icon">
-<img src="img/profile-pic.png">
-<i class="fas fa-caret-down"></i>
-</div>
-</div>
-</div>
-<div class="post-container">
-<div class="post-row">
-<div class="user-profile">
-<img src="img/profile-pic.png">
-<div>
-<p>${usuarios[0].nombre}</p>
-<span>Junio 24 2022, 13:40 pm</span>
-</div>
-</div>
-<a href="#"><i class="fas fa-ellipsis-v"></i></a>
-</div>
-<p class="post-text">
-Lo mejor de los amigos son las reuniones.
-<a href="#">#Fogata</a>
-<a href="#">#PlayaYBombones</a>
-</p>
-<img src="img/feed-image-4.png" class="post-img">
-
-
-<div class="post-row">
-<div class="activity-icons">
-<div><img src="img/like-blue.png"> 120</div>
-<div><img src="img/comments.png"> 45</div>
-<div><img src="img/share.png"> 20</div>
-</div>
-<div class="post-profile-icon">
-<img src="img/profile-pic.png">
-<i class="fas fa-caret-down"></i>
-</div>
-</div>
-</div>
-<div class="post-container">
-<div class="post-row">
-<div class="user-profile">
-<img src="img/profile-pic.png">
-<div>
-<p>${usuarios[0].nombre}</p>
-<span>Junio 24 2022, 13:40 pm</span>
-</div>
-</div>
-<a href="#"><i class="fas fa-ellipsis-v"></i></a>
-</div>
-<p class="post-text">
-Lo mejor de los amigos son las reuniones.
-<a href="#">#Fogata</a>
-<a href="#">#PlayaYBombones</a>
-</p>
-<img src="img/feed-image-5.png" class="post-img">
-
-
-<div class="post-row">
-<div class="activity-icons">
-<div><img src="img/like-blue.png"> 120</div>
-<div><img src="img/comments.png"> 45</div>
-<div><img src="img/share.png"> 20</div>
-</div>
-<div class="post-profile-icon">
-<img src="img/profile-pic.png">
-<i class="fas fa-caret-down"></i>
-</div>
-</div>
-</div>-->
-
-                <button type="button" class="load-more-btn">Ver más</button>
+                <button onclick="window.location.href = 'notas'" type="button" class="load-more-btn">Ver más</button>
 
             </div>
             <!-- ------------right-sidebar------------ -->

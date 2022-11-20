@@ -17,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -24,23 +25,34 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "notas", urlPatterns = {"/notas"})
 public class VerNotas extends HttpServlet {
-    
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-         PublicacionDAO pDAO = new PublicacionDAO();
+        request.setCharacterEncoding("UTF-8");
+//        request.setCharacterEncoding("UTF-8");
+        HttpSession sesion = request.getSession();
+
+        String username = (String) sesion.getAttribute("userName");
+        String miCanti = (String) sesion.getAttribute("cantidad");
+
+        int cantidad = Integer.parseInt(miCanti);
+        int nuevaCantidad = cantidad + 10;
+        String nCant = Integer.toString(nuevaCantidad);
+        sesion.setAttribute("cantidad", nCant);
+
+        PublicacionDAO pDAO = new PublicacionDAO();
 
         try {
-            ArrayList<Publicacion> publicaciones = pDAO.getPublicaciones();
-            
+            ArrayList<Publicacion> publicaciones = pDAO.getCargarPublicaciones(nCant);
+
             request.setAttribute("publicaciones", publicaciones);
-            
+
             request.getRequestDispatcher("html/home.jsp").forward(request, response);
-   
+
         } catch (SQLException ex) {
             Logger.getLogger(VerNotas.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
 }

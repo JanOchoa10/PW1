@@ -426,6 +426,7 @@ nav {
     border-bottom: 1px solid var(--color-border-bottom);
     background: transparent;
     resize: none;
+    color: var(--color-border-bottom);
 }
 
 .add-post-links {

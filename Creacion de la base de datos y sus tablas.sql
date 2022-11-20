@@ -80,9 +80,16 @@ CREATE TABLE Usuario_Gusta_Publicacion(
 insert into Usuario (Nombre, ApePaterno, ApeMaterno, FecNacimiento, Email, UserName, Contrasena, UserImagen, Activo, FechaDeCreacion, FechaDeCambio)
 values ('Jan Anthony', 'Ochoa', 'Retta', '2002-10-29', 'jan8a00@gmail.com', 'JanOchoa10', 'jan8A00!', 'yon.png', 1, current_timestamp(), current_timestamp());
 
+-- DELETE FROM Publicacion WHERE ID_Publicacion > 23;
+-- INSERT INTO publicacion (Texto, Imagen, Spoiler, ID_Usuario, Activo, FechaDeCreacion, FechaDeCambio) VALUES ("xd","yon.png",0,1,1,current_timestamp(),current_timestamp());
+
 use bd_postcat;
 select * from Usuario;
+select * from Publicacion;
 
+-- SELECT ID_Publicacion, Texto, Imagen, Spoiler, ID_Usuario, Activo, FechaDeCreacion, FechaDeCambio FROM publicacion ORDER BY FechaDeCreacion ASC LIMIT 5
+-- SELECT ID_Publicacion, Texto, Imagen, Spoiler, ID_Usuario, Activo, FechaDeCreacion, FechaDeCambio FROM publicacion ORDER BY FechaDeCreacion DESC LIMIT 5
+-- SELECT ID_Publicacion, Texto, Imagen, Spoiler, ID_Usuario, Activo, FechaDeCreacion, FechaDeCambio FROM publicacion ORDER BY FechaDeCreacion DESC LIMIT 10 ;
 -- delete from usuario where ID_Usuario = 8
 
 -- SELECT current_timestamp()
