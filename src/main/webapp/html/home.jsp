@@ -216,7 +216,7 @@
                     <div class="post-input-container">
 
                         <form action="CrearNota" method="POST">
-                            <textarea name="miContenido" nrows="3" placeholder="¿Qué estás pensando, ${usuarios[0].nombre}?"></textarea>
+                            <textarea type="text" name="miContenido" nrows="3" placeholder="¿Qué estás pensando, ${usuarios[0].nombre}?" required maxlength="100"></textarea>
                             <textarea name="miContenido2" style="display: none;">${usuarios[0].ID_Usuario}</textarea>
                             <div class="add-post-links">
                                 <!--<a href="#"><img src="img/live-video.png"> En vivo</a>-->
@@ -226,7 +226,7 @@
 
                                 <label for="miImg"> 
                                     <div class="myLabel">
-                                        <a><img src="img/image-regular.png"> Imagen</a>
+                                        <a title="Subir imagen"><img src="img/image-regular.png"> Imagen</a>
                                         <!--<img class="myImg" id="imagenSubida" src="img/logo-cato.png"/>-->
                                         <!--                                        <div>
                                                                                     <span id="tituloArchivo">Agregar imagen</span><br />
@@ -237,7 +237,7 @@
 
 
                                 <button type='submit'>
-                                    <a><img src="img/floppy-disk-regular.png"> Guardar</a>                                
+                                    <a title="Guardar publicación"><img src="img/floppy-disk-regular.png"> Guardar</a>                                
                                 </button>
                                 <!--<input type="submit" value="<a><img className='colorNav' src='img/floppy-disk-regular.png'> Guardar</a>">-->
                                 <!--<a href="#"><img className="colorNav" src="img/floppy-disk-regular.png"> Guardar</a>-->
@@ -249,70 +249,73 @@
 
 
                 <c:forEach items="${publicaciones}" var="publicacion">
-                    <div class="post-container">
-                        <div class="post-row">
-                            <div class="user-profile">
-                                <c:forEach items="${usuariosall}" var="usuario">
-                                    <!--<h1><c:out value="${usuario.email}"></c:out></h1>-->
-
-                                    <c:if test="${usuario.ID_Usuario == publicacion.ID_Usuario}">
+                    <%--<c:if test="${1 == publicacion.activo}">--%>
+                        <div class="post-container">
+                            <div class="post-row">
+                                <div class="user-profile">
+                                    <c:forEach items="${usuariosall}" var="usuario">
                                         <!--<h1><c:out value="${usuario.email}"></c:out></h1>-->
-                                        <c:set var = "UserPostNombre" scope = "session" value = "${usuario.nombre}"></c:set>
-                                        <c:set var = "UserPostFoto" scope = "session" value = "${usuario.userImagen}"></c:set>
-                                    </c:if>
-                                </c:forEach>
 
-                                <img src="img/${UserPostFoto}">
+                                        <c:if test="${usuario.ID_Usuario == publicacion.ID_Usuario}">
+                                            <!--<h1><c:out value="${usuario.email}"></c:out></h1>-->
+                                            <c:set var = "UserPostNombre" scope = "session" value = "${usuario.nombre}"></c:set>
+                                            <c:set var = "UserPostFoto" scope = "session" value = "${usuario.userImagen}"></c:set>
+                                        </c:if>
+                                    </c:forEach>
+
+                                    <img src="img/${UserPostFoto}">
 
 
+                                    <div>
+                                        <p>${UserPostNombre}</p>
+                                        <span>${publicacion.fechaDeCreacion}</span>
+                                    </div>
+                                </div>
                                 <div>
-                                    <p>${UserPostNombre}</p>
-                                    <span>${publicacion.fechaDeCreacion}</span>
+                                    <c:if test="${usuarios[0].ID_Usuario == publicacion.ID_Usuario}">
+                                        <form action="EditarNota" method="POST">
+                                            <input type="text" name="idNota" value="${publicacion.ID_Publicacion}" style="display: none;"></input>
+                                            <button type='submit' style="background: transparent;
+                                                    border: none;
+                                                    cursor: pointer;">
+                                                <a title="Editar publicación"><i class="fa-solid fa-pen-to-square"></i></a>                              
+                                            </button>
+                                        </form>
+                                        <form action="BorrarNota" method="POST">
+                                            <input type="text" name="idNota" value="${publicacion.ID_Publicacion}" style="display: none;"></input>
+                                            <button type='submit' style="background: transparent;
+                                                    border: none;
+                                                    cursor: pointer;">
+
+                                                <a title="Borrar publicación"><i class="fa-solid fa-trash"></i></a>                            
+                                            </button>
+                                        </form>
+                                    </c:if>
                                 </div>
                             </div>
-                            <div>
-                                <c:if test="${usuarios[0].ID_Usuario == publicacion.ID_Usuario}">
-                                    <form action="EditarNota" method="POST">
-                                        <button type='submit' style="background: transparent;
-                                                border: none;
-                                                cursor: pointer;">
-                                            <a><i class="fa-solid fa-pen-to-square"></i></a>                              
-                                        </button>
-                                    </form>
-                                    <form action="BorrarNota" method="POST">
-                                        <input type="text" name="idNota" value="${publicacion.ID_Publicacion}" style="display: none;"></input>
-                                        <button type='submit' style="background: transparent;
-                                                border: none;
-                                                cursor: pointer;">
+                            <p class="post-text">
+                                ${publicacion.texto}
+                                <!--                            Trabajo en equipo <span>@Jobbin</span> donde todo trabajo se empieza y termina con la máxima calidad.
+                                                            <a href="#">#JOBBIN</a>
+                                                            <a href="#">#ROBBIN</a>-->
+                            </p>
+                            <c:if test="${publicacion.imagen != ''}">
+                                <img src="img/${publicacion.imagen}" class="post-img">
+                            </c:if>
 
-                                            <a><i class="fa-solid fa-trash"></i></a>                            
-                                        </button>
-                                    </form>
-                                </c:if>
+                            <div class="post-row">
+                                <div class="activity-icons">
+                                    <div><img src="img/like-blue.png"> 120</div>
+                                    <div><img src="img/comments.png"> 45</div>
+                                    <!--<div><img src="img/share.png"> 20</div>-->
+                                </div>
+                                <div class="post-profile-icon">
+                                    <img src="img/${usuarios[0].userImagen}">
+                                    <!--                            <i class="fas fa-caret-down"></i>-->
+                                </div>
                             </div>
                         </div>
-                        <p class="post-text">
-                            ${publicacion.texto}
-                            <!--                            Trabajo en equipo <span>@Jobbin</span> donde todo trabajo se empieza y termina con la máxima calidad.
-                                                        <a href="#">#JOBBIN</a>
-                                                        <a href="#">#ROBBIN</a>-->
-                        </p>
-                        <c:if test="${publicacion.imagen != ''}">
-                            <img src="img/${publicacion.imagen}" class="post-img">
-                        </c:if>
-
-                        <div class="post-row">
-                            <div class="activity-icons">
-                                <div><img src="img/like-blue.png"> 120</div>
-                                <div><img src="img/comments.png"> 45</div>
-                                <!--<div><img src="img/share.png"> 20</div>-->
-                            </div>
-                            <div class="post-profile-icon">
-                                <img src="img/${usuarios[0].userImagen}">
-                                <!--                            <i class="fas fa-caret-down"></i>-->
-                            </div>
-                        </div>
-                    </div>
+                    <%--</c:if>--%>
                 </c:forEach>
 
                 <button onclick="window.location.href = 'notas'" type="button" class="load-more-btn">Ver más</button>

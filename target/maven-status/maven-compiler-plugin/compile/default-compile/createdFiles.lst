@@ -12,3 +12,4 @@ Controllers\RevisarSesion.class
 Controllers\Login.class
 Controllers\VerNotas.class
 DAO\PublicacionDAO.class
+Controllers\ActualizarNota.class
