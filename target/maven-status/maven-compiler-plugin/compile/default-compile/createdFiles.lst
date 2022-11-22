@@ -1,3 +1,4 @@
+Controllers\EliminarComentario.class
 Controllers\prueba.class
 Modelos\Usuario.class
 DAO\UsuarioDAO.class

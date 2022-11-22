@@ -66,15 +66,12 @@ public class CrearComentario extends HttpServlet {
             if (result) {
 
                 ArrayList<Comentario> comentarios = cDAO.getAllComentarios();
-
                 request.setAttribute("comentarios", comentarios);
 
                 PublicacionDAO pDAO = new PublicacionDAO();
-
                 ArrayList<Publicacion> publicaciones = pDAO.get5PublicacionesPorDefecto();
-
                 request.setAttribute("publicaciones", publicaciones);
-
+                
                 request.getRequestDispatcher("html/home.jsp").forward(request, response);
             }
         } catch (SQLException ex) {

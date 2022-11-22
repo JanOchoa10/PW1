@@ -148,4 +148,27 @@ public class ComentarioDAO {
             return false;
         }
     }
+    
+     public boolean borrar(int idComentario) throws SQLException {
+        //String sql = "DELETE FROM Publicacion WHERE ID_Publicacion = ? ;";
+        // UPDATE Publicacion SET Activo = 0 WHERE ID_Publicacion = 18;
+
+        String sql = "UPDATE comentario SET Activo = 0 WHERE ID_Comentario = ? ;";
+
+// Texto, String Imagen, int Spoiler, int ID_Usario, int Activo, String FechaDeCreacion, String FechaDeCambio
+        con = c.getConnection();
+
+        ps = con.prepareStatement(sql);
+
+//        String myIdS = Integer.toString(idComentario);
+
+        ps.setInt(1, idComentario);
+        int result = ps.executeUpdate();
+
+        if (result > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

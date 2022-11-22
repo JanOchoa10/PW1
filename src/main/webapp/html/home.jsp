@@ -370,7 +370,15 @@
                                                                         <i class="fa-solid fa-ellipsis-vertical"></i>
                                                                         <ul class="menu">
                                                                             <!--<li><a href="">Editar</a></li>-->
-                                                                            <li><a href="">Eliminar</a></li>
+                                                                            <form action="EliminarComentario" method="POST">
+                                                                                <input type="text" name="idComentario" value="${comentario.ID_Comentario}" style="display: none;"/>
+                                                                                <button type='submit' style="background: transparent;
+                                                                                        border: none;
+                                                                                        cursor: pointer;" >
+                                                                                    <!--<a title="Guardar publicación">Guardar</a>-->    
+                                                                                    <li><a>Eliminar</a></li>
+                                                                                </button>
+                                                                            </form>
                                                                         </ul>
                                                                     </div>
                                                                 </div>

@@ -4,7 +4,9 @@
  */
 package Controllers;
 
+import DAO.ComentarioDAO;
 import DAO.PublicacionDAO;
+import Modelos.Comentario;
 import Modelos.Publicacion;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -45,8 +47,11 @@ public class VerNotas extends HttpServlet {
 
         try {
             ArrayList<Publicacion> publicaciones = pDAO.getCargarPublicaciones(nCant);
-
             request.setAttribute("publicaciones", publicaciones);
+
+            ComentarioDAO cDAO = new ComentarioDAO();
+            ArrayList<Comentario> comentarios = cDAO.getAllComentarios();
+            request.setAttribute("comentarios", comentarios);
 
             request.getRequestDispatcher("html/home.jsp").forward(request, response);
 
