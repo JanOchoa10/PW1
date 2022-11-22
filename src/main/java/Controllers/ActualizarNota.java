@@ -4,7 +4,9 @@
  */
 package Controllers;
 
+import DAO.ComentarioDAO;
 import DAO.PublicacionDAO;
+import Modelos.Comentario;
 import Modelos.Publicacion;
 import Modelos.Usuario;
 import java.io.IOException;
@@ -72,12 +74,14 @@ public class ActualizarNota extends HttpServlet {
             boolean result = pDAO.editar(publicacion, idNotaInt);
 
             if (result) {
-                
 
                 ArrayList<Publicacion> publicaciones = pDAO.get5PublicacionesPorDefecto();
-
                 request.setAttribute("publicaciones", publicaciones);
-                
+
+                ComentarioDAO cDAO = new ComentarioDAO();
+                ArrayList<Comentario> comentarios = cDAO.getAllComentarios();
+                request.setAttribute("comentarios", comentarios);
+
                 request.getRequestDispatcher("html/home.jsp").forward(request, response);
             }
         } catch (SQLException ex) {

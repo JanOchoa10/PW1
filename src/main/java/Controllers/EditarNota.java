@@ -4,7 +4,9 @@
  */
 package Controllers;
 
+import DAO.ComentarioDAO;
 import DAO.PublicacionDAO;
+import Modelos.Comentario;
 import Modelos.Publicacion;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -44,8 +46,11 @@ public class EditarNota extends HttpServlet {
 
         try {
             ArrayList<Publicacion> publicacion = pDAO.getUnaPublicacion(idPost);
-
             request.setAttribute("publicacionEditable", publicacion);
+            
+            ComentarioDAO cDAO = new ComentarioDAO();
+            ArrayList<Comentario> comentarios = cDAO.getAllComentarios();
+            request.setAttribute("comentarios", comentarios);
 
             request.getRequestDispatcher("html/editarNota.jsp").forward(request, response);
 
