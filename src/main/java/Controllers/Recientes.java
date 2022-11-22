@@ -44,6 +44,7 @@ public class Recientes extends HttpServlet {
             miSesion.setAttribute("cantidad", "10");
             miSesion.setAttribute("cantidadComentadas", "0");
             miSesion.setAttribute("cantidadVotadas", "0");
+            miSesion.setAttribute("cantidadBuscadas", "0");
             
             String cantidad = (String) miSesion.getAttribute("cantidad");
 

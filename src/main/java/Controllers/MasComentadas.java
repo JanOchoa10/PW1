@@ -43,6 +43,7 @@ public class MasComentadas extends HttpServlet {
             miSesion.setAttribute("cantidadComentadas", "10");
             miSesion.setAttribute("cantidad", "0");
             miSesion.setAttribute("cantidadVotadas", "0");
+            miSesion.setAttribute("cantidadBuscadas", "0");
             
             String cantidadComentadas = (String) miSesion.getAttribute("cantidadComentadas");
             

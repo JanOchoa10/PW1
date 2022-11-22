@@ -27,27 +27,31 @@ import javax.servlet.http.HttpSession;
  *
  * @author Jan
  */
-@WebServlet(name = "MasVotadas", urlPatterns = {"/MasVotadas"})
-public class MasVotadas extends HttpServlet {
-    
+@WebServlet(name = "notasBuscadas", urlPatterns = {"/notasBuscadas"})
+public class VerNotasBuscadas extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         request.setCharacterEncoding("UTF-8");
 
+        HttpSession sesion = request.getSession();
+
+        String username = (String) sesion.getAttribute("userName");
+        String miCanti = (String) sesion.getAttribute("cantidadBuscadas");
+
+        int cantidad = Integer.parseInt(miCanti);
+        int nuevaCantidad = cantidad + 10;
+        String nCant = Integer.toString(nuevaCantidad);
+        sesion.setAttribute("cantidadBuscadas", nCant);
+
+        String paramBusqueda = (String) sesion.getAttribute("parametroDeBusqueda");
+        
         PublicacionDAO pDAO = new PublicacionDAO();
 
         try {
-             HttpSession miSesion = request.getSession();
-            miSesion.setAttribute("cantidadComentadas", "0");
-            miSesion.setAttribute("cantidad", "0");
-            miSesion.setAttribute("cantidadVotadas", "10");
-            miSesion.setAttribute("cantidadBuscadas", "0");
-            
-            String cantidadVotadas = (String) miSesion.getAttribute("cantidadVotadas");
-            
-            ArrayList<Publicacion> publicaciones = pDAO.getMasVotadas(cantidadVotadas);
+            ArrayList<Publicacion> publicaciones = pDAO.getBuscadas(paramBusqueda, nCant);
             request.setAttribute("publicaciones", publicaciones);
 
             ComentarioDAO cDAO = new ComentarioDAO();
@@ -63,13 +67,13 @@ public class MasVotadas extends HttpServlet {
         } catch (SQLException ex) {
             Logger.getLogger(VerNotas.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
-    
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
     }
-    
+
 }

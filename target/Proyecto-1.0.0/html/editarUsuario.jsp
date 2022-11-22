@@ -55,7 +55,7 @@
                     <div class="user-profile">
                         <img src="img/${usuarios[0].userImagen}">
                         <div>
-                            <p>${usuarios[0].nombre}</p>
+                            <p>${usuarios[0].userName}</p>
                             <form action="EditarPerfil" method="POST">
                                 <button type='submit' style="background: transparent;
                                         border: none;

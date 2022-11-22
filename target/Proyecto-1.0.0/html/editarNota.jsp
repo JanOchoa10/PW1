@@ -24,7 +24,7 @@
         <!--<link rel="stylesheet" href="../css/mycss.css">-->
         <!--script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script-->
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <link rel="stylesheet" href="css/myEditStyle.css">
+        <link rel="stylesheet" href="css/style.css">
         <script src="https://kit.fontawesome.com/835e988e9b.js" crossorigin="anonymous"></script>
 
     </head>
@@ -77,7 +77,7 @@
                     <div class="user-profile">
                         <img src="img/${usuarios[0].userImagen}">
                         <div>
-                            <p>${usuarios[0].nombre}</p>
+                            <p>${usuarios[0].userName}</p>
                              <form action="EditarPerfil" method="POST">
                                 <button type='submit' style="background: transparent;
                                         border: none;
@@ -215,7 +215,7 @@
                         <div class="user-profile">
                             <img src="img/${usuarios[0].userImagen}">
                             <div>
-                                <p>${usuarios[0].nombre}</p>
+                                <p>${usuarios[0].nombre} ${usuarios[0].apePaterno} ${usuarios[0].apeMaterno}</p>
                                 <small>Público <i class="fas fa-caret-down"></i></small>
                             </div>
                         </div>
