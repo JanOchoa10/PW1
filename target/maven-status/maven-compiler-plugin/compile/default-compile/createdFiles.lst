@@ -22,6 +22,7 @@ Controllers\BorrarNota.class
 Controllers\Registro.class
 Controllers\CrearVoto.class
 Controllers\EditarNota.class
+Controllers\VerNotasVotadas.class
 Controllers\Login.class
 Controllers\MasComentadas.class
 DAO\PublicacionDAO.class
