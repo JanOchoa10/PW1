@@ -52,7 +52,12 @@ public class CrearNota extends HttpServlet {
         String miContenido = request.getParameter("miContenido");
         String miImagen = request.getParameter("miImg");
         String miContenido2 = request.getParameter("miContenido2");
+        String miSpoiler = request.getParameter("spoiler");
         int spoiler = 0;
+        if("Spoiler".equals(miSpoiler)){
+            spoiler = 1;
+        }
+        
         String username = (String) sesion.getAttribute("userName");
 
         ArrayList miLista = (ArrayList) sesion.getAttribute("usuarios");

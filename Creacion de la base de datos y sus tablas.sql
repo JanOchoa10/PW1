@@ -93,11 +93,14 @@ select * from Publicacion;
 select * from comentario;
 select * from usuario_gusta_publicacion;
 
-select P.ID_Publicacion, P.Texto, P.Imagen, P.Spoiler, P.ID_Usuario, P.Activo, P.FechaDeCreacion, P.FechaDeCambio from Publicacion P left join comentario C on C.ID_Publicacion = P.ID_Publicacion WHERE P.Activo = 1 AND (C.Activo is null OR C.Activo = 1) GROUP BY P.ID_Publicacion ORDER BY COUNT(C.ID_Publicacion) DESC LIMIT 10;
+-- select P.ID_Publicacion, P.Texto, P.Imagen, P.Spoiler, P.ID_Usuario, P.Activo, P.FechaDeCreacion, P.FechaDeCambio from Publicacion P left join comentario C on C.ID_Publicacion = P.ID_Publicacion WHERE P.Activo = 1 AND (C.Activo is null OR C.Activo = 1) GROUP BY P.ID_Publicacion ORDER BY COUNT(C.ID_Publicacion) DESC LIMIT 10;
 
-select P.ID_Publicacion, P.Texto, P.Imagen, P.Spoiler, P.ID_Usuario, P.Activo, P.FechaDeCreacion, P.FechaDeCambio from Publicacion P left join usuario_gusta_publicacion C on C.ID_Publicacion = P.ID_Publicacion WHERE P.Activo = 1 AND (C.Activo is null OR C.Activo = 1) GROUP BY P.ID_Publicacion ORDER BY COUNT(C.ID_Publicacion) DESC LIMIT 10;
+-- select P.ID_Publicacion, P.Texto, P.Imagen, P.Spoiler, P.ID_Usuario, P.Activo, P.FechaDeCreacion, P.FechaDeCambio from Publicacion P left join usuario_gusta_publicacion C on C.ID_Publicacion = P.ID_Publicacion WHERE P.Activo = 1 AND (C.Activo is null OR C.Activo = 1) GROUP BY P.ID_Publicacion ORDER BY COUNT(C.ID_Publicacion) DESC LIMIT 10;
 
-select C.ID_Publicacion, COUNT(*) from comentario C WHERE C.Activo = 1 GROUP BY C.ID_Publicacion ORDER BY COUNT(*) DESC;
+-- select C.ID_Publicacion, COUNT(*) from comentario C WHERE C.Activo = 1 GROUP BY C.ID_Publicacion ORDER BY COUNT(*) DESC;
+
+
+
 
 -- SELECT * FROM usuario_gusta_publicacion WHERE Activo = 1 ORDER BY FechaDeCreacion DESC ;
 

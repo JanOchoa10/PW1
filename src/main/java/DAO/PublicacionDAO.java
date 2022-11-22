@@ -599,5 +599,105 @@ public class PublicacionDAO {
 
         return publicaciones;
     }
+     
+     public ArrayList<Publicacion> getBuscadas(String valorDeBusqueda) throws SQLException, IOException {
+        String sql = "select * from publicacion where texto like ? AND Activo = 1 order by fechaDeCreacion desc limit 10;";
+
+        ArrayList<Publicacion> publicacionEditable = new ArrayList<Publicacion>();
+
+        con = c.getConnection();
+
+        ps = con.prepareStatement(sql);
+        ps.setString(1, valorDeBusqueda);
+        rs = ps.executeQuery();
+
+        while (rs.next()) {
+            int id_publicacion = rs.getInt("ID_Publicacion");
+            String texto = rs.getString("Texto");
+            String imagen = rs.getString("Imagen");
+            int spoiler = rs.getInt("Spoiler");
+            int id_usuario = rs.getInt("ID_Usuario");
+            int activo = rs.getInt("Activo");
+            String fechaDeCreacion = rs.getString("FechaDeCreacion");
+
+            int anio = Integer.parseInt(fechaDeCreacion.substring(0, 4));
+            int mes = Integer.parseInt(fechaDeCreacion.substring(5, 7));
+            int dia = Integer.parseInt(fechaDeCreacion.substring(8, 10));
+            int hora = Integer.parseInt(fechaDeCreacion.substring(11, 13));
+            String horaS = fechaDeCreacion.substring(11, 19);
+            String horaT = "";
+
+            String mesS = "";
+            switch (mes) {
+                case 1: {
+                    mesS = "Enero";
+                }
+                break;
+                case 2: {
+                    mesS = "Febrero";
+                }
+                break;
+                case 3: {
+                    mesS = "Marzo";
+                }
+                break;
+                case 4: {
+                    mesS = "Abril";
+                }
+                break;
+                case 5: {
+                    mesS = "Mayo";
+                }
+                break;
+                case 6: {
+                    mesS = "Junio";
+                }
+                break;
+                case 7: {
+                    mesS = "Julio";
+                }
+                break;
+                case 8: {
+                    mesS = "Agosto";
+                }
+                break;
+                case 9: {
+                    mesS = "Septiembre";
+                }
+                break;
+                case 10: {
+                    mesS = "Octubre";
+                }
+                break;
+                case 11: {
+                    mesS = "Noviembre";
+                }
+                break;
+                case 12: {
+                    mesS = "Diciembre";
+                }
+                break;
+
+                default:
+                    break;
+            }
+
+            if (hora >= 12) {
+                horaT = "pm";
+            } else {
+                horaT = "am";
+            }
+
+            fechaDeCreacion = dia + " de " + mesS + " de " + anio + ", " + horaS + " " + horaT + ".";
+
+            String fechaDeCambio = rs.getString("FechaDeCambio");
+
+            publicacionEditable.add(new Publicacion(id_publicacion, texto, imagen, spoiler, id_usuario, activo, fechaDeCreacion, fechaDeCambio));
+
+        }
+
+        return publicacionEditable;
+    }
+     
 
 }

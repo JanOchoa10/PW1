@@ -5,6 +5,7 @@ Modelos\Comentario.class
 Modelos\Publicacion.class
 Controllers\Recientes.class
 Controllers\MasVotadas.class
+Controllers\BusquedaBasica.class
 Controllers\CrearComentario.class
 Controllers\RevisarSesion.class
 Controllers\EliminarVoto.class

@@ -48,7 +48,11 @@ public class CrearComentario extends HttpServlet {
         String myComentario = request.getParameter("myComentario");
         String idNota = request.getParameter("idNota");
         int idNotaInt = Integer.parseInt(idNota);
+        String miSpoiler = request.getParameter("spoiler");
         int spoiler = 0;
+        if("Spoiler".equals(miSpoiler)){
+            spoiler = 1;
+        }
         String username = (String) sesion.getAttribute("userName");
 
         ArrayList miLista = (ArrayList) sesion.getAttribute("usuarios");

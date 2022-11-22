@@ -29,7 +29,7 @@ function colorVoto(posicion) {
 
     for (var i = 0; i < rojos.length; i++) {
         if (i == posicion) {
-            var voto = document.getElementById("voto"+posicion);
+            var voto = document.getElementById("voto" + posicion);
             var votoActual = voto.getAttribute("src");
 
             console.log("Mi valor actual: " + votoActual)
@@ -46,4 +46,29 @@ function colorVoto(posicion) {
 
 function actualizarPag() {
     window.location.href = 'Recientes';
+}
+
+
+var mostrarPost = document.getElementsByClassName("contenidoDePost");
+
+function mostrarContenidoDePost(posicion) {
+
+    console.log("Mi posicion: " + posicion)
+    for (var i = 0; i < mostrarPost.length; i++) {
+        if (i == posicion) {
+            mostrarPost[i].classList.toggle("contenidoDePost-height");
+        }
+    }
+}
+
+var mostrarComentario = document.getElementsByClassName("contenidoDeComentario");
+
+function mostrarContenidoDeComentario(posicion) {
+
+    console.log("Mi posicion: " + posicion)
+    for (var i = 0; i < mostrarComentario.length; i++) {
+        if (i == posicion) {
+            mostrarComentario[i].classList.toggle("contenidoDeComentario-height");
+        }
+    }
 }

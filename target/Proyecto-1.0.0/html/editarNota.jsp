@@ -236,7 +236,7 @@
                                                                                     </div>-->
                                         </div>
                                     </label>
-
+                                    <input type="checkbox" id="spoiler" name="spoiler" value="Spoiler"><a title="Guardar publicación"> &nbsp;Spoiler</a>
 
                                     <button type='submit'>
                                         <a title="Guardar cambios"><img src="img/floppy-disk-regular.png"> Guardar cambios</a>    
@@ -254,7 +254,7 @@
                                     </button>
                                 </div>
                             </form>
-                                <br>
+                            <br>
                             <c:if test="${publicacion.imagen != ''}">
                                 <img src="img/${publicacion.imagen}" class="post-img">
                             </c:if>
