@@ -80,12 +80,28 @@ CREATE TABLE Usuario_Gusta_Publicacion(
 insert into Usuario (Nombre, ApePaterno, ApeMaterno, FecNacimiento, Email, UserName, Contrasena, UserImagen, Activo, FechaDeCreacion, FechaDeCambio)
 values ('Jan Anthony', 'Ochoa', 'Retta', '2002-10-29', 'jan8a00@gmail.com', 'JanOchoa10', 'jan8A00!', 'yon.png', 1, current_timestamp(), current_timestamp());
 
--- DELETE FROM Publicacion WHERE ID_Publicacion > 23;
+-- UPDATE Publicacion SET Activo = 0 WHERE ID_Publicacion = 18;
+
+-- DELETE FROM Publicacion WHERE ID_Publicacion > 34;
 -- INSERT INTO publicacion (Texto, Imagen, Spoiler, ID_Usuario, Activo, FechaDeCreacion, FechaDeCambio) VALUES ("xd","yon.png",0,1,1,current_timestamp(),current_timestamp());
+
+-- SELECT ID_Publicacion, Texto, Imagen, Spoiler, ID_Usuario, Activo, FechaDeCreacion, FechaDeCambio FROM publicacion WHERE Activo = 1 ORDER BY FechaDeCreacion DESC LIMIT 10 ;
 
 use bd_postcat;
 select * from Usuario;
 select * from Publicacion;
+select * from comentario;
+select * from usuario_gusta_publicacion;
+
+select P.ID_Publicacion, P.Texto, P.Imagen, P.Spoiler, P.ID_Usuario, P.Activo, P.FechaDeCreacion, P.FechaDeCambio from Publicacion P left join comentario C on C.ID_Publicacion = P.ID_Publicacion WHERE P.Activo = 1 AND (C.Activo is null OR C.Activo = 1) GROUP BY P.ID_Publicacion ORDER BY COUNT(C.ID_Publicacion) DESC LIMIT 10;
+
+select P.ID_Publicacion, P.Texto, P.Imagen, P.Spoiler, P.ID_Usuario, P.Activo, P.FechaDeCreacion, P.FechaDeCambio from Publicacion P left join usuario_gusta_publicacion C on C.ID_Publicacion = P.ID_Publicacion WHERE P.Activo = 1 AND (C.Activo is null OR C.Activo = 1) GROUP BY P.ID_Publicacion ORDER BY COUNT(C.ID_Publicacion) DESC LIMIT 10;
+
+select C.ID_Publicacion, COUNT(*) from comentario C WHERE C.Activo = 1 GROUP BY C.ID_Publicacion ORDER BY COUNT(*) DESC;
+
+-- SELECT * FROM usuario_gusta_publicacion WHERE Activo = 1 ORDER BY FechaDeCreacion DESC ;
+
+-- delete from comentario where ID_Comentario > 12
 
 -- SELECT ID_Publicacion, Texto, Imagen, Spoiler, ID_Usuario, Activo, FechaDeCreacion, FechaDeCambio FROM publicacion ORDER BY FechaDeCreacion ASC LIMIT 5
 -- SELECT ID_Publicacion, Texto, Imagen, Spoiler, ID_Usuario, Activo, FechaDeCreacion, FechaDeCambio FROM publicacion ORDER BY FechaDeCreacion DESC LIMIT 5

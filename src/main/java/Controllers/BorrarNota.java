@@ -6,8 +6,10 @@ package Controllers;
 
 import DAO.ComentarioDAO;
 import DAO.PublicacionDAO;
+import DAO.VotoDAO;
 import Modelos.Comentario;
 import Modelos.Publicacion;
+import Modelos.Voto;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -49,12 +51,16 @@ public class BorrarNota extends HttpServlet {
 
             if (result) {
 
-                ArrayList<Publicacion> publicaciones = pDAO.get5PublicacionesPorDefecto();
+                ArrayList<Publicacion> publicaciones = pDAO.get10PublicacionesPorDefecto();
                 request.setAttribute("publicaciones", publicaciones);
 
                 ComentarioDAO cDAO = new ComentarioDAO();
                 ArrayList<Comentario> comentarios = cDAO.getAllComentarios();
                 request.setAttribute("comentarios", comentarios);
+                
+                VotoDAO vDAO = new VotoDAO();
+                ArrayList<Voto> votos = vDAO.getAllVotos();
+                request.setAttribute("votos", votos);
 
                 request.getRequestDispatcher("html/home.jsp").forward(request, response);
             }

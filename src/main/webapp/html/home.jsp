@@ -48,12 +48,12 @@
 
         <nav>
             <div class="nav-left">
-                <img src="img/logo.png" class="logo" onclick="location.reload(false);">
+                <img src="img/logo.png" class="logo" onclick="actualizarPag();">
                 <!--<h4>PostCat</h4>-->
                 <ul>
-                    <li><img src="img/newspaper-regular.png" title="Recientes"></li>
-                    <li><img src="img/comments-regular.png" title="Más comentadas"> </li>
-                    <li><img src="img/thumbs-up-regular.png" title="Más votadas"></li>
+                    <li><a href="Recientes"><img src="img/newspaper-regular.png" title="Recientes"></a></li>
+                    <li><a href="MasComentadas"><img src="img/comments-regular.png" title="Más comentadas"></a></li>
+                    <li><a href="MasVotadas"><img src="img/thumbs-up-regular.png" title="Más votadas"></a></li>
                 </ul>
             </div>
             <div class="nav-right">
@@ -125,9 +125,9 @@
                 <div class="imp-links">
                     <!--<a href="#">Accesos Directos</a>-->
                     <p>Publicaciones</p>
-                    <a href="#"><img src="img/newspaper-regular.png">  Recientes</a>
-                    <a href="#"><img src="img/comments-regular.png">  Más comentadas</a>
-                    <a href="#"><img src="img/thumbs-up-regular.png"> Más votadas</a>
+                    <a href="Recientes"><img src="img/newspaper-regular.png">  Recientes</a>
+                    <a href="MasComentadas"><img src="img/comments-regular.png">  Más comentadas</a>
+                    <a href="MasVotadas"><img src="img/thumbs-up-regular.png"> Más votadas</a>
                     <!--                    <a href="#"><img src="img/marketplace.png"> Mercado</a>
                                         <a href="#"><img src="img/watch.png"> Ver</a>
                                         <a href="#">Ver más</a>-->
@@ -330,8 +330,71 @@
                         <input type="text" style="display: none;" value="<% out.print(numPublicaciones); %>" />
                         <div class="post-row">
                             <div class="activity-icons">
-                                <div><img src="img/like.png"> 120 Votos</div>
-                                <div onclick="MostrarComentarios(<% out.print(numPublicaciones); %>)"><img src="img/comments.png"> <% out.print(cantidadDeComentarios); %> Comentarios</div>
+
+                                <% int cantidadDeVotos = 0; %>
+                                <c:forEach items="${votos}" var="voto">
+                                    <c:if test="${ voto.ID_Publicacion == publicacion.ID_Publicacion}">
+                                        <% cantidadDeVotos++; %>
+                                    </c:if>
+                                </c:forEach>
+
+                                <c:set var = "entroAVoto" scope = "session" value = "false"></c:set>
+                                <c:forEach items="${votos}" var="voto">
+<!--                                    <h1><c:out value="${voto.ID_UGP}"></c:out></h1>
+                                    <h1><c:out value="${voto.ID_Publicacion}"></c:out></h1>
+                                    <h1><c:out value="${voto.ID_Usuario}"></c:out></h1>
+                                    <h1><c:out value="${voto.activo}"></c:out></h1>
+                                    <h1><c:out value="${voto.fechaDeCreacion}"></c:out></h1>
+                                    <h1><c:out value="${voto.fechaDeCambio}"></c:out></h1>-->
+
+                                    <c:choose>
+                                        <c:when test="${voto.ID_Publicacion == publicacion.ID_Publicacion && usuarios[0].ID_Usuario == voto.ID_Usuario}">
+
+                                            <div onclick="colorVoto(<% out.print(numPublicaciones); %>)">
+                                                <form action="EliminarVoto" method="POST">
+                                                    <input type="text" name="idNota" value="${publicacion.ID_Publicacion}" style="display:none;"/>
+                                                    <input type="text" name="idUsuario" value="${publicacion.ID_Usuario}" style="display:none;"/>
+                                                    <input type="text" name="idVoto" value="${voto.ID_UGP}" style="display:none;"/>
+                                                    <button type='submit' 
+                                                            style="background: transparent;
+                                                            border: none;
+                                                            cursor: pointer;"
+                                                            class="diseno"
+                                                            >
+                                                        <img src="img/like-blue.png" id="voto<% out.print(numPublicaciones); %>" > 
+                                                        <% out.print(cantidadDeVotos); %> Votos
+                                                    </button>
+                                                </form>
+                                            </div>
+                                            <c:set var = "entroAVoto" scope = "session" value = "true"></c:set>
+                                        </c:when>    
+                                    </c:choose>
+                                </c:forEach>
+
+
+                                <c:if test="${ entroAVoto == false}">
+                                    <div onclick="colorVoto(<% out.print(numPublicaciones); %>)">
+                                        <form action="CrearVoto" method="POST">
+                                            <input type="text" name="idNota" value="${publicacion.ID_Publicacion}" style="display:none;" />
+                                            <input type="text" name="idUsuario" value="${publicacion.ID_Usuario}" style="display:none;"/>
+                                            <input type="text" name="idVoto" value="${voto.ID_UGP}" style="display:none;"/>
+                                            <button type='submit' 
+                                                    style="background: transparent;
+                                                    border: none;
+                                                    cursor: pointer;"
+                                                    class="diseno"
+                                                    >
+                                                <img src="img/like.png" id="voto<% out.print(numPublicaciones); %>" > 
+                                                <% out.print(cantidadDeVotos); %> Votos
+                                            </button>
+                                        </form>
+                                    </div>
+                                </c:if>  
+
+
+                                <div onclick="MostrarComentarios(<% out.print(numPublicaciones); %>)" class="diseno">
+                                    <img src="img/comments.png"> <% out.print(cantidadDeComentarios); %> Comentarios
+                                </div>
                                 <!--<div><img src="img/share.png"> 20</div>-->
                             </div>
                             <div class="post-profile-icon">
@@ -366,21 +429,23 @@
                                                                 <div class="texto">
                                                                     <a title="" class="nombre-usuario"> ${usuario.nombre}</a> 
                                                                     <p>${comentario.texto}</p> 
-                                                                    <div class="menu-comentario">
-                                                                        <i class="fa-solid fa-ellipsis-vertical"></i>
-                                                                        <ul class="menu">
-                                                                            <!--<li><a href="">Editar</a></li>-->
-                                                                            <form action="EliminarComentario" method="POST">
-                                                                                <input type="text" name="idComentario" value="${comentario.ID_Comentario}" style="display: none;"/>
-                                                                                <button type='submit' style="background: transparent;
-                                                                                        border: none;
-                                                                                        cursor: pointer;" >
-                                                                                    <!--<a title="Guardar publicación">Guardar</a>-->    
-                                                                                    <li><a>Eliminar</a></li>
-                                                                                </button>
-                                                                            </form>
-                                                                        </ul>
-                                                                    </div>
+                                                                    <c:if test="${usuarios[0].ID_Usuario == comentario.ID_Usuario}">
+                                                                        <div class="menu-comentario">
+                                                                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                                                                            <ul class="menu">
+                                                                                <!--<li><a href="">Editar</a></li>-->
+                                                                                <form action="EliminarComentario" method="POST">
+                                                                                    <input type="text" name="idComentario" value="${comentario.ID_Comentario}" style="display: none;"/>
+                                                                                    <button type='submit' style="background: transparent;
+                                                                                            border: none;
+                                                                                            cursor: pointer;" >
+                                                                                        <!--<a title="Guardar publicación">Guardar</a>-->    
+                                                                                        <li><a>Eliminar</a></li>
+                                                                                    </button>
+                                                                                </form>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </c:if>
                                                                 </div>
                                                                 <div class="botones-comentario">
                                                                     <span class="tiempo-comentario">

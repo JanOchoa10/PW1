@@ -517,6 +517,7 @@ nav {
 .activity-icons div img {
     width: 18px;
     margin-right: 10px;
+    
 }
 
 .activity-icons div {
@@ -987,4 +988,11 @@ nav {
     list-style: none;
     font-size: 0.8em;
     color: #909090;
+}
+
+
+.diseno{
+    text-decoration: none;
+    color: var(--color-imp);
+    font-size: 18px;
 }
