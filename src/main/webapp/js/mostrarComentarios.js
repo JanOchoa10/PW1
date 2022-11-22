@@ -5,13 +5,13 @@
 
 
 
-var settingsMenu = document.querySelector(".contenedor-comentarios");
+//var settingsMenu = document.querySelector(".contenedor-comentarios");
 
 //var darkBtn = document.getElementById("dark-btn");
 
 
 var rojos = document.getElementsByClassName("contenedor-comentarios");
-var agregar = true;
+//var agregar = true;
 
 function MostrarComentarios(posicion) {
 //    settingsMenu.classList.toggle("contenedor-comentarios-height");

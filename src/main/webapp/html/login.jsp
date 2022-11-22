@@ -13,7 +13,7 @@
         <title>PostCat - Inicio de sesión</title>
         <link rel="shortcut icon" href="img/logo-cato.png">
         <link rel="stylesheet" href="css/mycss.css">
-        <link rel="stylesheet" href="css/style2.css">
+        <link rel="stylesheet" href="css/myEditStyle.css">
         <!--script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script-->
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 

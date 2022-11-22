@@ -553,9 +553,9 @@ nav {
     padding: 10px 0 20px;
     font-size: 13px;
     background: var(--color-footer);
-    /*    position: absolute;*/
-    /*    bottom: 0;
-        width: 100%;*/
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }
 
 .settings-menu {
