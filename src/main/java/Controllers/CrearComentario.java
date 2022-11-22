@@ -6,9 +6,11 @@ package Controllers;
 
 import DAO.ComentarioDAO;
 import DAO.PublicacionDAO;
+import DAO.VotoDAO;
 import Modelos.Comentario;
 import Modelos.Publicacion;
 import Modelos.Usuario;
+import Modelos.Voto;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -71,6 +73,10 @@ public class CrearComentario extends HttpServlet {
                 PublicacionDAO pDAO = new PublicacionDAO();
                 ArrayList<Publicacion> publicaciones = pDAO.get5PublicacionesPorDefecto();
                 request.setAttribute("publicaciones", publicaciones);
+                
+                VotoDAO vDAO = new VotoDAO();
+                ArrayList<Voto> votos = vDAO.getAllVotos();
+                request.setAttribute("votos", votos);
                 
                 request.getRequestDispatcher("html/home.jsp").forward(request, response);
             }

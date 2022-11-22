@@ -17,23 +17,29 @@ function MostrarComentarios(posicion) {
 //    settingsMenu.classList.toggle("contenedor-comentarios-height");
 
     console.log("Mi posicion: " + posicion)
+    for (var i = 0; i < rojos.length; i++) {
+        if (i == posicion) {
+            rojos[i].classList.toggle("contenedor-comentarios-height");
+        }
+    }
+}
 
-//    if (agregar) {
-        for (var i = 0; i < rojos.length; i++) {
-//        rojos[i].classList.remove("rojo");
-            if (i == posicion) {
-//                if(rojos[i].classList.toggle())
-                rojos[i].classList.toggle("contenedor-comentarios-height");
+function colorVoto(posicion) {
+
+
+    for (var i = 0; i < rojos.length; i++) {
+        if (i == posicion) {
+            var voto = document.getElementById("voto"+posicion);
+            var votoActual = voto.getAttribute("src");
+
+            console.log("Mi valor actual: " + votoActual)
+
+            if (votoActual == "img/like.png") {
+                voto.setAttribute("src", "img/like-blue.png");
+            } else if (votoActual == "img/like-blue.png") {
+                voto.setAttribute("src", "img/like.png");
             }
         }
-//        agregar = false;
-//    } else {
-//        for (var i = 0; i < rojos.length; i++) {
-////        rojos[i].classList.remove("rojo");
-//            if (i == posicion) {
-//                rojos[i].classList.remove("contenedor-comentarios-height");
-//            }
-//        }
-//        agregar = true;
-//    }
+    }
+
 }
