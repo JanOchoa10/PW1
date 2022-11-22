@@ -120,11 +120,12 @@ nav {
     display: flex;
     align-items: center;
     padding: 0 15px;
+    color: var(--color-texto-editable);
 }
 
 .search-box img {
     width: 18px;
-
+    cursor: pointer;
 }
 
 .search-box input {
@@ -133,6 +134,7 @@ nav {
     padding: 10px;
     outline: none;
     border: 0;
+    color: var(--color-texto-editable);
 }
 
 .online {
@@ -723,6 +725,11 @@ nav {
     overflow: hidden;
 }
 
+.comentar-publicacion .avatar{
+    min-width: 32px;
+    min-height: 32px;
+}
+
 .comentar-publicacion button{
 
     background: transparent;
@@ -884,6 +891,10 @@ nav {
     height: 45px;
 }
 
+.comentarios-usuarios .comentario-principal-usuario{
+    min-width: 300px;
+}
+
 .comentarios-usuarios .comentario-principal-usuario .texto {
     padding: 10px 15px;
     width: auto;
@@ -995,4 +1006,12 @@ nav {
     text-decoration: none;
     color: var(--color-imp);
     font-size: 18px;
+}
+
+.mySearch{
+    display: flex;
+}
+
+.mySearch button{
+    transform: translateX(110px);
 }

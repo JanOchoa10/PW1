@@ -58,8 +58,25 @@
             </div>
             <div class="nav-right">
                 <div class="search-box">
-                    <img src="img/search.png">
-                    <input type="text" placeholder="Buscar">
+
+                    <form action="BusquedaBasica" method="POST">
+                        <div class="mySearch" >
+                            <input type="text" placeholder="Buscar" name="buscar">
+                            <button type='submit'  title="Buscar publicaciones"
+                                    style="background: transparent;
+                                    border: none;
+                                    cursor: pointer;"
+
+                                    >
+                                <!--<a title="Guardar publicación"><img src="img/floppy-disk-regular.png"> Guardar</a>-->        
+                                <img src="img/search.png">
+                            </button>
+                        </div>
+
+                    </form>
+
+
+
                 </div>
                 <div class="nav-user-icon online" onclick="settingsMenuToggle()">
                     <img src="img/${usuarios[0].userImagen}">
@@ -234,7 +251,7 @@
                                                                                 </div>-->
                                     </div>
                                 </label>
-
+                                <input type="checkbox" id="spoiler" name="spoiler" value="Spoiler"><a title="Guardar publicación"> &nbsp;Spoiler</a>
 
                                 <button type='submit'>
                                     <a title="Guardar publicación"><img src="img/floppy-disk-regular.png"> Guardar</a>                                
@@ -507,6 +524,7 @@
                                         <form action="CrearComentario" method="POST" class="comentar-comentario">
                                             <input type="text" name="myComentario" value="" placeholder="Escribe tu comentario..." maxlength="50" required>
                                             <input type="text" name="idNota" value="${publicacion.ID_Publicacion}" style="display: none;"/>
+                                            <input type="checkbox" id="spoiler" name="spoiler" value="Spoiler"><a title="Guardar publicación"> &nbsp;Spoiler&nbsp;&nbsp;</a>
                                             <button type='submit'>
                                                 <a title="Guardar publicación">Guardar</a>                                
                                             </button>
