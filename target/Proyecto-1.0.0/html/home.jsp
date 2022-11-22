@@ -247,75 +247,124 @@
                     </div>
                 </div>                           
 
-
+                <% int numPublicaciones = 0;%>
                 <c:forEach items="${publicaciones}" var="publicacion">
                     <%--<c:if test="${1 == publicacion.activo}">--%>
-                        <div class="post-container">
-                            <div class="post-row">
-                                <div class="user-profile">
-                                    <c:forEach items="${usuariosall}" var="usuario">
+                    <div class="post-container">
+                        <div class="post-row">
+                            <div class="user-profile">
+                                <c:forEach items="${usuariosall}" var="usuario">
+                                    <!--<h1><c:out value="${usuario.email}"></c:out></h1>-->
+
+                                    <c:if test="${usuario.ID_Usuario == publicacion.ID_Usuario}">
                                         <!--<h1><c:out value="${usuario.email}"></c:out></h1>-->
-
-                                        <c:if test="${usuario.ID_Usuario == publicacion.ID_Usuario}">
-                                            <!--<h1><c:out value="${usuario.email}"></c:out></h1>-->
-                                            <c:set var = "UserPostNombre" scope = "session" value = "${usuario.nombre}"></c:set>
-                                            <c:set var = "UserPostFoto" scope = "session" value = "${usuario.userImagen}"></c:set>
-                                        </c:if>
-                                    </c:forEach>
-
-                                    <img src="img/${UserPostFoto}">
-
-
-                                    <div>
-                                        <p>${UserPostNombre}</p>
-                                        <span>${publicacion.fechaDeCreacion}</span>
-                                    </div>
-                                </div>
-                                <div>
-                                    <c:if test="${usuarios[0].ID_Usuario == publicacion.ID_Usuario}">
-                                        <form action="EditarNota" method="POST">
-                                            <input type="text" name="idNota" value="${publicacion.ID_Publicacion}" style="display: none;"></input>
-                                            <button type='submit' style="background: transparent;
-                                                    border: none;
-                                                    cursor: pointer;">
-                                                <a title="Editar publicación"><i class="fa-solid fa-pen-to-square"></i></a>                              
-                                            </button>
-                                        </form>
-                                        <form action="BorrarNota" method="POST">
-                                            <input type="text" name="idNota" value="${publicacion.ID_Publicacion}" style="display: none;"></input>
-                                            <button type='submit' style="background: transparent;
-                                                    border: none;
-                                                    cursor: pointer;">
-
-                                                <a title="Borrar publicación"><i class="fa-solid fa-trash"></i></a>                            
-                                            </button>
-                                        </form>
+                                        <c:set var = "UserPostNombre" scope = "session" value = "${usuario.nombre}"></c:set>
+                                        <c:set var = "UserPostFoto" scope = "session" value = "${usuario.userImagen}"></c:set>
                                     </c:if>
+                                </c:forEach>
+
+                                <img src="img/${UserPostFoto}">
+
+                                <div>
+                                    <p>${UserPostNombre}</p>
+                                    <span>${publicacion.fechaDeCreacion}</span>
                                 </div>
                             </div>
-                            <p class="post-text">
-                                ${publicacion.texto}
-                                <!--                            Trabajo en equipo <span>@Jobbin</span> donde todo trabajo se empieza y termina con la máxima calidad.
-                                                            <a href="#">#JOBBIN</a>
-                                                            <a href="#">#ROBBIN</a>-->
-                            </p>
-                            <c:if test="${publicacion.imagen != ''}">
-                                <img src="img/${publicacion.imagen}" class="post-img">
-                            </c:if>
+                            <div>
+                                <c:if test="${usuarios[0].ID_Usuario == publicacion.ID_Usuario}">
+                                    <form action="EditarNota" method="POST">
+                                        <input type="text" name="idNota" value="${publicacion.ID_Publicacion}" style="display: none;"></input>
+                                        <button type='submit' style="background: transparent;
+                                                border: none;
+                                                cursor: pointer;">
+                                            <a title="Editar publicación"><i class="fa-solid fa-pen-to-square"></i></a>                              
+                                        </button>
+                                    </form>
+                                    <form action="BorrarNota" method="POST">
+                                        <input type="text" name="idNota" value="${publicacion.ID_Publicacion}" style="display: none;"></input>
+                                        <button type='submit' style="background: transparent;
+                                                border: none;
+                                                cursor: pointer;">
 
-                            <div class="post-row">
-                                <div class="activity-icons">
-                                    <div><img src="img/like-blue.png"> 120</div>
-                                    <div><img src="img/comments.png"> 45</div>
-                                    <!--<div><img src="img/share.png"> 20</div>-->
-                                </div>
-                                <div class="post-profile-icon">
-                                    <img src="img/${usuarios[0].userImagen}">
-                                    <!--                            <i class="fas fa-caret-down"></i>-->
-                                </div>
+                                            <a title="Borrar publicación"><i class="fa-solid fa-trash"></i></a>                            
+                                        </button>
+                                    </form>
+                                </c:if>
                             </div>
                         </div>
+                        <p class="post-text">
+                            ${publicacion.texto}
+                            <!--                            Trabajo en equipo <span>@Jobbin</span> donde todo trabajo se empieza y termina con la máxima calidad.
+                                                        <a href="#">#JOBBIN</a>
+                                                        <a href="#">#ROBBIN</a>-->
+                        </p>
+                        <c:if test="${publicacion.imagen != ''}">
+                            <img src="img/${publicacion.imagen}" class="post-img">
+
+                        </c:if>
+                            <input type="text" style="display: none;" value="<% out.print(numPublicaciones); %>" />
+                        <div class="post-row">
+                            <div class="activity-icons">
+                                <div><img src="img/like.png"> 120 Votos</div>
+                                <div onclick="MostrarComentarios(<% out.print(numPublicaciones); %>)"><img src="img/comments.png"> 45 Comentarios</div>
+                                <!--<div><img src="img/share.png"> 20</div>-->
+                            </div>
+                            <div class="post-profile-icon">
+                                <img src="img/${usuarios[0].userImagen}">
+                                <!--                            <i class="fas fa-caret-down"></i>-->
+                            </div>
+                        </div>
+                        <br>
+
+                        <section class="contenedor-comentarios">
+
+                            <div class="comentarios-usuarios">
+                                <!-- comentario principal -->
+                                <div class="comentario-principal-usuario">
+                                    <div class="avatar">
+                                        <img src="img/josue.jpg" alt="img">
+                                    </div>
+                                    <div class="comentario">
+                                        <div class="usuario-comentario">
+                                            <div class="texto">
+                                                <a href="#" title="" class="nombre-usuario"> Kevin Mora</a> 
+                                                <p>De verdad es la FCFM? no parece :0</p> 
+                                                <div class="menu-comentario">
+                                                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                                                    <ul class="menu">
+                                                        <!--<li><a href="">Editar</a></li>-->
+                                                        <li><a href="">Eliminar</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="botones-comentario">
+                                                <span class="tiempo-comentario">
+                                                    hece 3 min
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="comentar-publicacion">
+                                    <div class="avatar">
+                                        <img src="img/${usuarios[0].userImagen}" alt="img">
+                                    </div>
+                                    <form action="#" method="post" class="comentar-comentario">
+                                        <input type="text" name="" value="" placeholder="Escribe tu comentario...">
+                                        <button type='submit'>
+                                            <a title="Guardar publicación">Guardar</a>                                
+                                        </button>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </section>
+                    </div>
                     <%--</c:if>--%>
+                    <% numPublicaciones++;%>
                 </c:forEach>
 
                 <button onclick="window.location.href = 'notas'" type="button" class="load-more-btn">Ver más</button>
@@ -395,6 +444,7 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="js/script.js"></script>
         <script src="js/sesionNoActiva.js"></script>
+        <script src="js/mostrarComentarios.js"></script>
 
     </body>
 
