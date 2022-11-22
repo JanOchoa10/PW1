@@ -81,6 +81,8 @@ public class Login extends HttpServlet {
                 miSesion.setAttribute("userName", user);
                 miSesion.setAttribute("contrasena", contra);
                 miSesion.setAttribute("cantidad", "10");
+                miSesion.setAttribute("cantidadComentadas", "0");
+                miSesion.setAttribute("cantidadVotadas", "0");
 
                 miSesion.setAttribute("usuarios", usuarios);
                 miSesion.setAttribute("usuariosall", usuariosall);

@@ -606,7 +606,40 @@
                     %>
                 </c:forEach>
 
-                <button onclick="window.location.href = 'notas'" type="button" class="load-more-btn">Ver más</button>
+                <% int numDePublicacionesBTN = 0; %>
+                <c:forEach items="${publicaciones}" var="publicacion">
+                    <% numDePublicacionesBTN++;%>
+                </c:forEach>
+                <%--<c:set var = "nPC" scope = "session" value = "<%  %>"></c:set>--%>
+                <%
+                    HttpSession miSesion = request.getSession();
+                    miSesion.setAttribute("numDePublicacionesBTN3", numDePublicacionesBTN);
+
+                %>
+
+<!--                <h1><c:out value="Num de publicaciones: ${ numDePublicacionesBTN3 }"></c:out></h1>  
+                <h1><c:out value="Cantidad de publicaciones recientes: ${cantidad}"></c:out></h1> 
+                <h1><c:out value="Cantidad de publicaciones comentadas: ${cantidadComentadas}"></c:out></h1> 
+                <h1><c:out value="Cantidad de publicaciones votadas: ${cantidadVotadas}"></c:out></h1> -->
+
+
+                <c:choose>
+                    <c:when test="${numDePublicacionesBTN3 == cantidad}">
+                        <button onclick="window.location.href = 'notasRecientes'" type="button" class="load-more-btn">Ver más recientes</button>
+                    </c:when>
+                    <c:when test="${numDePublicacionesBTN3 == cantidadComentadas}">
+                        <button onclick="window.location.href = 'notasComentadas'" type="button" class="load-more-btn">Ver más comentadas</button>
+                    </c:when>
+                        <c:when test="${numDePublicacionesBTN3 == cantidadVotadas}">
+                        <button onclick="window.location.href = 'notasVotadas'" type="button" class="load-more-btn">Ver más votadas</button>
+                    </c:when>
+                    <c:otherwise>    
+
+                    </c:otherwise>
+
+                </c:choose>
+
+
 
             </div>
             <!-- ------------right-sidebar------------ -->

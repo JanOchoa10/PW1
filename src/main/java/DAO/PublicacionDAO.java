@@ -404,15 +404,17 @@ public class PublicacionDAO {
     }
     
     
-    public ArrayList<Publicacion> getMasComentadas() throws SQLException {
-        String sql = "select P.ID_Publicacion, P.Texto, P.Imagen, P.Spoiler, P.ID_Usuario, P.Activo, P.FechaDeCreacion, P.FechaDeCambio from Publicacion P left join comentario C on C.ID_Publicacion = P.ID_Publicacion WHERE P.Activo = 1 AND (C.Activo is null OR C.Activo = 1) GROUP BY P.ID_Publicacion ORDER BY COUNT(C.ID_Publicacion) DESC LIMIT 10;";
+    public ArrayList<Publicacion> getMasComentadas(String cantidad) throws SQLException {
+        String sql = "select P.ID_Publicacion, P.Texto, P.Imagen, P.Spoiler, P.ID_Usuario, P.Activo, P.FechaDeCreacion, P.FechaDeCambio from Publicacion P left join comentario C on C.ID_Publicacion = P.ID_Publicacion WHERE P.Activo = 1 AND (C.Activo is null OR C.Activo = 1) GROUP BY P.ID_Publicacion ORDER BY COUNT(C.ID_Publicacion) DESC LIMIT ? ;";
 
         ArrayList<Publicacion> publicaciones = new ArrayList<Publicacion>();
 
         con = c.getConnection();
 
-        s = con.createStatement();
-        rs = s.executeQuery(sql);
+        ps = con.prepareStatement(sql);
+        int miNCant = Integer.parseInt(cantidad);
+        ps.setInt(1, miNCant);
+        rs = ps.executeQuery();
 
         while (rs.next()) {
             int id_publicacion = rs.getInt("ID_Publicacion");
@@ -502,15 +504,17 @@ public class PublicacionDAO {
         return publicaciones;
     }
     
-     public ArrayList<Publicacion> getMasVotadas() throws SQLException {
-        String sql = "select P.ID_Publicacion, P.Texto, P.Imagen, P.Spoiler, P.ID_Usuario, P.Activo, P.FechaDeCreacion, P.FechaDeCambio from Publicacion P left join usuario_gusta_publicacion C on C.ID_Publicacion = P.ID_Publicacion WHERE P.Activo = 1 AND (C.Activo is null OR C.Activo = 1) GROUP BY P.ID_Publicacion ORDER BY COUNT(C.ID_Publicacion) DESC LIMIT 10;";
+     public ArrayList<Publicacion> getMasVotadas(String cantidad) throws SQLException {
+        String sql = "select P.ID_Publicacion, P.Texto, P.Imagen, P.Spoiler, P.ID_Usuario, P.Activo, P.FechaDeCreacion, P.FechaDeCambio from Publicacion P left join usuario_gusta_publicacion C on C.ID_Publicacion = P.ID_Publicacion WHERE P.Activo = 1 AND (C.Activo is null OR C.Activo = 1) GROUP BY P.ID_Publicacion ORDER BY COUNT(C.ID_Publicacion) DESC LIMIT ? ;";
 
         ArrayList<Publicacion> publicaciones = new ArrayList<Publicacion>();
 
         con = c.getConnection();
 
-        s = con.createStatement();
-        rs = s.executeQuery(sql);
+        ps = con.prepareStatement(sql);
+        int miNCant = Integer.parseInt(cantidad);
+        ps.setInt(1, miNCant);
+        rs = ps.executeQuery();
 
         while (rs.next()) {
             int id_publicacion = rs.getInt("ID_Publicacion");

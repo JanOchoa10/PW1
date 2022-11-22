@@ -21,6 +21,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -38,7 +39,15 @@ public class Recientes extends HttpServlet {
         PublicacionDAO pDAO = new PublicacionDAO();
 
         try {
-            ArrayList<Publicacion> publicaciones = pDAO.get10PublicacionesPorDefecto();
+
+            HttpSession miSesion = request.getSession();
+            miSesion.setAttribute("cantidad", "10");
+            miSesion.setAttribute("cantidadComentadas", "0");
+            miSesion.setAttribute("cantidadVotadas", "0");
+            
+            String cantidad = (String) miSesion.getAttribute("cantidad");
+
+            ArrayList<Publicacion> publicaciones = pDAO.getCargarPublicaciones(cantidad);
             request.setAttribute("publicaciones", publicaciones);
 
             ComentarioDAO cDAO = new ComentarioDAO();

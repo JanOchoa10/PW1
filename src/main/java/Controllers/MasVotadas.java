@@ -21,6 +21,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -38,7 +39,14 @@ public class MasVotadas extends HttpServlet {
         PublicacionDAO pDAO = new PublicacionDAO();
 
         try {
-            ArrayList<Publicacion> publicaciones = pDAO.getMasVotadas();
+             HttpSession miSesion = request.getSession();
+            miSesion.setAttribute("cantidadComentadas", "0");
+            miSesion.setAttribute("cantidad", "0");
+            miSesion.setAttribute("cantidadVotadas", "10");
+            
+            String cantidadVotadas = (String) miSesion.getAttribute("cantidadVotadas");
+            
+            ArrayList<Publicacion> publicaciones = pDAO.getMasVotadas(cantidadVotadas);
             request.setAttribute("publicaciones", publicaciones);
 
             ComentarioDAO cDAO = new ComentarioDAO();
