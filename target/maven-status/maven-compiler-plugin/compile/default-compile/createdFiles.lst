@@ -3,6 +3,7 @@ Modelos\Usuario.class
 DAO\UsuarioDAO.class
 Modelos\Comentario.class
 Modelos\Publicacion.class
+Controllers\VerNotasComentadas.class
 Controllers\Recientes.class
 Controllers\MasVotadas.class
 Controllers\BusquedaBasica.class

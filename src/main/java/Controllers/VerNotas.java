@@ -27,14 +27,14 @@ import javax.servlet.http.HttpSession;
  *
  * @author Jan
  */
-@WebServlet(name = "notas", urlPatterns = {"/notas"})
+@WebServlet(name = "notasRecientes", urlPatterns = {"/notasRecientes"})
 public class VerNotas extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-//        request.setCharacterEncoding("UTF-8");
+        
         HttpSession sesion = request.getSession();
 
         String username = (String) sesion.getAttribute("userName");
@@ -66,4 +66,11 @@ public class VerNotas extends HttpServlet {
         }
 
     }
+    
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+    }
+    
 }
