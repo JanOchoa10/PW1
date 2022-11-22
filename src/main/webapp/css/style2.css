@@ -23,6 +23,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     --fondo: url(../img/bg_image.jpg) no-repeat center top fixed;
     /*--color-footer: #20374c;*/
     --color-footer: #20374c;
+    --color-hover: rgba(0, 0, 0, 0.2);
+    --color-hover-btn: #EEE;
 }
 
 .dark-theme{
@@ -31,6 +33,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     --color-white: #000000;
     --color-imp: #fff;
     --fondo: #131313;
+    --color-hover:#fff;
+    --color-hover-btn:#333;
 }
 
 * {
@@ -75,9 +79,16 @@ nav {
     align-items: center;
 }
 
+.nav-left ul li:hover {
+    background-color: #000;
+    border-radius: 5px;
+}
+
 .nav-left ul li {
     list-style: none;
     display: inline-block;
+    cursor: pointer;
+    /*height: 100%;*/
 }
 
 .nav-left ul li img {
@@ -200,6 +211,11 @@ nav {
 
 .imp-links a:last-child {
     color: var(--color-nav);
+}
+
+.imp-links a:hover{
+    background-color: var(--color-white);
+    border-radius: 5px;
 }
 
 .imp-links {
@@ -410,12 +426,26 @@ nav {
     border-bottom: 1px solid var(--color-border-bottom);
     background: transparent;
     resize: none;
+    color: var(--color-border-bottom);
 }
 
 .add-post-links {
     display: flex;
     margin-top: 10px;
 
+}
+
+.add-post-links button{
+
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.add-post-links button:hover{
+
+    background: var(--color-hover-btn);
+    border-radius: 5px;
 }
 
 .add-post-links a {
@@ -427,9 +457,15 @@ nav {
     font-size: 13px;
 }
 
+.add-post-links a:hover {
+    background: var(--color-hover-btn);
+    border-radius: 5px;
+}
+
 .add-post-links a img {
     width: 20px;
     margin-right: 10px;
+    filter: invert(48%) sepia(90%) saturate(405%) hue-rotate(75deg) brightness(93%) contrast(87%);
 }
 
 .post-container {
@@ -565,6 +601,11 @@ nav {
     cursor: pointer;
 }
 
+.settings-links:hover {
+    background-color: var(--color-hover);
+    border-radius: 5px;
+}
+
 .settings-links .settings-icon {
     width: 28px;
     margin-right: 10px;
@@ -596,6 +637,11 @@ nav {
     color: var(--color-imp);
 }
 
+.settings-links a:hover{
+
+    color: var(--color-white);
+}
+
 #dark-btn {
     /*position: absolute;*/
     top: 20px;
@@ -621,3 +667,5 @@ nav {
     padding-left: 23px;
     background: var(--color-body);
 }
+
+

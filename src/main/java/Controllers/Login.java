@@ -4,7 +4,9 @@
  */
 package Controllers;
 
+import DAO.PublicacionDAO;
 import DAO.UsuarioDAO;
+import Modelos.Publicacion;
 import Modelos.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -26,15 +28,6 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "home", urlPatterns = {"/home"})
 public class Login extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -43,84 +36,22 @@ public class Login extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet UsuarioController</title>");
+            out.println("<title>Servlet prueba</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet UsuarioController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet prueba at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        //processRequest(request, response);
         request.getRequestDispatcher("html/home.jsp").forward(request, response);
-//        int i=0;
-
-        //Modelos.Usuario user = new Modelos.Usuario(i, nombre, contra);
-//        String nombre = request.getParameter("username");
-//        String contra = request.getParameter("password1");
-//
-//        Usuario usuario = new Usuario(nombre, contra);
-//
-//        UsuarioDAO uDAO = new UsuarioDAO();
-//
-//        try {
-//            boolean result = uDAO.agregar(usuario);
-//
-//            if (result) {
-//                processRequest(request, response);
-//            }
-//
-//            // Revisar que le usuario exista
-//            //response.sendRedirect("Vistas/principal.jsp");
-//            //request.setAttribute("id", 1);
-//            //request.getRequestDispatcher("principal.jsp").forward(request, response);
-//            //processRequest(request, response);
-//        } catch (SQLException ex) {
-//            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-//        }
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-//    @Override
-//    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-//            throws ServletException, IOException {
-//        
-//        UsuarioDAO uDAO = new UsuarioDAO();
-//
-//        try {
-//            ArrayList<Usuario> usuarios = uDAO.getUsuarios();
-//            
-//            request.setAttribute("usuarios", usuarios);
-//            
-//            request.getRequestDispatcher("html/home.jsp").forward(request, response);
-//        } catch (SQLException ex) {
-//            Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        
-//        
-//        
-//        //processRequest(request, response);
-//    }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -135,6 +66,7 @@ public class Login extends HttpServlet {
 
         try {
             ArrayList<Usuario> usuarios = uDAO.getUnUsuario(usuario);
+            ArrayList<Usuario> usuariosall = uDAO.getUsuarios();
 
             if (usuarios.isEmpty()) {
                 request.getRequestDispatcher("html/index.html").forward(request, response);
@@ -142,28 +74,26 @@ public class Login extends HttpServlet {
                 HttpSession miSesion = request.getSession();
                 miSesion.setAttribute("userName", user);
                 miSesion.setAttribute("contrasena", contra);
+                miSesion.setAttribute("cantidad", "10");
 
                 miSesion.setAttribute("usuarios", usuarios);
+                miSesion.setAttribute("usuariosall", usuariosall);
 
+                response.addHeader("cache-control", "no-cache");
+
+                PublicacionDAO pDAO = new PublicacionDAO();
+
+                ArrayList<Publicacion> publicaciones = pDAO.get5PublicacionesPorDefecto();
+
+                request.setAttribute("publicaciones", publicaciones);
+
+//                request.getRequestDispatcher("html/home.jsp").forward(request, response);
                 request.getRequestDispatcher("html/home.jsp").forward(request, response);
             }
 
         } catch (SQLException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        //processRequest(request, response);
-        //processRequest(request, response);
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
 }

@@ -16,7 +16,7 @@
         <title>PostCat - Registrar nueva cuenta</title>
         <link rel="shortcut icon" href="img/logo-cato.png">
         <link rel="stylesheet" href="css/mycss.css">
-        <link rel="stylesheet" href="css/style2.css">
+        <link rel="stylesheet" href="css/myEditStyle.css">
         <!--script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script-->
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </head>
@@ -100,7 +100,7 @@
         <div class="login-box-register" id="login-box-register">
             <img class="avatar" src="img/logo-cato.png" alt="Logo de la página">
             <h1>Crea una cuenta</h1>
-            <form action="Registro2" method="POST" id="formR" enctype="multipart/form-data">
+            <form action="Registro2" method="POST" id="formR" >
 
                 <div class="columnaPrincipal">
                     <div class="columna1">

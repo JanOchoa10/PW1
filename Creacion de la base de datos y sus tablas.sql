@@ -8,7 +8,7 @@ CREATE TABLE Usuario (
     ApeMaterno 		VARCHAR(30) NOT NULL,
     FecNacimiento 	DATE 		NOT NULL,
     Email			VARCHAR(50) NOT NULL,
-    UserName		VARCHAR(30) NOT NULL,
+    UserName		VARCHAR(30) NOT NULL UNIQUE,
     Contrasena		VARCHAR(30) NOT NULL,
     UserImagen		LONGBLOB	NULL,
     Activo			INT			NOT NULL,
@@ -21,7 +21,7 @@ CREATE TABLE Usuario (
 
 
 CREATE TABLE Publicacion(
-	ID_Publicacion	INT 			NOT NULL UNIQUE,
+	ID_Publicacion	INT 			NOT NULL UNIQUE AUTO_INCREMENT,
     Texto			VARCHAR(100) 	NULL,
     Imagen			LONGBLOB		NULL,
     Spoiler			INT				NOT NULL,
@@ -39,7 +39,7 @@ CREATE TABLE Publicacion(
 );
 
 CREATE TABLE Comentario(
-	ID_Comentario	INT			NOT NULL UNIQUE,
+	ID_Comentario	INT			NOT NULL UNIQUE AUTO_INCREMENT,
     Texto			VARCHAR(50) NOT NULL,
 	Spoiler			INT			NOT NULL,
     ID_Usuario		INT			NOT NULL,
@@ -60,7 +60,7 @@ CREATE TABLE Comentario(
 
 
 CREATE TABLE Usuario_Gusta_Publicacion(
-	ID_UGP			INT			NOT NULL UNIQUE,
+	ID_UGP			INT			NOT NULL UNIQUE AUTO_INCREMENT,
     ID_Usuario		INT			NOT NULL,
     ID_Publicacion	INT			NOT NULL,
     Activo			INT			NOT NULL,
@@ -78,15 +78,26 @@ CREATE TABLE Usuario_Gusta_Publicacion(
 );
 
 insert into Usuario (Nombre, ApePaterno, ApeMaterno, FecNacimiento, Email, UserName, Contrasena, UserImagen, Activo, FechaDeCreacion, FechaDeCambio)
-values ('Jan Anthony', 'Ochoa', 'Retta', '2002-10-29', 'jan8a00@gmail.com', 'JanOchoa10', 'jan8A00!', LOAD_FILE('C:/Users/Jan/Desktop/yon.png'), 1, '2022-10-24 17:15:10', '2022-10-26 22:39:54');
+values ('Jan Anthony', 'Ochoa', 'Retta', '2002-10-29', 'jan8a00@gmail.com', 'JanOchoa10', 'jan8A00!', 'yon.png', 1, current_timestamp(), current_timestamp());
+
+-- DELETE FROM Publicacion WHERE ID_Publicacion > 23;
+-- INSERT INTO publicacion (Texto, Imagen, Spoiler, ID_Usuario, Activo, FechaDeCreacion, FechaDeCambio) VALUES ("xd","yon.png",0,1,1,current_timestamp(),current_timestamp());
 
 use bd_postcat;
 select * from Usuario;
-SELECT * FROM Usuario WHERE UserName = 'JanOchoa10' AND Contrasena = 'jan8a00!';
+select * from Publicacion;
 
-use laboratorio;
-select * from users; 
-alter table users add column Activo int;
+-- SELECT ID_Publicacion, Texto, Imagen, Spoiler, ID_Usuario, Activo, FechaDeCreacion, FechaDeCambio FROM publicacion ORDER BY FechaDeCreacion ASC LIMIT 5
+-- SELECT ID_Publicacion, Texto, Imagen, Spoiler, ID_Usuario, Activo, FechaDeCreacion, FechaDeCambio FROM publicacion ORDER BY FechaDeCreacion DESC LIMIT 5
+-- SELECT ID_Publicacion, Texto, Imagen, Spoiler, ID_Usuario, Activo, FechaDeCreacion, FechaDeCambio FROM publicacion ORDER BY FechaDeCreacion DESC LIMIT 10 ;
+-- delete from usuario where ID_Usuario = 8
 
-update users set Activo = 1 where idUser > 3
+-- SELECT current_timestamp()
+-- SELECT * FROM Usuario WHERE UserName = 'JanOchoa10' AND Contrasena = 'jan8a00!';
+
+-- use laboratorio;
+-- select * from users; 
+-- alter table users add column Activo int;
+
+-- update users set Activo = 1 where idUser > 3
 -- drop database bd_postcat;

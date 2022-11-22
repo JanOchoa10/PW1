@@ -3,6 +3,11 @@
     Created on : 15 oct. 2022, 09:58:27
     Author     : Jan
 --%>
+<%@page import="Modelos.Usuario"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.sql.Timestamp"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -146,19 +151,33 @@
                 <!--<h1>Mis usuarios: ${usuarios[0].nombre}</h1>-->
 
                 <%--<c:forEach items="${usuarios}" var="usuario">--%>
-<!--                    <h1><c:out value="${usuario.ID_Usuario}"></c:out></h1>
-                    <h1><c:out value="${usuario.nombre}"></c:out></h1>
-                    <h1><c:out value="${usuario.apePaterno}"></c:out></h1>
-                    <h1><c:out value="${usuario.apeMaterno}"></c:out></h1>
-                    <h1><c:out value="${usuario.fecNacimiento}"></c:out></h1>
-                    <h1><c:out value="${usuario.email}"></c:out></h1>
-                    <h1><c:out value="${usuario.userName}"></c:out></h1>
-                    <h1><c:out value="${usuario.contrasena}"></c:out></h1>
-                    
+                <h1><c:out value="${usuario.ID_Usuario}"></c:out></h1>
+                <h1><c:out value="${usuario.nombre}"></c:out></h1>
+                <h1><c:out value="${usuario.apePaterno}"></c:out></h1>
+                <h1><c:out value="${usuario.apeMaterno}"></c:out></h1>
+                <h1><c:out value="${usuario.fecNacimiento}"></c:out></h1>
+                <h1><c:out value="${usuario.email}"></c:out></h1>
+                <h1><c:out value="${usuario.userName}"></c:out></h1>
+                <h1><c:out value="${usuario.contrasena}"></c:out></h1>
+
                     <h1><c:out value="${usuario.userImagen}"></c:out></h1>
-                    <h1><c:out value="${usuario.activo}"></c:out></h1>
-                    <h1><c:out value="${usuario.fechaDeCreacion}"></c:out></h1>
-                    <h1><c:out value="${usuario.fechaDeCambio}"></c:out></h1>-->
+                <h1><c:out value="${usuario.activo}"></c:out></h1>
+                <h1><c:out value="${usuario.fechaDeCreacion}"></c:out></h1>
+                <h1><c:out value="${usuario.fechaDeCambio}"></c:out></h1>
+                <%--</c:forEach>--%>
+
+
+
+                <%--<c:forEach items="${publicaciones}" var="publicacion">--%>
+                <h1><c:out value="${publicacion.ID_Publicacion}"></c:out></h1>
+                <h1><c:out value="${publicacion.texto}"></c:out></h1>
+                <h1><c:out value="${publicacion.imagen}"></c:out></h1>
+                <h1><c:out value="${publicacion.spoiler}"></c:out></h1>
+                <h1><c:out value="${publicacion.ID_Usuario}"></c:out></h1>
+                <h1><c:out value="${publicacion.activo}"></c:out></h1>
+
+                    <h1><c:out value="${publicacion.fechaDeCreacion}"></c:out></h1>
+                <h1><c:out value="${publicacion.fechaDeCambio}"></c:out></h1>
                 <%--</c:forEach>--%>
 
                 <!--                <div class="story-gallery">
@@ -195,174 +214,160 @@
                     </div>
 
                     <div class="post-input-container">
-                        <textarea nrows="3" placeholder="¿Qué estás pensando, ${usuarios[0].nombre}?"></textarea>
-                        <div class="add-post-links">
-                            <!--<a href="#"><img src="img/live-video.png"> En vivo</a>-->
-                            <a href="#"><img src="img/photo.png"> Imagen</a>
-                            <!--<a href="#"><img src="img/feeling.png"> Sentimiento/Actividad</a>-->
-                        </div>
-                    </div>
-                </div>
 
-                <div class="post-container">
-                    <div class="post-row">
-                        <div class="user-profile">
-                            <img src="img/${usuarios[0].userImagen}">
+                        <form action="CrearNota" method="POST">
+                            <textarea type="text" name="miContenido" nrows="3" placeholder="¿Qué estás pensando, ${usuarios[0].nombre}?" required maxlength="100"></textarea>
+                            <textarea name="miContenido2" style="display: none;">${usuarios[0].ID_Usuario}</textarea>
+                            <div class="add-post-links">
+                                <!--<a href="#"><img src="img/live-video.png"> En vivo</a>-->
+
+
+                                <input style="display: none;" type="file" id="miImg"  name="miImg" accept="image/*"/>
+
+                                <label for="miImg"> 
+                                    <div class="myLabel">
+                                        <a title="Subir imagen"><img src="img/image-regular.png"> Imagen</a>
+                                        <!--<img class="myImg" id="imagenSubida" src="img/logo-cato.png"/>-->
+                                        <!--                                        <div>
+                                                                                    <span id="tituloArchivo">Agregar imagen</span><br />
+                                                                                    <span id="nombreArchivo"></span>
+                                                                                </div>-->
+                                    </div>
+                                </label>
+
+
+                                <button type='submit'>
+                                    <a title="Guardar publicación"><img src="img/floppy-disk-regular.png"> Guardar</a>                                
+                                </button>
+                                <!--<input type="submit" value="<a><img className='colorNav' src='img/floppy-disk-regular.png'> Guardar</a>">-->
+                                <!--<a href="#"><img className="colorNav" src="img/floppy-disk-regular.png"> Guardar</a>-->
+                                <!--<a href="#"><img src="img/feeling.png"> Sentimiento/Actividad</a>-->
+                            </div>
+                        </form>
+                    </div>
+                </div>                           
+
+                <% int numPublicaciones = 0;%>
+                <c:forEach items="${publicaciones}" var="publicacion">
+                    <%--<c:if test="${1 == publicacion.activo}">--%>
+                    <div class="post-container">
+                        <div class="post-row">
+                            <div class="user-profile">
+                                <c:forEach items="${usuariosall}" var="usuario">
+                                    <!--<h1><c:out value="${usuario.email}"></c:out></h1>-->
+
+                                    <c:if test="${usuario.ID_Usuario == publicacion.ID_Usuario}">
+                                        <!--<h1><c:out value="${usuario.email}"></c:out></h1>-->
+                                        <c:set var = "UserPostNombre" scope = "session" value = "${usuario.nombre}"></c:set>
+                                        <c:set var = "UserPostFoto" scope = "session" value = "${usuario.userImagen}"></c:set>
+                                    </c:if>
+                                </c:forEach>
+
+                                <img src="img/${UserPostFoto}">
+
+                                <div>
+                                    <p>${UserPostNombre}</p>
+                                    <span>${publicacion.fechaDeCreacion}</span>
+                                </div>
+                            </div>
                             <div>
-                                <p>${usuarios[0].nombre}</p>
-                                <span>Junio 24 2022, 13:40 pm</span>
+                                <c:if test="${usuarios[0].ID_Usuario == publicacion.ID_Usuario}">
+                                    <form action="EditarNota" method="POST">
+                                        <input type="text" name="idNota" value="${publicacion.ID_Publicacion}" style="display: none;"></input>
+                                        <button type='submit' style="background: transparent;
+                                                border: none;
+                                                cursor: pointer;">
+                                            <a title="Editar publicación"><i class="fa-solid fa-pen-to-square"></i></a>                              
+                                        </button>
+                                    </form>
+                                    <form action="BorrarNota" method="POST">
+                                        <input type="text" name="idNota" value="${publicacion.ID_Publicacion}" style="display: none;"></input>
+                                        <button type='submit' style="background: transparent;
+                                                border: none;
+                                                cursor: pointer;">
+
+                                            <a title="Borrar publicación"><i class="fa-solid fa-trash"></i></a>                            
+                                        </button>
+                                    </form>
+                                </c:if>
                             </div>
                         </div>
-                        <a href="#"><i class="fas fa-ellipsis-v"></i></a>
-                    </div>
-                    <p class="post-text">
-                        Trabajo en equipo <span>@Jobbin</span> donde todo trabajo se empieza y termina con la máxima calidad.
-                        <a href="#">#JOBBIN</a>
-                        <a href="#">#ROBBIN</a>
-                    </p>
-                    <img src="img/feed-image-1.png" class="post-img">
+                        <p class="post-text">
+                            ${publicacion.texto}
+                            <!--                            Trabajo en equipo <span>@Jobbin</span> donde todo trabajo se empieza y termina con la máxima calidad.
+                                                        <a href="#">#JOBBIN</a>
+                                                        <a href="#">#ROBBIN</a>-->
+                        </p>
+                        <c:if test="${publicacion.imagen != ''}">
+                            <img src="img/${publicacion.imagen}" class="post-img">
 
-
-                    <div class="post-row">
-                        <div class="activity-icons">
-                            <div><img src="img/like-blue.png"> 120</div>
-                            <div><img src="img/comments.png"> 45</div>
-                            <!--<div><img src="img/share.png"> 20</div>-->
-                        </div>
-                        <div class="post-profile-icon">
-                            <img src="img/${usuarios[0].userImagen}">
-<!--                            <i class="fas fa-caret-down"></i>-->
-                        </div>
-                    </div>
-                </div>
-
-                <div class="post-container">
-                    <div class="post-row">
-                        <div class="user-profile">
-                            <img src="img/josue.jpg">
-                            <div>
-                                <p>Josué Moncada</p>
-                                <span>Junio 24 2022, 13:40 pm</span>
+                        </c:if>
+                            <input type="text" style="display: none;" value="<% out.print(numPublicaciones); %>" />
+                        <div class="post-row">
+                            <div class="activity-icons">
+                                <div><img src="img/like.png"> 120 Votos</div>
+                                <div onclick="MostrarComentarios(<% out.print(numPublicaciones); %>)"><img src="img/comments.png"> 45 Comentarios</div>
+                                <!--<div><img src="img/share.png"> 20</div>-->
+                            </div>
+                            <div class="post-profile-icon">
+                                <img src="img/${usuarios[0].userImagen}">
+                                <!--                            <i class="fas fa-caret-down"></i>-->
                             </div>
                         </div>
-                        <a href="#"><i class="fas fa-ellipsis-v"></i></a>
+                        <br>
+
+                        <section class="contenedor-comentarios">
+
+                            <div class="comentarios-usuarios">
+                                <!-- comentario principal -->
+                                <div class="comentario-principal-usuario">
+                                    <div class="avatar">
+                                        <img src="img/josue.jpg" alt="img">
+                                    </div>
+                                    <div class="comentario">
+                                        <div class="usuario-comentario">
+                                            <div class="texto">
+                                                <a href="#" title="" class="nombre-usuario"> Kevin Mora</a> 
+                                                <p>De verdad es la FCFM? no parece :0</p> 
+                                                <div class="menu-comentario">
+                                                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                                                    <ul class="menu">
+                                                        <!--<li><a href="">Editar</a></li>-->
+                                                        <li><a href="">Eliminar</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="botones-comentario">
+                                                <span class="tiempo-comentario">
+                                                    hece 3 min
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="comentar-publicacion">
+                                    <div class="avatar">
+                                        <img src="img/${usuarios[0].userImagen}" alt="img">
+                                    </div>
+                                    <form action="#" method="post" class="comentar-comentario">
+                                        <input type="text" name="" value="" placeholder="Escribe tu comentario...">
+                                        <button type='submit'>
+                                            <a title="Guardar publicación">Guardar</a>                                
+                                        </button>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </section>
                     </div>
-                    <p class="post-text">
-                        Lo mejor de los amigos son las reuniones.
-                        <a href="#">#Fogata</a>
-                        <a href="#">#PlayaYBombones</a>
-                    </p>
-                    <img src="img/feed-image-2.png" class="post-img">
+                    <%--</c:if>--%>
+                    <% numPublicaciones++;%>
+                </c:forEach>
 
-
-                    <div class="post-row">
-                        <div class="activity-icons">
-                            <div><img src="img/like-blue.png"> 120</div>
-                            <div><img src="img/comments.png"> 45</div>
-                            <!--<div><img src="img/share.png"> 20</div>-->
-                        </div>
-                        <div class="post-profile-icon">
-                            <img src="img/${usuarios[0].userImagen}">
-                            <!--<i class="fas fa-caret-down"></i>-->
-                        </div>
-                    </div>
-                </div>
-                <!--
-<div class="post-container">
-<div class="post-row">
-<div class="user-profile">
-<img src="img/profile-pic.png">
-<div>
-<p>${usuarios[0].nombre}</p>
-<span>Junio 24 2022, 13:40 pm</span>
-</div>
-</div>
-<a href="#"><i class="fas fa-ellipsis-v"></i></a>
-</div>
-<p class="post-text">
-Lo mejor de los amigos son las reuniones.
-<a href="#">#Fogata</a>
-<a href="#">#PlayaYBombones</a>
-</p>
-<img src="img/feed-image-3.png" class="post-img">
-
-
-<div class="post-row">
-<div class="activity-icons">
-<div><img src="img/like-blue.png"> 120</div>
-<div><img src="img/comments.png"> 45</div>
-<div><img src="img/share.png"> 20</div>
-</div>
-<div class="post-profile-icon">
-<img src="img/profile-pic.png">
-<i class="fas fa-caret-down"></i>
-</div>
-</div>
-</div>
-<div class="post-container">
-<div class="post-row">
-<div class="user-profile">
-<img src="img/profile-pic.png">
-<div>
-<p>${usuarios[0].nombre}</p>
-<span>Junio 24 2022, 13:40 pm</span>
-</div>
-</div>
-<a href="#"><i class="fas fa-ellipsis-v"></i></a>
-</div>
-<p class="post-text">
-Lo mejor de los amigos son las reuniones.
-<a href="#">#Fogata</a>
-<a href="#">#PlayaYBombones</a>
-</p>
-<img src="img/feed-image-4.png" class="post-img">
-
-
-<div class="post-row">
-<div class="activity-icons">
-<div><img src="img/like-blue.png"> 120</div>
-<div><img src="img/comments.png"> 45</div>
-<div><img src="img/share.png"> 20</div>
-</div>
-<div class="post-profile-icon">
-<img src="img/profile-pic.png">
-<i class="fas fa-caret-down"></i>
-</div>
-</div>
-</div>
-<div class="post-container">
-<div class="post-row">
-<div class="user-profile">
-<img src="img/profile-pic.png">
-<div>
-<p>${usuarios[0].nombre}</p>
-<span>Junio 24 2022, 13:40 pm</span>
-</div>
-</div>
-<a href="#"><i class="fas fa-ellipsis-v"></i></a>
-</div>
-<p class="post-text">
-Lo mejor de los amigos son las reuniones.
-<a href="#">#Fogata</a>
-<a href="#">#PlayaYBombones</a>
-</p>
-<img src="img/feed-image-5.png" class="post-img">
-
-
-<div class="post-row">
-<div class="activity-icons">
-<div><img src="img/like-blue.png"> 120</div>
-<div><img src="img/comments.png"> 45</div>
-<div><img src="img/share.png"> 20</div>
-</div>
-<div class="post-profile-icon">
-<img src="img/profile-pic.png">
-<i class="fas fa-caret-down"></i>
-</div>
-</div>
-</div>-->
-
-                <button type="button" class="load-more-btn">Ver más</button>
+                <button onclick="window.location.href = 'notas'" type="button" class="load-more-btn">Ver más</button>
 
             </div>
             <!-- ------------right-sidebar------------ -->
@@ -439,6 +444,7 @@ Lo mejor de los amigos son las reuniones.
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="js/script.js"></script>
         <script src="js/sesionNoActiva.js"></script>
+        <script src="js/mostrarComentarios.js"></script>
 
     </body>
 

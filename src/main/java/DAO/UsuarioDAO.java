@@ -50,10 +50,19 @@ public class UsuarioDAO {
         while (rs.next()) {
             int id_usuario = rs.getInt("ID_Usuario");
             String nombre = rs.getString("Nombre");
-            String userName = rs.getString("UserName");
+            String apepaterno = rs.getString("ApePaterno");
+            String apematerno = rs.getString("ApeMaterno");
+            String fecnacimiento = rs.getString("FecNacimiento");
+            String email = rs.getString("Email");
+            String username = rs.getString("UserName");
             String contrasena = rs.getString("Contrasena");
+            String userimagen = rs.getString("UserImagen");
+            int activo = rs.getInt("Activo");
+            String fechadecreacion = rs.getString("FechaDeCreacion");
+            String fechadecambio = rs.getString("FechaDeCambio");
 
-            usuarios.add(new Usuario(id_usuario, nombre, userName, contrasena));
+            usuarios.add(new Usuario(id_usuario, nombre, apepaterno, apematerno, fecnacimiento, email, username, contrasena, userimagen, activo, fechadecreacion, fechadecambio));
+               
 
         }
 
@@ -105,10 +114,6 @@ public class UsuarioDAO {
 //                Blob blob = rs.getBlob("UserImagen");
 //                byte byteArray[] = blob.getBytes(1, (int) blob.length());
 //                response.
-                
-                
-                
-
                 usuarios.add(new Usuario(id_usuario, nombre, apepaterno, apematerno, fecnacimiento, email, username, contrasena, userimagen, activo, fechadecreacion, fechadecambio));
                 //            Nombre, ApePaterno, ApeMaterno, FecNacimiento, Email, UserName, Contrasena, UserImagen
             }
