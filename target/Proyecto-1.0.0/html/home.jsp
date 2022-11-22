@@ -440,7 +440,7 @@
                                             <img src="img/${usuarios[0].userImagen}" alt="img">
                                         </div>
                                         <form action="CrearComentario" method="POST" class="comentar-comentario">
-                                            <input type="text" name="myComentario" value="" placeholder="Escribe tu comentario..." maxlength="50">
+                                            <input type="text" name="myComentario" value="" placeholder="Escribe tu comentario..." maxlength="50" required>
                                             <input type="text" name="idNota" value="${publicacion.ID_Publicacion}" style="display: none;"/>
                                             <button type='submit'>
                                                 <a title="Guardar publicación">Guardar</a>                                
