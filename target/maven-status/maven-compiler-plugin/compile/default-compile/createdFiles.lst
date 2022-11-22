@@ -20,6 +20,7 @@ Controllers\CrearNota.class
 JDBC\Conexion.class
 Controllers\BorrarNota.class
 Controllers\Registro.class
+Controllers\EditarPerfil.class
 Controllers\CrearVoto.class
 Controllers\EditarNota.class
 Controllers\VerNotasVotadas.class

@@ -148,4 +148,34 @@ public class UsuarioDAO {
             return false;
         }
     }
+    
+    public boolean actualizar(Usuario user) throws SQLException {
+        String sql = "UPDATE usuario SET Nombre = ? , ApePaterno = ? , ApeMaterno = ? , FecNacimiento  = ? , Email = ? , Contrasena  = ? , UserImagen  = ? , FechaDeCambio  = ?  WHERE ID_Usuario = ?;";
+
+        con = c.getConnection();
+
+        ps = con.prepareStatement(sql);
+        ps.setString(1, user.getNombre());
+        ps.setString(2, user.getApePaterno());
+        ps.setString(3, user.getApeMaterno());
+        ps.setString(4, user.getFecNacimiento());
+        ps.setString(5, user.getEmail());
+        
+        ps.setString(6, user.getContrasena());
+        ps.setString(7, user.getUserImagen());
+        
+        ps.setString(8, user.getFechaDeCambio());
+        
+//        int idUsuarioInt = Integer.parseInt(idUsuario);
+        ps.setInt(9, user.getID_Usuario());
+        
+        int result = ps.executeUpdate();
+
+        if (result > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
 }

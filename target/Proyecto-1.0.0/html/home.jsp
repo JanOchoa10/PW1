@@ -95,7 +95,18 @@
                         <img src="img/${usuarios[0].userImagen}">
                         <div>
                             <p>${usuarios[0].nombre}</p>
-                            <a href="#">Editar tu perfil</a>
+
+                            <form action="EditarPerfil" method="POST">
+                                <button type='submit' style="background: transparent;
+                                        border: none;
+                                        cursor: pointer;">
+                                    <!--<a title="Editar publicación"><i class="fa-solid fa-pen-to-square"></i></a>-->  
+                                    <a title="Editar tu perfil">Editar tu perfil</a>
+                                </button>
+                            </form>
+
+
+                            
                         </div>
                     </div>
                     <hr>
@@ -630,7 +641,7 @@
                     <c:when test="${numDePublicacionesBTN3 == cantidadComentadas}">
                         <button onclick="window.location.href = 'notasComentadas'" type="button" class="load-more-btn">Ver más comentadas</button>
                     </c:when>
-                        <c:when test="${numDePublicacionesBTN3 == cantidadVotadas}">
+                    <c:when test="${numDePublicacionesBTN3 == cantidadVotadas}">
                         <button onclick="window.location.href = 'notasVotadas'" type="button" class="load-more-btn">Ver más votadas</button>
                     </c:when>
                     <c:otherwise>    

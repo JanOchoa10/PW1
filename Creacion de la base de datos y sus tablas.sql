@@ -89,9 +89,11 @@ values ('Jan Anthony', 'Ochoa', 'Retta', '2002-10-29', 'jan8a00@gmail.com', 'Jan
 
 use bd_postcat;
 select * from Usuario;
-select * from Publicacion;
-select * from comentario;
+select * from Publicacion order by ID_Publicacion desc;
+select * from comentario order by ID_Publicacion desc;
 select * from usuario_gusta_publicacion;
+
+-- UPDATE usuario SET Nombre = ? , ApePaterno = ? , ApeMaterno = ? , FecNacimiento  = ? , Email = ? , Contrasena  = ? , UserImagen  = ? , FechaDeCambio  = ?  WHERE ID_Usuario = ?;
 
 -- select P.ID_Publicacion, P.Texto, P.Imagen, P.Spoiler, P.ID_Usuario, P.Activo, P.FechaDeCreacion, P.FechaDeCambio from Publicacion P left join comentario C on C.ID_Publicacion = P.ID_Publicacion WHERE P.Activo = 1 AND (C.Activo is null OR C.Activo = 1) GROUP BY P.ID_Publicacion ORDER BY COUNT(C.ID_Publicacion) DESC LIMIT 10;
 
@@ -100,11 +102,11 @@ select * from usuario_gusta_publicacion;
 -- select C.ID_Publicacion, COUNT(*) from comentario C WHERE C.Activo = 1 GROUP BY C.ID_Publicacion ORDER BY COUNT(*) DESC;
 
 
-
+-- select * from publicacion where texto like "%Op%" AND Activo = 1 order by fechaDeCreacion desc limit 10;
 
 -- SELECT * FROM usuario_gusta_publicacion WHERE Activo = 1 ORDER BY FechaDeCreacion DESC ;
 
--- delete from comentario where ID_Comentario > 12
+-- delete from comentario where ID_Comentario > 22
 
 -- SELECT ID_Publicacion, Texto, Imagen, Spoiler, ID_Usuario, Activo, FechaDeCreacion, FechaDeCambio FROM publicacion ORDER BY FechaDeCreacion ASC LIMIT 5
 -- SELECT ID_Publicacion, Texto, Imagen, Spoiler, ID_Usuario, Activo, FechaDeCreacion, FechaDeCambio FROM publicacion ORDER BY FechaDeCreacion DESC LIMIT 5

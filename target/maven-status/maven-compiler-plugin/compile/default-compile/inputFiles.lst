@@ -7,6 +7,7 @@ C:\Users\Jan\Documents\GitHub\pw1\src\main\java\Modelos\Publicacion.java
 C:\Users\Jan\Documents\GitHub\pw1\src\main\java\Controllers\CrearNota.java
 C:\Users\Jan\Documents\GitHub\pw1\src\main\java\Controllers\VerNotas.java
 C:\Users\Jan\Documents\GitHub\pw1\src\main\java\Controllers\EliminarComentario.java
+C:\Users\Jan\Documents\GitHub\pw1\src\main\java\Controllers\ActualizarCuenta.java
 C:\Users\Jan\Documents\GitHub\pw1\src\main\java\DAO\UsuarioDAO.java
 C:\Users\Jan\Documents\GitHub\pw1\src\main\java\Controllers\EliminarVoto.java
 C:\Users\Jan\Documents\GitHub\pw1\src\main\java\DAO\VotoDAO.java
@@ -21,6 +22,7 @@ C:\Users\Jan\Documents\GitHub\pw1\src\main\java\Controllers\VerNotasComentadas.j
 C:\Users\Jan\Documents\GitHub\pw1\src\main\java\Controllers\VerNotasVotadas.java
 C:\Users\Jan\Documents\GitHub\pw1\src\main\java\Controllers\Login.java
 C:\Users\Jan\Documents\GitHub\pw1\src\main\java\Controllers\MasVotadas.java
+C:\Users\Jan\Documents\GitHub\pw1\src\main\java\Controllers\EditarPerfil.java
 C:\Users\Jan\Documents\GitHub\pw1\src\main\java\Modelos\Comentario.java
 C:\Users\Jan\Documents\GitHub\pw1\src\main\java\Controllers\BusquedaBasica.java
 C:\Users\Jan\Documents\GitHub\pw1\src\main\java\JDBC\Conexion.java

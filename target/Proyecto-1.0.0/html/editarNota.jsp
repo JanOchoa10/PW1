@@ -19,7 +19,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>PostCat - Página principal</title>
+        <title>PostCat - Editar publicación</title>
         <link rel="shortcut icon" href="img/logo-cato.png">
         <!--<link rel="stylesheet" href="../css/mycss.css">-->
         <!--script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script-->
@@ -78,7 +78,14 @@
                         <img src="img/${usuarios[0].userImagen}">
                         <div>
                             <p>${usuarios[0].nombre}</p>
-                            <a href="#">Editar tu perfil</a>
+                             <form action="EditarPerfil" method="POST">
+                                <button type='submit' style="background: transparent;
+                                        border: none;
+                                        cursor: pointer;">
+                                    <!--<a title="Editar publicación"><i class="fa-solid fa-pen-to-square"></i></a>-->  
+                                    <a title="Editar tu perfil">Editar tu perfil</a>
+                                </button>
+                            </form>
                         </div>
                     </div>
                     <hr>
