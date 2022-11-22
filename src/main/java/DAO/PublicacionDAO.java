@@ -133,7 +133,7 @@ public class PublicacionDAO {
         return publicaciones;
     }
 
-    public ArrayList<Publicacion> get5PublicacionesPorDefecto() throws SQLException {
+    public ArrayList<Publicacion> get10PublicacionesPorDefecto() throws SQLException {
         String sql = "SELECT ID_Publicacion, Texto, Imagen, Spoiler, ID_Usuario, Activo, FechaDeCreacion, FechaDeCambio FROM publicacion WHERE Activo = 1 ORDER BY FechaDeCreacion DESC LIMIT 10;";
 
         ArrayList<Publicacion> publicaciones = new ArrayList<Publicacion>();
@@ -401,6 +401,203 @@ public class PublicacionDAO {
         }
 
 //        return false;
+    }
+    
+    
+    public ArrayList<Publicacion> getMasComentadas() throws SQLException {
+        String sql = "select P.ID_Publicacion, P.Texto, P.Imagen, P.Spoiler, P.ID_Usuario, P.Activo, P.FechaDeCreacion, P.FechaDeCambio from Publicacion P left join comentario C on C.ID_Publicacion = P.ID_Publicacion WHERE P.Activo = 1 AND (C.Activo is null OR C.Activo = 1) GROUP BY P.ID_Publicacion ORDER BY COUNT(C.ID_Publicacion) DESC LIMIT 10;";
+
+        ArrayList<Publicacion> publicaciones = new ArrayList<Publicacion>();
+
+        con = c.getConnection();
+
+        s = con.createStatement();
+        rs = s.executeQuery(sql);
+
+        while (rs.next()) {
+            int id_publicacion = rs.getInt("ID_Publicacion");
+            String texto = rs.getString("Texto");
+            String imagen = rs.getString("Imagen");
+            int spoiler = rs.getInt("Spoiler");
+            int id_usuario = rs.getInt("ID_Usuario");
+            int activo = rs.getInt("Activo");
+            String fechaDeCreacion = rs.getString("FechaDeCreacion");
+
+            int anio = Integer.parseInt(fechaDeCreacion.substring(0, 4));
+            int mes = Integer.parseInt(fechaDeCreacion.substring(5, 7));
+            int dia = Integer.parseInt(fechaDeCreacion.substring(8, 10));
+            int hora = Integer.parseInt(fechaDeCreacion.substring(11, 13));
+            String horaS = fechaDeCreacion.substring(11, 19);
+            String horaT = "";
+
+            String mesS = "";
+            switch (mes) {
+                case 1: {
+                    mesS = "Enero";
+                }
+                break;
+                case 2: {
+                    mesS = "Febrero";
+                }
+                break;
+                case 3: {
+                    mesS = "Marzo";
+                }
+                break;
+                case 4: {
+                    mesS = "Abril";
+                }
+                break;
+                case 5: {
+                    mesS = "Mayo";
+                }
+                break;
+                case 6: {
+                    mesS = "Junio";
+                }
+                break;
+                case 7: {
+                    mesS = "Julio";
+                }
+                break;
+                case 8: {
+                    mesS = "Agosto";
+                }
+                break;
+                case 9: {
+                    mesS = "Septiembre";
+                }
+                break;
+                case 10: {
+                    mesS = "Octubre";
+                }
+                break;
+                case 11: {
+                    mesS = "Noviembre";
+                }
+                break;
+                case 12: {
+                    mesS = "Diciembre";
+                }
+                break;
+
+                default:
+                    break;
+            }
+
+            if (hora >= 12) {
+                horaT = "pm";
+            } else {
+                horaT = "am";
+            }
+
+            fechaDeCreacion = dia + " de " + mesS + " de " + anio + ", " + horaS + " " + horaT + ".";
+
+            String fechaDeCambio = rs.getString("FechaDeCambio");
+
+            publicaciones.add(new Publicacion(id_publicacion, texto, imagen, spoiler, id_usuario, activo, fechaDeCreacion, fechaDeCambio));
+
+        }
+
+        return publicaciones;
+    }
+    
+     public ArrayList<Publicacion> getMasVotadas() throws SQLException {
+        String sql = "select P.ID_Publicacion, P.Texto, P.Imagen, P.Spoiler, P.ID_Usuario, P.Activo, P.FechaDeCreacion, P.FechaDeCambio from Publicacion P left join usuario_gusta_publicacion C on C.ID_Publicacion = P.ID_Publicacion WHERE P.Activo = 1 AND (C.Activo is null OR C.Activo = 1) GROUP BY P.ID_Publicacion ORDER BY COUNT(C.ID_Publicacion) DESC LIMIT 10;";
+
+        ArrayList<Publicacion> publicaciones = new ArrayList<Publicacion>();
+
+        con = c.getConnection();
+
+        s = con.createStatement();
+        rs = s.executeQuery(sql);
+
+        while (rs.next()) {
+            int id_publicacion = rs.getInt("ID_Publicacion");
+            String texto = rs.getString("Texto");
+            String imagen = rs.getString("Imagen");
+            int spoiler = rs.getInt("Spoiler");
+            int id_usuario = rs.getInt("ID_Usuario");
+            int activo = rs.getInt("Activo");
+            String fechaDeCreacion = rs.getString("FechaDeCreacion");
+
+            int anio = Integer.parseInt(fechaDeCreacion.substring(0, 4));
+            int mes = Integer.parseInt(fechaDeCreacion.substring(5, 7));
+            int dia = Integer.parseInt(fechaDeCreacion.substring(8, 10));
+            int hora = Integer.parseInt(fechaDeCreacion.substring(11, 13));
+            String horaS = fechaDeCreacion.substring(11, 19);
+            String horaT = "";
+
+            String mesS = "";
+            switch (mes) {
+                case 1: {
+                    mesS = "Enero";
+                }
+                break;
+                case 2: {
+                    mesS = "Febrero";
+                }
+                break;
+                case 3: {
+                    mesS = "Marzo";
+                }
+                break;
+                case 4: {
+                    mesS = "Abril";
+                }
+                break;
+                case 5: {
+                    mesS = "Mayo";
+                }
+                break;
+                case 6: {
+                    mesS = "Junio";
+                }
+                break;
+                case 7: {
+                    mesS = "Julio";
+                }
+                break;
+                case 8: {
+                    mesS = "Agosto";
+                }
+                break;
+                case 9: {
+                    mesS = "Septiembre";
+                }
+                break;
+                case 10: {
+                    mesS = "Octubre";
+                }
+                break;
+                case 11: {
+                    mesS = "Noviembre";
+                }
+                break;
+                case 12: {
+                    mesS = "Diciembre";
+                }
+                break;
+
+                default:
+                    break;
+            }
+
+            if (hora >= 12) {
+                horaT = "pm";
+            } else {
+                horaT = "am";
+            }
+
+            fechaDeCreacion = dia + " de " + mesS + " de " + anio + ", " + horaS + " " + horaT + ".";
+
+            String fechaDeCambio = rs.getString("FechaDeCambio");
+
+            publicaciones.add(new Publicacion(id_publicacion, texto, imagen, spoiler, id_usuario, activo, fechaDeCreacion, fechaDeCambio));
+
+        }
+
+        return publicaciones;
     }
 
 }

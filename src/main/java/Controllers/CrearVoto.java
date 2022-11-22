@@ -74,7 +74,7 @@ public class CrearVoto extends HttpServlet {
                 request.setAttribute("comentarios", comentarios);
 
                 PublicacionDAO pDAO = new PublicacionDAO();
-                ArrayList<Publicacion> publicaciones = pDAO.get5PublicacionesPorDefecto();
+                ArrayList<Publicacion> publicaciones = pDAO.get10PublicacionesPorDefecto();
                 request.setAttribute("publicaciones", publicaciones);
                 
                 ArrayList<Voto> votos = vDAO.getAllVotos();

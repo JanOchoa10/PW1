@@ -72,7 +72,7 @@ public class CrearNota extends HttpServlet {
             if (result) {
                 
 
-                ArrayList<Publicacion> publicaciones = pDAO.get5PublicacionesPorDefecto();
+                ArrayList<Publicacion> publicaciones = pDAO.get10PublicacionesPorDefecto();
                 request.setAttribute("publicaciones", publicaciones);
                 
                 ComentarioDAO cDAO = new ComentarioDAO();                

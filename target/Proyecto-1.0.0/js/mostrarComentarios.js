@@ -43,3 +43,7 @@ function colorVoto(posicion) {
     }
 
 }
+
+function actualizarPag() {
+    window.location.href = 'Recientes';
+}

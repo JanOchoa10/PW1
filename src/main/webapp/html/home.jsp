@@ -48,12 +48,12 @@
 
         <nav>
             <div class="nav-left">
-                <img src="img/logo.png" class="logo" onclick="location.reload(false);">
+                <img src="img/logo.png" class="logo" onclick="actualizarPag();">
                 <!--<h4>PostCat</h4>-->
                 <ul>
-                    <li><img src="img/newspaper-regular.png" title="Recientes"></li>
-                    <li><img src="img/comments-regular.png" title="Más comentadas"> </li>
-                    <li><img src="img/thumbs-up-regular.png" title="Más votadas"></li>
+                    <li><a href="Recientes"><img src="img/newspaper-regular.png" title="Recientes"></a></li>
+                    <li><a href="MasComentadas"><img src="img/comments-regular.png" title="Más comentadas"></a></li>
+                    <li><a href="MasVotadas"><img src="img/thumbs-up-regular.png" title="Más votadas"></a></li>
                 </ul>
             </div>
             <div class="nav-right">
@@ -125,9 +125,9 @@
                 <div class="imp-links">
                     <!--<a href="#">Accesos Directos</a>-->
                     <p>Publicaciones</p>
-                    <a href="#"><img src="img/newspaper-regular.png">  Recientes</a>
-                    <a href="#"><img src="img/comments-regular.png">  Más comentadas</a>
-                    <a href="#"><img src="img/thumbs-up-regular.png"> Más votadas</a>
+                    <a href="Recientes"><img src="img/newspaper-regular.png">  Recientes</a>
+                    <a href="MasComentadas"><img src="img/comments-regular.png">  Más comentadas</a>
+                    <a href="MasVotadas"><img src="img/thumbs-up-regular.png"> Más votadas</a>
                     <!--                    <a href="#"><img src="img/marketplace.png"> Mercado</a>
                                         <a href="#"><img src="img/watch.png"> Ver</a>
                                         <a href="#">Ver más</a>-->
