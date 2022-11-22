@@ -4,8 +4,10 @@
  */
 package Controllers;
 
+import DAO.ComentarioDAO;
 import DAO.PublicacionDAO;
 import DAO.UsuarioDAO;
+import Modelos.Comentario;
 import Modelos.Publicacion;
 import Modelos.Usuario;
 import java.io.IOException;
@@ -63,6 +65,8 @@ public class Login extends HttpServlet {
         Usuario usuario = new Usuario(user, contra);
 
         UsuarioDAO uDAO = new UsuarioDAO();
+        
+        
 
         try {
             ArrayList<Usuario> usuarios = uDAO.getUnUsuario(usuario);
@@ -86,6 +90,12 @@ public class Login extends HttpServlet {
                 ArrayList<Publicacion> publicaciones = pDAO.get5PublicacionesPorDefecto();
 
                 request.setAttribute("publicaciones", publicaciones);
+
+                ComentarioDAO cDAO = new ComentarioDAO();
+                
+                ArrayList<Comentario> comentarios = cDAO.getAllComentarios();
+
+                request.setAttribute("comentarios", comentarios);
 
 //                request.getRequestDispatcher("html/home.jsp").forward(request, response);
                 request.getRequestDispatcher("html/home.jsp").forward(request, response);

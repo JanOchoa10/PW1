@@ -3,13 +3,16 @@ Modelos\Usuario.class
 DAO\UsuarioDAO.class
 Controllers\Logout.class
 Controllers\CrearNota.class
+Modelos\Comentario.class
 Modelos\Publicacion.class
 JDBC\Conexion.class
 Controllers\BorrarNota.class
 Controllers\Registro.class
 Controllers\EditarNota.class
+Controllers\CrearComentario.class
 Controllers\RevisarSesion.class
 Controllers\Login.class
 Controllers\VerNotas.class
 DAO\PublicacionDAO.class
 Controllers\ActualizarNota.class
+DAO\ComentarioDAO.class

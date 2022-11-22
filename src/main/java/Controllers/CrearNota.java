@@ -4,7 +4,9 @@
  */
 package Controllers;
 
+import DAO.ComentarioDAO;
 import DAO.PublicacionDAO;
+import Modelos.Comentario;
 import Modelos.Publicacion;
 import Modelos.Usuario;
 import com.google.gson.Gson;
@@ -71,6 +73,12 @@ public class CrearNota extends HttpServlet {
                 ArrayList<Publicacion> publicaciones = pDAO.get5PublicacionesPorDefecto();
 
                 request.setAttribute("publicaciones", publicaciones);
+                
+                ComentarioDAO cDAO = new ComentarioDAO();
+                
+                ArrayList<Comentario> comentarios = cDAO.getAllComentarios();
+
+                request.setAttribute("comentarios", comentarios);
                 
                 request.getRequestDispatcher("html/home.jsp").forward(request, response);
             }

@@ -302,11 +302,36 @@
                             <img src="img/${publicacion.imagen}" class="post-img">
 
                         </c:if>
-                            <input type="text" style="display: none;" value="<% out.print(numPublicaciones); %>" />
+                        <% int cantidadDeComentarios = 0;%>
+                        <c:forEach items="${comentarios}" var="comentario">
+                            <c:choose>
+                                <c:when test="${comentario.ID_Publicacion == publicacion.ID_Publicacion}">
+                                    <% cantidadDeComentarios++; %>
+
+                                    <c:forEach items="${usuariosall}" var="usuario">
+                                <!--<h1><c:out value="${usuario.email}"></c:out></h1>-->
+
+                                        <c:if test="${usuario.ID_Usuario == comentario.ID_Usuario}">
+
+                                        </c:if>
+                                    </c:forEach>
+
+
+                                </c:when>    
+                                <c:otherwise>
+
+                                </c:otherwise>
+                            </c:choose>
+
+                        </c:forEach>
+
+
+
+                        <input type="text" style="display: none;" value="<% out.print(numPublicaciones); %>" />
                         <div class="post-row">
                             <div class="activity-icons">
                                 <div><img src="img/like.png"> 120 Votos</div>
-                                <div onclick="MostrarComentarios(<% out.print(numPublicaciones); %>)"><img src="img/comments.png"> 45 Comentarios</div>
+                                <div onclick="MostrarComentarios(<% out.print(numPublicaciones); %>)"><img src="img/comments.png"> <% out.print(cantidadDeComentarios); %> Comentarios</div>
                                 <!--<div><img src="img/share.png"> 20</div>-->
                             </div>
                             <div class="post-profile-icon">
@@ -318,49 +343,104 @@
 
                         <section class="contenedor-comentarios">
 
-                            <div class="comentarios-usuarios">
-                                <!-- comentario principal -->
-                                <div class="comentario-principal-usuario">
-                                    <div class="avatar">
-                                        <img src="img/josue.jpg" alt="img">
-                                    </div>
-                                    <div class="comentario">
-                                        <div class="usuario-comentario">
-                                            <div class="texto">
-                                                <a href="#" title="" class="nombre-usuario"> Kevin Mora</a> 
-                                                <p>De verdad es la FCFM? no parece :0</p> 
-                                                <div class="menu-comentario">
-                                                    <i class="fa-solid fa-ellipsis-vertical"></i>
-                                                    <ul class="menu">
-                                                        <!--<li><a href="">Editar</a></li>-->
-                                                        <li><a href="">Eliminar</a></li>
-                                                    </ul>
+                            <c:forEach items="${comentarios}" var="comentario">
+                                <c:choose>
+                                    <c:when test="${comentario.ID_Publicacion == publicacion.ID_Publicacion}">
+
+                                        <c:forEach items="${usuariosall}" var="usuario">
+                                    <!--<h1><c:out value="${usuario.email}"></c:out></h1>-->
+
+                                            <c:if test="${usuario.ID_Usuario == comentario.ID_Usuario}">
+                                                <!--<h1><c:out value="${usuario.email}"></c:out></h1>-->
+                                                <%--<c:set var = "UserPostNombre" scope = "session" value = "${usuario.nombre}"></c:set>--%>
+                                                <%--<c:set var = "UserPostFoto" scope = "session" value = "${usuario.userImagen}"></c:set>--%>
+
+                                                <div class="comentarios-usuarios">
+                                                    <!-- comentario principal -->
+                                                    <div class="comentario-principal-usuario">
+                                                        <div class="avatar">
+                                                            <img src="img/${usuario.userImagen}" alt="img">
+                                                        </div>
+                                                        <div class="comentario">
+                                                            <div class="usuario-comentario">
+                                                                <div class="texto">
+                                                                    <a title="" class="nombre-usuario"> ${usuario.nombre}</a> 
+                                                                    <p>${comentario.texto}</p> 
+                                                                    <div class="menu-comentario">
+                                                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                                                        <ul class="menu">
+                                                                            <!--<li><a href="">Editar</a></li>-->
+                                                                            <li><a href="">Eliminar</a></li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="botones-comentario">
+                                                                    <span class="tiempo-comentario">
+                                                                        ${comentario.fechaDeCreacion}
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+
+
+
+                                                </c:if>
+                                            </c:forEach>
+
+
+                                        </c:when>    
+                                        <c:otherwise>
+                                            <div class="comentarios-usuarios">
+                                                <!-- comentario principal -->
+                                                <div class="comentario-principal-usuario">
+                                                    <!--<div class="avatar">-->
+                                                    <!--<img src="img/josue.jpg" alt="img">-->
+                                                    <!--</div>-->
+                                                    <!--<div class="comentario">-->
+                                                    <!--<div class="usuario-comentario">-->
+                                                    <!--<div class="texto">-->
+                                                    <!--<a href="#" title="" class="nombre-usuario"> Kevin Mora</a>--> 
+                                                    <!--<p>De verdad es la FCFM? no parece :0</p>--> 
+                                                    <!--<div class="menu-comentario">-->
+                                                    <!--<i class="fa-solid fa-ellipsis-vertical"></i>-->
+                                                    <!--<ul class="menu">-->
+                                                    <!--<li><a href="">Editar</a></li>-->
+                                                    <!--<li><a href="">Eliminar</a></li>-->
+                                                    <!--</ul>-->
+                                                    <!--</div>-->
+                                                    <!--</div>-->
+                                                    <!--<div class="botones-comentario">-->
+                                                    <!--<span class="tiempo-comentario">-->
+                                                    <!--hece 3 min-->
+                                                    <!--</span>-->
+                                                    <!--</div>-->
+                                                    <!--</div>-->
+
+                                                    <!--</div>-->
+
                                                 </div>
-                                            </div>
-                                            <div class="botones-comentario">
-                                                <span class="tiempo-comentario">
-                                                    hece 3 min
-                                                </span>
-                                            </div>
+                                            </c:otherwise>
+                                        </c:choose>
+
+                                    </c:forEach>
+
+                                    <div class="comentar-publicacion">
+                                        <div class="avatar">
+                                            <img src="img/${usuarios[0].userImagen}" alt="img">
                                         </div>
-
+                                        <form action="CrearComentario" method="POST" class="comentar-comentario">
+                                            <input type="text" name="myComentario" value="" placeholder="Escribe tu comentario..." maxlength="50">
+                                            <input type="text" name="idNota" value="${publicacion.ID_Publicacion}" style="display: none;"/>
+                                            <button type='submit'>
+                                                <a title="Guardar publicación">Guardar</a>                                
+                                            </button>
+                                        </form>
                                     </div>
 
                                 </div>
-
-                                <div class="comentar-publicacion">
-                                    <div class="avatar">
-                                        <img src="img/${usuarios[0].userImagen}" alt="img">
-                                    </div>
-                                    <form action="#" method="post" class="comentar-comentario">
-                                        <input type="text" name="" value="" placeholder="Escribe tu comentario...">
-                                        <button type='submit'>
-                                            <a title="Guardar publicación">Guardar</a>                                
-                                        </button>
-                                    </form>
-                                </div>
-
-                            </div>
                         </section>
                     </div>
                     <%--</c:if>--%>
