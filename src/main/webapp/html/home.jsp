@@ -264,7 +264,11 @@
                     </div>
                 </div>                           
 
-                <% int numPublicaciones = 0;%>
+                <%
+                    int numPublicaciones = 0;
+                    int numSpoilerPost = 0;
+                    int numSpoilerComentario = 0;
+                %>
                 <c:forEach items="${publicaciones}" var="publicacion">
                     <%--<c:if test="${1 == publicacion.activo}">--%>
                     <div class="post-container">
@@ -309,16 +313,52 @@
                                 </c:if>
                             </div>
                         </div>
-                        <p class="post-text">
-                            ${publicacion.texto}
-                            <!--                            Trabajo en equipo <span>@Jobbin</span> donde todo trabajo se empieza y termina con la máxima calidad.
-                                                        <a href="#">#JOBBIN</a>
-                                                        <a href="#">#ROBBIN</a>-->
-                        </p>
-                        <c:if test="${publicacion.imagen != ''}">
-                            <img src="img/${publicacion.imagen}" class="post-img">
 
-                        </c:if>
+                        <c:choose>
+                            <c:when test="${publicacion.spoiler == 1}">
+                                <input type="text" value="<% out.print(numSpoilerPost); %>" style="display: none;"/>
+                                <div onclick="mostrarContenidoDePost(<% out.print(numSpoilerPost); %>)">
+                                    <br>
+                                    <label type="text" id="miTexto" class="miBtnSpoiler">Mostrar spoiler</label>
+                                    <br><br>
+                                </div>
+
+                                <div class="contenidoDePost">
+                                    <p class="post-text">
+                                        ${publicacion.texto}
+                                        <!--                            Trabajo en equipo <span>@Jobbin</span> donde todo trabajo se empieza y termina con la máxima calidad.
+                                                                    <a href="#">#JOBBIN</a>
+                                                                    <a href="#">#ROBBIN</a>-->
+                                    </p>
+                                    <c:if test="${publicacion.imagen != ''}">
+                                        <img src="img/${publicacion.imagen}" class="post-img">
+
+                                    </c:if>
+                                </div>
+
+                                <%
+                                    numSpoilerPost++;
+                                %>
+                            </c:when>    
+                            <c:otherwise>
+                                <p class="post-text">
+                                    ${publicacion.texto}
+                                    <!--                            Trabajo en equipo <span>@Jobbin</span> donde todo trabajo se empieza y termina con la máxima calidad.
+                                                                <a href="#">#JOBBIN</a>
+                                                                <a href="#">#ROBBIN</a>-->
+                                </p>
+                                <c:if test="${publicacion.imagen != ''}">
+                                    <img src="img/${publicacion.imagen}" class="post-img">
+
+                                </c:if>
+                            </c:otherwise>
+                        </c:choose>
+
+
+
+
+
+
                         <% int cantidadDeComentarios = 0;%>
                         <c:forEach items="${comentarios}" var="comentario">
                             <c:choose>
@@ -427,6 +467,7 @@
                                 <c:choose>
                                     <c:when test="${comentario.ID_Publicacion == publicacion.ID_Publicacion}">
 
+
                                         <c:forEach items="${usuariosall}" var="usuario">
                                     <!--<h1><c:out value="${usuario.email}"></c:out></h1>-->
 
@@ -445,7 +486,31 @@
                                                             <div class="usuario-comentario">
                                                                 <div class="texto">
                                                                     <a title="" class="nombre-usuario"> ${usuario.nombre}</a> 
-                                                                    <p>${comentario.texto}</p> 
+
+
+                                                                    <c:choose>
+                                                                        <c:when test="${publicacion.spoiler == 1}">
+                                                                            <input type="text" value="<% out.print(numSpoilerComentario); %>" style="display: none;"/>
+                                                                            <div onclick="mostrarContenidoDeComentario(<% out.print(numSpoilerComentario); %>)">
+                                                                                <br>
+                                                                                <label type="text" id="miTexto" class="miBtnSpoilerComentario">Mostrar comentario con spoiler</label>
+                                                                                <br><br>
+                                                                            </div>
+
+                                                                            <div class="contenidoDeComentario">
+                                                                                <p>${comentario.texto}</p> 
+                                                                            </div>
+
+                                                                            <%
+                                                                                numSpoilerComentario++;
+                                                                            %>
+                                                                        </c:when>    
+                                                                        <c:otherwise>
+                                                                            <p>${comentario.texto}</p> 
+                                                                        </c:otherwise>
+                                                                    </c:choose>
+
+
                                                                     <c:if test="${usuarios[0].ID_Usuario == comentario.ID_Usuario}">
                                                                         <div class="menu-comentario">
                                                                             <i class="fa-solid fa-ellipsis-vertical"></i>
@@ -535,7 +600,10 @@
                         </section>
                     </div>
                     <%--</c:if>--%>
-                    <% numPublicaciones++;%>
+                    <%
+                        numPublicaciones++;
+
+                    %>
                 </c:forEach>
 
                 <button onclick="window.location.href = 'notas'" type="button" class="load-more-btn">Ver más</button>

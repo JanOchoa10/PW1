@@ -1015,3 +1015,40 @@ nav {
 .mySearch button{
     transform: translateX(110px);
 }
+
+.contenidoDePost{
+    height: 0;
+    overflow: hidden;
+}
+
+.contenidoDePost-height{
+    height: 100%;
+}
+
+.contenidoDeComentario{
+     height: 0;
+    overflow: hidden;
+}
+
+.contenidoDeComentario-height{
+    height: 100%;
+}
+
+.miBtnSpoiler{
+    cursor: pointer;
+}
+
+.miBtnSpoiler:hover{
+    background: var( --color-comentario);
+    border-radius: 5px;
+    
+}
+
+.miBtnSpoilerComentario{
+    cursor: pointer;
+}
+
+.miBtnSpoilerComentario:hover{
+    background: var( --color-comentario);
+    border-radius: 5px;
+}
