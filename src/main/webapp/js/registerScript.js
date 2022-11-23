@@ -238,16 +238,16 @@ document.getElementById("formR").addEventListener("submit", function (event) {
 
                         }else {
 //                            event.preventDefault();
-//                            console.log("No se muestra el exitoso");
-                            Swal.fire({
-                                icon: 'success',
-                                title: '¡Registro exitoso!',
-                                text: 'Se registró la cuenta exitosamente.',
-                                confirmButtonText: 'Volver al inicio de sesión',
-                            })
-                            .then((value) => {
-                                window.location.href = "Registro2";
-                            })
+////                            console.log("No se muestra el exitoso");
+//                            Swal.fire({
+//                                icon: 'success',
+//                                title: '¡Registro exitoso!',
+//                                text: 'Se registró la cuenta exitosamente.',
+//                                confirmButtonText: 'Volver al inicio de sesión',
+//                            })
+//                            .then((value) => {
+//                                window.location.href = "Registro2";
+//                            })
                         }
 
                     }
