@@ -29,13 +29,13 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(name = "notasVotadas", urlPatterns = {"/notasVotadas"})
 public class VerNotasVotadas extends HttpServlet {
-    
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-         request.setCharacterEncoding("UTF-8");
-        
+
+        request.setCharacterEncoding("UTF-8");
+
         HttpSession sesion = request.getSession();
 
         String username = (String) sesion.getAttribute("userName");
@@ -46,6 +46,8 @@ public class VerNotasVotadas extends HttpServlet {
         String nCant = Integer.toString(nuevaCantidad);
         sesion.setAttribute("cantidadVotadas", nCant);
 
+        
+        
         PublicacionDAO pDAO = new PublicacionDAO();
 
         try {
@@ -65,13 +67,13 @@ public class VerNotasVotadas extends HttpServlet {
         } catch (SQLException ex) {
             Logger.getLogger(VerNotas.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
-    
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
     }
-    
+
 }

@@ -47,11 +47,24 @@ public class BusquedaBasica extends HttpServlet {
 
         String myBusqueda = request.getParameter("buscar");
         String paraPasar = "%" + myBusqueda + "%";
+        
+        sesion.setAttribute("parametroDeBusqueda", paraPasar);
 
         PublicacionDAO pDAO = new PublicacionDAO();
 
         try {
-            ArrayList<Publicacion> publicaciones = pDAO.getBuscadas(paraPasar);
+
+            HttpSession miSesion = request.getSession();
+//            miSesion.setAttribute("userName", user);
+//            miSesion.setAttribute("contrasena", contra);
+            miSesion.setAttribute("cantidad", "0");
+            miSesion.setAttribute("cantidadComentadas", "0");
+            miSesion.setAttribute("cantidadVotadas", "0");
+            miSesion.setAttribute("cantidadBuscadas", "10");
+            
+            String cantidadBuscadas = (String) miSesion.getAttribute("cantidadBuscadas");
+
+            ArrayList<Publicacion> publicaciones = pDAO.getBuscadas(paraPasar, cantidadBuscadas);
             request.setAttribute("publicaciones", publicaciones);
 
             ComentarioDAO cDAO = new ComentarioDAO();

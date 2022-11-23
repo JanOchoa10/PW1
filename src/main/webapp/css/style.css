@@ -157,6 +157,7 @@ nav {
     display: flex;
     justify-content: space-between;
     padding: 13px 5%;
+    min-height: 851px;
 }
 
 .left-sidebar {

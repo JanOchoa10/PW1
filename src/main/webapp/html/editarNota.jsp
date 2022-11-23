@@ -19,12 +19,12 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>PostCat - Página principal</title>
+        <title>PostCat - Editar publicación</title>
         <link rel="shortcut icon" href="img/logo-cato.png">
         <!--<link rel="stylesheet" href="../css/mycss.css">-->
         <!--script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script-->
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <link rel="stylesheet" href="css/myEditStyle.css">
+        <link rel="stylesheet" href="css/style.css">
         <script src="https://kit.fontawesome.com/835e988e9b.js" crossorigin="anonymous"></script>
 
     </head>
@@ -48,12 +48,12 @@
 
         <nav>
             <div class="nav-left">
-                <img src="img/logo.png" class="logo" onclick="location.reload(false);">
+                <img src="img/logo.png" class="logo" onclick="actualizarPag();">
                 <!--<h4>PostCat</h4>-->
                 <ul>
-                    <li><img src="img/newspaper-regular.png" title="Recientes"></li>
-                    <li><img src="img/comments-regular.png" title="Más comentadas"> </li>
-                    <li><img src="img/thumbs-up-regular.png" title="Más votadas"></li>
+                    <li><a href="Recientes"><img src="img/newspaper-regular.png" title="Recientes"></a></li>
+                    <li><a href="MasComentadas"><img src="img/comments-regular.png" title="Más comentadas"></a></li>
+                    <li><a href="MasVotadas"><img src="img/thumbs-up-regular.png" title="Más votadas"></a></li>
                 </ul>
             </div>
             <div class="nav-right">
@@ -77,8 +77,15 @@
                     <div class="user-profile">
                         <img src="img/${usuarios[0].userImagen}">
                         <div>
-                            <p>${usuarios[0].nombre}</p>
-                            <a href="#">Editar tu perfil</a>
+                            <p>${usuarios[0].userName}</p>
+                             <form action="EditarPerfil" method="POST">
+                                <button type='submit' style="background: transparent;
+                                        border: none;
+                                        cursor: pointer;">
+                                    <!--<a title="Editar publicación"><i class="fa-solid fa-pen-to-square"></i></a>-->  
+                                    <a title="Editar tu perfil">Editar tu perfil</a>
+                                </button>
+                            </form>
                         </div>
                     </div>
                     <hr>
@@ -125,9 +132,9 @@
                 <div class="imp-links">
                     <!--<a href="#">Accesos Directos</a>-->
                     <p>Publicaciones</p>
-                    <a href="#"><img src="img/newspaper-regular.png">  Recientes</a>
-                    <a href="#"><img src="img/comments-regular.png">  Más comentadas</a>
-                    <a href="#"><img src="img/thumbs-up-regular.png"> Más votadas</a>
+                    <a href="Recientes"><img src="img/newspaper-regular.png">  Recientes</a>
+                    <a href="MasComentadas"><img src="img/comments-regular.png">  Más comentadas</a>
+                    <a href="MasVotadas"><img src="img/thumbs-up-regular.png"> Más votadas</a>
                     <!--                    <a href="#"><img src="img/marketplace.png"> Mercado</a>
                                         <a href="#"><img src="img/watch.png"> Ver</a>
                                         <a href="#">Ver más</a>-->
@@ -208,7 +215,7 @@
                         <div class="user-profile">
                             <img src="img/${usuarios[0].userImagen}">
                             <div>
-                                <p>${usuarios[0].nombre}</p>
+                                <p>${usuarios[0].nombre} ${usuarios[0].apePaterno} ${usuarios[0].apeMaterno}</p>
                                 <small>Público <i class="fas fa-caret-down"></i></small>
                             </div>
                         </div>
@@ -247,7 +254,7 @@
                                 </div>
                             </form>
 
-                            <form action="notas" method="GET">
+                            <form action="Recientes" method="GET">
                                 <div class="add-post-links">
                                     <button type='submit'>
                                         <a title="Cancelar"><img src="img/ban-solid.png"> Cancelar</a>    
@@ -409,6 +416,7 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="js/script.js"></script>
         <script src="js/sesionNoActiva.js"></script>
+        <script src="js/mostrarComentarios.js"></script>
 
     </body>
 

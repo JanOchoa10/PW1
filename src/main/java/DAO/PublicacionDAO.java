@@ -604,8 +604,8 @@ public class PublicacionDAO {
         return publicaciones;
     }
      
-     public ArrayList<Publicacion> getBuscadas(String valorDeBusqueda) throws SQLException, IOException {
-        String sql = "select * from publicacion where texto like ? AND Activo = 1 order by fechaDeCreacion desc limit 10;";
+     public ArrayList<Publicacion> getBuscadas(String valorDeBusqueda, String cantidad) throws SQLException, IOException {
+        String sql = "select * from publicacion where texto like ? AND Activo = 1 order by fechaDeCreacion desc limit ? ;";
 
         ArrayList<Publicacion> publicacionEditable = new ArrayList<Publicacion>();
 
@@ -613,6 +613,8 @@ public class PublicacionDAO {
 
         ps = con.prepareStatement(sql);
         ps.setString(1, valorDeBusqueda);
+        int cantidadInt = Integer.parseInt(cantidad);
+        ps.setInt(2, cantidadInt);
         rs = ps.executeQuery();
 
         while (rs.next()) {

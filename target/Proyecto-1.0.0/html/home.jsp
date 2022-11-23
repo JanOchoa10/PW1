@@ -94,8 +94,19 @@
                     <div class="user-profile">
                         <img src="img/${usuarios[0].userImagen}">
                         <div>
-                            <p>${usuarios[0].nombre}</p>
-                            <a href="#">Editar tu perfil</a>
+                            <p>${usuarios[0].userName}</p>
+
+                            <form action="EditarPerfil" method="POST">
+                                <button type='submit' style="background: transparent;
+                                        border: none;
+                                        cursor: pointer;">
+                                    <!--<a title="Editar publicación"><i class="fa-solid fa-pen-to-square"></i></a>-->  
+                                    <a title="Editar tu perfil">Editar tu perfil</a>
+                                </button>
+                            </form>
+
+
+
                         </div>
                     </div>
                     <hr>
@@ -225,7 +236,7 @@
                     <div class="user-profile">
                         <img src="img/${usuarios[0].userImagen}">
                         <div>
-                            <p>${usuarios[0].nombre}</p>
+                            <p>${usuarios[0].nombre} ${usuarios[0].apePaterno} ${usuarios[0].apeMaterno}</p>
                             <small>Público <i class="fas fa-caret-down"></i></small>
                         </div>
                     </div>
@@ -279,7 +290,7 @@
 
                                     <c:if test="${usuario.ID_Usuario == publicacion.ID_Usuario}">
                                         <!--<h1><c:out value="${usuario.email}"></c:out></h1>-->
-                                        <c:set var = "UserPostNombre" scope = "session" value = "${usuario.nombre}"></c:set>
+                                        <c:set var = "UserPostNombre" scope = "session" value = "${usuario.nombre} ${usuario.apePaterno} ${usuario.apeMaterno}"></c:set>
                                         <c:set var = "UserPostFoto" scope = "session" value = "${usuario.userImagen}"></c:set>
                                     </c:if>
                                 </c:forEach>
@@ -620,18 +631,28 @@
 <!--                <h1><c:out value="Num de publicaciones: ${ numDePublicacionesBTN3 }"></c:out></h1>  
                 <h1><c:out value="Cantidad de publicaciones recientes: ${cantidad}"></c:out></h1> 
                 <h1><c:out value="Cantidad de publicaciones comentadas: ${cantidadComentadas}"></c:out></h1> 
-                <h1><c:out value="Cantidad de publicaciones votadas: ${cantidadVotadas}"></c:out></h1> -->
+                <h1><c:out value="Cantidad de publicaciones votadas: ${cantidadVotadas}"></c:out></h1> 
+                <h1><c:out value="Cantidad de publicaciones busquedas ${cantidadBuscadas}"></c:out></h1> -->
 
 
                 <c:choose>
-                    <c:when test="${numDePublicacionesBTN3 == cantidad}">
+                    <c:when test="${numDePublicacionesBTN3 == cantidad && numDePublicacionesBTN3 != 0}">
                         <button onclick="window.location.href = 'notasRecientes'" type="button" class="load-more-btn">Ver más recientes</button>
                     </c:when>
-                    <c:when test="${numDePublicacionesBTN3 == cantidadComentadas}">
+                    <c:when test="${numDePublicacionesBTN3 == cantidadComentadas && numDePublicacionesBTN3 != 0}">
                         <button onclick="window.location.href = 'notasComentadas'" type="button" class="load-more-btn">Ver más comentadas</button>
                     </c:when>
-                        <c:when test="${numDePublicacionesBTN3 == cantidadVotadas}">
+                    <c:when test="${numDePublicacionesBTN3 == cantidadVotadas && numDePublicacionesBTN3 != 0}">
                         <button onclick="window.location.href = 'notasVotadas'" type="button" class="load-more-btn">Ver más votadas</button>
+                    </c:when>
+
+                    <c:when test="${numDePublicacionesBTN3 == cantidadBuscadas && numDePublicacionesBTN3 != 0}">
+                        <button onclick="window.location.href = 'notasBuscadas'" type="button" class="load-more-btn">Ver más buscadas</button>
+                    </c:when>
+
+                    <c:when test="${numDePublicacionesBTN3 == 0}">
+                        <br>
+                        <h1>No hay publicaciones que mostrar.</h1>
                     </c:when>
                     <c:otherwise>    
 
