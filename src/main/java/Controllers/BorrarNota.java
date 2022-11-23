@@ -21,6 +21,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -33,17 +34,13 @@ public class BorrarNota extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
         request.setCharacterEncoding("UTF-8");
 
-        String idDePubli = request.getParameter("idNota");
-        int idPost = Integer.parseInt(idDePubli);
+        HttpSession miSesion = request.getSession();
 
+        String idDePubli = (String) miSesion.getAttribute("idParaBorrar");
+
+        int idPost = Integer.parseInt(idDePubli);
         PublicacionDAO pDAO = new PublicacionDAO();
 
         try {
@@ -57,7 +54,7 @@ public class BorrarNota extends HttpServlet {
                 ComentarioDAO cDAO = new ComentarioDAO();
                 ArrayList<Comentario> comentarios = cDAO.getAllComentarios();
                 request.setAttribute("comentarios", comentarios);
-                
+
                 VotoDAO vDAO = new VotoDAO();
                 ArrayList<Voto> votos = vDAO.getAllVotos();
                 request.setAttribute("votos", votos);
@@ -65,8 +62,43 @@ public class BorrarNota extends HttpServlet {
                 request.getRequestDispatcher("html/home.jsp").forward(request, response);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BorrarNota.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        request.setCharacterEncoding("UTF-8");
+
+        HttpSession miSesion = request.getSession();
+
+        String idDePubli = request.getParameter("idNota");
+
+        miSesion.setAttribute("idParaBorrar", idDePubli);
+
+        try {
+            
+            PublicacionDAO pDAO = new PublicacionDAO();
+            ArrayList<Publicacion> publicaciones = pDAO.get10PublicacionesPorDefecto();
+            request.setAttribute("publicaciones", publicaciones);
+
+            ComentarioDAO cDAO = new ComentarioDAO();
+            ArrayList<Comentario> comentarios = cDAO.getAllComentarios();
+            request.setAttribute("comentarios", comentarios);
+
+            VotoDAO vDAO = new VotoDAO();
+            ArrayList<Voto> votos = vDAO.getAllVotos();
+            request.setAttribute("votos", votos);
+            
+             request.getRequestDispatcher("html/borrarNota.jsp").forward(request, response);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(BorrarNota.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+       
 
     }
 }

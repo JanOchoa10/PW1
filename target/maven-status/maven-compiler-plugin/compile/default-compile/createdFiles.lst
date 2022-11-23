@@ -3,6 +3,7 @@ Modelos\Usuario.class
 DAO\UsuarioDAO.class
 Modelos\Comentario.class
 Modelos\Publicacion.class
+Controllers\ActualizarCuenta.class
 Controllers\VerNotasComentadas.class
 Controllers\Recientes.class
 Controllers\MasVotadas.class
@@ -25,6 +26,7 @@ Controllers\CrearVoto.class
 Controllers\EditarNota.class
 Controllers\VerNotasVotadas.class
 Controllers\Login.class
+Controllers\VerNotasBuscadas.class
 Controllers\MasComentadas.class
 DAO\PublicacionDAO.class
 Controllers\ActualizarNota.class
