@@ -48,6 +48,11 @@ public class BorrarNota extends HttpServlet {
 
             if (result) {
 
+                miSesion.setAttribute("cantidad", "10");
+                miSesion.setAttribute("cantidadComentadas", "0");
+                miSesion.setAttribute("cantidadVotadas", "0");
+                miSesion.setAttribute("cantidadBuscadas", "0");
+
                 ArrayList<Publicacion> publicaciones = pDAO.get10PublicacionesPorDefecto();
                 request.setAttribute("publicaciones", publicaciones);
 
@@ -79,7 +84,12 @@ public class BorrarNota extends HttpServlet {
         miSesion.setAttribute("idParaBorrar", idDePubli);
 
         try {
-            
+
+            miSesion.setAttribute("cantidad", "10");
+            miSesion.setAttribute("cantidadComentadas", "0");
+            miSesion.setAttribute("cantidadVotadas", "0");
+            miSesion.setAttribute("cantidadBuscadas", "0");
+
             PublicacionDAO pDAO = new PublicacionDAO();
             ArrayList<Publicacion> publicaciones = pDAO.get10PublicacionesPorDefecto();
             request.setAttribute("publicaciones", publicaciones);
@@ -91,14 +101,12 @@ public class BorrarNota extends HttpServlet {
             VotoDAO vDAO = new VotoDAO();
             ArrayList<Voto> votos = vDAO.getAllVotos();
             request.setAttribute("votos", votos);
-            
-             request.getRequestDispatcher("html/borrarNota.jsp").forward(request, response);
+
+            request.getRequestDispatcher("html/borrarNota.jsp").forward(request, response);
 
         } catch (SQLException ex) {
             Logger.getLogger(BorrarNota.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-       
 
     }
 }

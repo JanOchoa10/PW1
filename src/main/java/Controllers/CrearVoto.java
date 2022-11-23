@@ -69,6 +69,12 @@ public class CrearVoto extends HttpServlet {
 
             if (result) {
 
+                HttpSession miSesion = request.getSession();
+                miSesion.setAttribute("cantidad", "10");
+                miSesion.setAttribute("cantidadComentadas", "0");
+                miSesion.setAttribute("cantidadVotadas", "0");
+                miSesion.setAttribute("cantidadBuscadas", "0");
+
                 ComentarioDAO cDAO = new ComentarioDAO();
                 ArrayList<Comentario> comentarios = cDAO.getAllComentarios();
                 request.setAttribute("comentarios", comentarios);
@@ -76,7 +82,7 @@ public class CrearVoto extends HttpServlet {
                 PublicacionDAO pDAO = new PublicacionDAO();
                 ArrayList<Publicacion> publicaciones = pDAO.get10PublicacionesPorDefecto();
                 request.setAttribute("publicaciones", publicaciones);
-                
+
                 ArrayList<Voto> votos = vDAO.getAllVotos();
                 request.setAttribute("votos", votos);
 
@@ -89,4 +95,3 @@ public class CrearVoto extends HttpServlet {
     }
 
 }
-

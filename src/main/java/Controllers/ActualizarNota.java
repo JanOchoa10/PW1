@@ -55,7 +55,7 @@ public class ActualizarNota extends HttpServlet {
 
         String miSpoiler = request.getParameter("spoiler");
         int spoiler = 0;
-        if("Spoiler".equals(miSpoiler)){
+        if ("Spoiler".equals(miSpoiler)) {
             spoiler = 1;
         }
         String username = (String) sesion.getAttribute("userName");
@@ -80,6 +80,11 @@ public class ActualizarNota extends HttpServlet {
             boolean result = pDAO.editar(publicacion, idNotaInt);
 
             if (result) {
+                HttpSession miSesion = request.getSession();
+                miSesion.setAttribute("cantidad", "10");
+                miSesion.setAttribute("cantidadComentadas", "0");
+                miSesion.setAttribute("cantidadVotadas", "0");
+                miSesion.setAttribute("cantidadBuscadas", "0");
 
                 ArrayList<Publicacion> publicaciones = pDAO.get10PublicacionesPorDefecto();
                 request.setAttribute("publicaciones", publicaciones);
@@ -87,7 +92,7 @@ public class ActualizarNota extends HttpServlet {
                 ComentarioDAO cDAO = new ComentarioDAO();
                 ArrayList<Comentario> comentarios = cDAO.getAllComentarios();
                 request.setAttribute("comentarios", comentarios);
-                
+
                 VotoDAO vDAO = new VotoDAO();
                 ArrayList<Voto> votos = vDAO.getAllVotos();
                 request.setAttribute("votos", votos);
