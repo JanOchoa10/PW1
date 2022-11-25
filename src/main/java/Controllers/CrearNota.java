@@ -54,10 +54,10 @@ public class CrearNota extends HttpServlet {
         String miContenido2 = request.getParameter("miContenido2");
         String miSpoiler = request.getParameter("spoiler");
         int spoiler = 0;
-        if("Spoiler".equals(miSpoiler)){
+        if ("Spoiler".equals(miSpoiler)) {
             spoiler = 1;
         }
-        
+
         String username = (String) sesion.getAttribute("userName");
 
         ArrayList miLista = (ArrayList) sesion.getAttribute("usuarios");
@@ -75,19 +75,24 @@ public class CrearNota extends HttpServlet {
             boolean result = pDAO.agregar(publicacion);
 
             if (result) {
-                
+
+                HttpSession miSesion = request.getSession();
+                miSesion.setAttribute("cantidad", "10");
+                miSesion.setAttribute("cantidadComentadas", "0");
+                miSesion.setAttribute("cantidadVotadas", "0");
+                miSesion.setAttribute("cantidadBuscadas", "0");
 
                 ArrayList<Publicacion> publicaciones = pDAO.get10PublicacionesPorDefecto();
                 request.setAttribute("publicaciones", publicaciones);
-                
-                ComentarioDAO cDAO = new ComentarioDAO();                
+
+                ComentarioDAO cDAO = new ComentarioDAO();
                 ArrayList<Comentario> comentarios = cDAO.getAllComentarios();
                 request.setAttribute("comentarios", comentarios);
-                
+
                 VotoDAO vDAO = new VotoDAO();
                 ArrayList<Voto> votos = vDAO.getAllVotos();
                 request.setAttribute("votos", votos);
-                
+
                 request.getRequestDispatcher("html/home.jsp").forward(request, response);
             }
         } catch (SQLException ex) {

@@ -47,6 +47,10 @@ public class EditarNota extends HttpServlet {
         PublicacionDAO pDAO = new PublicacionDAO();
 
         try {
+            
+            
+            
+            
             ArrayList<Publicacion> publicacion = pDAO.getUnaPublicacion(idPost);
             request.setAttribute("publicacionEditable", publicacion);
 

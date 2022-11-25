@@ -21,6 +21,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -28,20 +29,18 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "EliminarComentario", urlPatterns = {"/EliminarComentario"})
 public class EliminarComentario extends HttpServlet {
-    
-    
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
     }
 
-    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-         request.setCharacterEncoding("UTF-8");
+
+        request.setCharacterEncoding("UTF-8");
 
         String idComentario = request.getParameter("idComentario");
         int idComentarioInt = Integer.parseInt(idComentario);
@@ -53,13 +52,19 @@ public class EliminarComentario extends HttpServlet {
 
             if (result) {
 
-                PublicacionDAO pDAO = new PublicacionDAO();                
+                HttpSession miSesion = request.getSession();
+                miSesion.setAttribute("cantidad", "10");
+                miSesion.setAttribute("cantidadComentadas", "0");
+                miSesion.setAttribute("cantidadVotadas", "0");
+                miSesion.setAttribute("cantidadBuscadas", "0");
+
+                PublicacionDAO pDAO = new PublicacionDAO();
                 ArrayList<Publicacion> publicaciones = pDAO.get10PublicacionesPorDefecto();
                 request.setAttribute("publicaciones", publicaciones);
-                
+
                 ArrayList<Comentario> comentarios = cDAO.getAllComentarios();
                 request.setAttribute("comentarios", comentarios);
-                
+
                 VotoDAO vDAO = new VotoDAO();
                 ArrayList<Voto> votos = vDAO.getAllVotos();
                 request.setAttribute("votos", votos);
@@ -69,7 +74,7 @@ public class EliminarComentario extends HttpServlet {
         } catch (SQLException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
-    
+
 }

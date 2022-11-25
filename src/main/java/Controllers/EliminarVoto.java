@@ -47,12 +47,18 @@ public class EliminarVoto extends HttpServlet {
         String idVoto = request.getParameter("idVoto");
         int idVotoInt = Integer.parseInt(idVoto);
 
-         VotoDAO vDAO = new VotoDAO();
+        VotoDAO vDAO = new VotoDAO();
 
         try {
             boolean result = vDAO.borrar(idVotoInt);
 
             if (result) {
+
+                HttpSession miSesion = request.getSession();
+                miSesion.setAttribute("cantidad", "10");
+                miSesion.setAttribute("cantidadComentadas", "0");
+                miSesion.setAttribute("cantidadVotadas", "0");
+                miSesion.setAttribute("cantidadBuscadas", "0");
 
                 PublicacionDAO pDAO = new PublicacionDAO();
                 ArrayList<Publicacion> publicaciones = pDAO.get10PublicacionesPorDefecto();
@@ -62,7 +68,6 @@ public class EliminarVoto extends HttpServlet {
                 ArrayList<Comentario> comentarios = cDAO.getAllComentarios();
                 request.setAttribute("comentarios", comentarios);
 
-               
                 ArrayList<Voto> votos = vDAO.getAllVotos();
                 request.setAttribute("votos", votos);
 
