@@ -78,7 +78,7 @@
                         <img src="img/${usuarios[0].userImagen}">
                         <div>
                             <p>${usuarios[0].userName}</p>
-                             <form action="EditarPerfil" method="POST">
+                            <form action="EditarPerfil" method="POST">
                                 <button type='submit' style="background: transparent;
                                         border: none;
                                         cursor: pointer;">
@@ -243,7 +243,17 @@
                                                                                     </div>-->
                                         </div>
                                     </label>
-                                    <input type="checkbox" id="spoiler" name="spoiler" value="Spoiler"><a title="Guardar publicación"> &nbsp;Spoiler</a>
+
+                                    <c:choose>
+                                        <c:when test="${publicacion.spoiler == 1}">
+                                            <input type="checkbox" id="spoiler" name="spoiler" value="Spoiler" checked><a title="Guardar publicación"> &nbsp;Spoiler</a>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <input type="checkbox" id="spoiler" name="spoiler" value="Spoiler"><a title="Guardar publicación"> &nbsp;Spoiler</a>
+                                        </c:otherwise>
+                                    </c:choose>
+
+
 
                                     <button type='submit'>
                                         <a title="Guardar cambios"><img src="img/floppy-disk-regular.png"> Guardar cambios</a>    
